@@ -31,7 +31,7 @@
   tool-skins.yml
   messages.yml
   resource-pack/        # optional addon for REAL_TIER inventory models</code></pre>
-            <p><code>plugin.yml</code> is bundled inside the jar and documents commands, aliases, and permission declarations.</p>
+            <p><code>plugin.yml</code> is bundled inside the jar and documents commands, aliases, permissions, and plugin identity.</p>
 
             <h2 id="reload-vs-restart">2. Reload vs Restart</h2>
             <p>Use <code>/coretoolsx reload</code> for normal YAML edits, recipe changes, message edits, lore template changes, progression permission node changes in YAML, and recipe re-registration. Restart when replacing the jar, changing Paper/Minecraft version, or recovering from startup-only errors.</p>
@@ -612,6 +612,7 @@ admin:
 </code></pre>
 
             <h2 id="plugin-yml">9. <code>plugin.yml</code></h2>
+            <p>Complete bundled plugin descriptor. Maven resolves <code>${project.version}</code> when the release jar is built.</p>
             <pre class="code-block"><code>name: CoreToolsX
 main: it.icewolf23x.coretoolsx.CoreToolsXPlugin
 version: ${project.version}
@@ -675,8 +676,7 @@ permissions:
       coretoolsx.use.iron: true
       coretoolsx.use.gold: true
       coretoolsx.use.diamond: true
-      coretoolsx.use.netherite: true
-</code></pre>
+      coretoolsx.use.netherite: true</code></pre>
 
             <h2 id="permissions">10. Permissions</h2>
             <pre class="code-block"><code>coretoolsx.admin
