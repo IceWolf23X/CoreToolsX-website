@@ -46,53 +46,346 @@
 
             <h2 id="config-yml">5. <code>config.yml</code></h2>
             <p>Controls global debug mode, protected vanilla recipe behavior, recipe book discovery, ingredient groups, default upgrade behavior, generated lore, inventory model mode, skin removal, fire/lava stripping, progression locks, and custom item protection.</p>
-            <pre class="code-block"><code>recipes:
-  override-vanilla-equipment-recipes: true
-  recipe-book:
-    enabled: true
+            <pre class="code-block"><code># CoreToolsX main configuration.
+#
+# CoreToolsX is designed as a Paper-only vanilla+ tool progression plugin.
+# This file controls global behavior. Recipe definitions live in:
+# - tool-upgrades.yml
+# - tool-skins.yml
+#
+# All text shown to players is configured in messages.yml.
+
+settings:
+  # Enables extra startup/reload diagnostic logs.
+  # Keep false on production unless you are debugging configuration or recipe behavior.
+  debug: false
 
 tool-skin:
   inventory-model:
+    # Controls the item model stored on skinned tools.
+    #
+    # VISUAL_SKIN:
+    # - Default and resource-pack-free mode.
+    # - A netherite tool skinned as iron becomes an IRON_* item with netherite
+    #   tool components, so it looks iron both in inventory and in hand.
+    #
+    # REAL_TIER:
+    # - Requires the CoreToolsX resource-pack addon.
+    # - The real item Material still becomes the visual skin Material, but
+    #   CoreToolsX sets item_model to coretoolsx:skinned/&lt;material&gt;.
+    # - The addon model shows netherite in GUI/ground contexts and the visual
+    #   skin model in hand. Without the addon, the item will render as a
+    #   missing/invalid custom model.
     mode: VISUAL_SKIN
 
+recipes:
+  # When true, CoreToolsX blocks protected vanilla direct tool recipe outputs at
+  # crafting time and uses progression recipes instead. It does not remove
+  # minecraft:* recipes from the server registry, so reload/disable is safe.
+  # Wooden tools and vanilla diamond -&gt; netherite smithing are not touched.
+  override-vanilla-equipment-recipes: true
+
+  # Cooldown used by blocked-crafting messages to avoid chat spam.
+  # Value is in server ticks. 20 ticks = 1 second.
+  blocked-message-cooldown-ticks: 40
+
+  recipe-book:
+    # Registers static placeholder recipes so players can discover CoreToolsX
+    # recipes naturally in the vanilla recipe book.
+    enabled: true
+
+ingredient-groups:
+  # Ingredient groups let upgrade/skin definitions reference a named set instead
+  # of a single Bukkit Material. Runtime matching is MATERIAL_ONLY, so any item
+  # whose Material is listed here can satisfy that ingredient cost.
+  #
+  # The static recipe-book entry still uses the first valid material as the
+  # representative ingredient; the runtime matcher accepts the whole group.
+  WOOD_TOOL_MATERIALS:
+    - OAK_PLANKS
+
+  STONE_TOOL_MATERIALS:
+    - COBBLESTONE
+    - COBBLED_DEEPSLATE
+    - BLACKSTONE
+
+  COPPER_TOOL_MATERIALS:
+    - COPPER_INGOT
+
+  IRON_TOOL_MATERIALS:
+    - IRON_INGOT
+
+  GOLD_TOOL_MATERIALS:
+    - GOLD_INGOT
+
+  DIAMOND_TOOL_MATERIALS:
+    - DIAMOND
+
 upgrades:
+  # Master switch for tool upgrade crafting.
   enabled: true
+
+  # Default cost behavior used when an tool-upgrades.yml entry does not override it.
+  # VANILLA_RECIPE_COST means shovel/spear 1, sword/hoe 2, pickaxe/axe 3.
   cost-mode: VANILLA_RECIPE_COST
+
+  # Durability behavior after an upgrade:
+  # - REFILL: output item is fully repaired.
+  # - KEEP_DAMAGE: preserves the exact damage value when possible.
+  # - KEEP_PERCENTAGE: preserves the percentage of durability already used.
   durability-mode: REFILL
 
+  # When true, anvil repair cost is preserved by Bukkit/Paper meta conversion
+  # whenever the target item supports it. When false, upgrade output repair cost
+  # is cleared.
+  preserve-repair-cost: true
+
 skins:
+  # Master switch for visual skin recipes.
   enabled: true
+
+  # V1 skin crafting is intentionally fixed to clean netherite tools in a
+  # vanilla crafting table. The output Material becomes the selected visual
+  # skin tier, but receives netherite-equivalent components. Already-skinned
+  # items must be stripped first.
+
   lore:
+    # Adds generated CoreToolsX lore lines that identify the active visual skin.
+    # CoreToolsX snapshots the original item lore into PDC before rebuilding
+    # the final lore from generated-lines.
     enabled: true
+
+    # Legacy single-line format. Used only if generated-lines is empty.
+    format: "&lt;reset&gt;&lt;gray&gt;Skin: &lt;white&gt;{skin}"
+
+    # MiniMessage lines rendered from current config every time the item is
+    # refreshed, dyed, fixed, or skin durability changes.
+    # The final item lore is exactly this list after placeholder expansion.
+    # To display the saved original item lore, add a line that is exactly
+    # {item_lore}. If this line is missing, the saved original lore remains in
+    # PDC for skin removal/reset, but is not shown on the skinned item.
+    #
+    # Available placeholders:
+    # - {item_lore}: must be its own list entry; expands to the saved original lore
+    # - {skin}
+    # - {skin_id}
+    # - {real_tier}
+    # - {visual_skin}
+    # - {clean_material}
+    # - {skin_durability_current}
+    # - {skin_durability_max}
+    # - {skin_durability_damage}
+    # - {skin_durability_remaining}
+    # - {skin_durability_percent}
+    # - {skin_durability_bar}
     generated-lines:
       - "{item_lore}"
       - "&lt;gray&gt;Skin: &lt;white&gt;{skin}"
-
+      # Example durability line. Uncomment it when skin-durability is enabled
+      # in tool-skins.yml and you want the skin durability shown in lore.
+      # - "&lt;gray&gt;Skin Durability: &lt;white&gt;{skin_durability_current}&lt;/white&gt;/&lt;white&gt;{skin_durability_max}&lt;/white&gt; {skin_durability_bar}"
 skin-removal:
+  # Master switch for removing a skin through crafting.
   enabled: true
+
+  # Tool required in the crafting matrix with a skinned tool.
+  # If damage-tool is true and consume-tool is false, this material must have
+  # durability. Otherwise removal recipes are skipped and a config warning is logged.
   tool: SHEARS
+
+  # If true, one shears item is consumed.
   consume-tool: false
+
+  # If true, shears take durability damage instead of being consumed.
   damage-tool: true
 
+  # Durability damage applied to shears when damage-tool is true.
+  damage-amount: 1
+
+skin-stripping:
+  # If false, dropped skinned tools are protected from configured fire/lava
+  # destruction causes and keeps the skin.
+  #
+  # If true, configured causes strip the skin and convert the item back into
+  # clean netherite instead of destroying it.
+  enabled: false
+
+  # Supported v1 causes:
+  # - LAVA
+  # - FIRE
+  causes:
+    - LAVA
+    - FIRE
+
+  # MVP supports STRIP_SKIN only.
+  mode: STRIP_SKIN
+
 progression-locks:
-  enabled: false</code></pre>
+  # Master switch for permission-based progression locks.
+  # CoreToolsX does not store progression state internally.
+  enabled: false
+
+  blocks:
+    # Blocks protected direct crafting/skin recipes when permission checks fail.
+    crafting: true
+
+    # Blocks tool upgrade recipes when permission checks fail.
+    upgrades: true
+
+    # Default false: found/traded/given tools remain usable.
+    # If true, using tools requires coretoolsx.use.&lt;tier&gt;.
+    usage: false
+
+  permissions:
+    # Players with this permission bypass all CoreToolsX progression checks.
+    bypass: "coretoolsx.progression.bypass"
+
+    # Prefix used when usage locking is enabled.
+    # Example: coretoolsx.use.netherite
+    usage-prefix: "coretoolsx.use"
+
+compatibility:
+  custom-items:
+    # Custom item protection mode:
+    # - BLOCK_IF_DETECTED: block transformation if foreign PDC data is found.
+    # - REPLACE_ANYWAY: allow CoreToolsX transformations even when foreign PDC
+    #   data is present. Use only when you know those custom items are safe.
+    behavior: BLOCK_IF_DETECTED
+</code></pre>
             <p><code>{item_lore}</code> must be its own generated lore entry. If it is missing, original lore remains stored in PDC but is not displayed.</p>
 
             <h2 id="tool-upgrades-yml">6. <code>tool-upgrades.yml</code></h2>
             <p>Defines normal tool progression recipes. Supported fields include <code>enabled</code>, <code>from-tier</code>, <code>from-material</code>, <code>to-tier</code>, <code>to-material</code>, <code>ingredient</code>, <code>cost-mode</code>, <code>count</code>, and <code>permission</code>.</p>
-            <pre class="code-block"><code>upgrades:
+            <pre class="code-block"><code># CoreToolsX tool upgrade definitions.
+#
+# These recipes change the real vanilla Material of the tool. Normal upgraded
+# tools do not receive CoreToolsX PDC; the Material remains the source of truth.
+#
+# Supported fields:
+# - enabled: true/false
+# - from-tier: WOOD, STONE, COPPER, IRON, GOLD, DIAMOND, NETHERITE
+# - from-material: exact Bukkit Material for a special one-tool recipe
+# - to-tier: target tier for all configured tool types
+# - to-material: exact Bukkit Material for a special one-tool recipe
+# - ingredient: Bukkit Material or ingredient-groups.&lt;id&gt; from config.yml
+# - cost-mode: VANILLA_RECIPE_COST or CUSTOM
+# - count: explicit ingredient count, used only when cost-mode is CUSTOM
+# - permission: permission required when progression locks are enabled
+#
+# VANILLA_RECIPE_COST means:
+# - shovel: 1
+# - spear: 1
+# - sword: 2
+# - hoe: 2
+# - pickaxe: 3
+# - axe: 3
+
+upgrades:
   wood_to_stone:
     enabled: true
     from-tier: WOOD
     to-tier: STONE
     ingredient: STONE_TOOL_MATERIALS
     cost-mode: VANILLA_RECIPE_COST
-    permission: "coretoolsx.upgrade.wood_to_stone"</code></pre>
+    permission: "coretoolsx.upgrade.wood_to_stone"
+
+  stone_to_copper:
+    enabled: true
+    from-tier: STONE
+    to-tier: COPPER
+    ingredient: COPPER_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.stone_to_copper"
+
+  copper_to_iron:
+    enabled: true
+    from-tier: COPPER
+    to-tier: IRON
+    ingredient: IRON_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.copper_to_iron"
+
+  iron_to_diamond:
+    enabled: true
+    from-tier: IRON
+    to-tier: DIAMOND
+    ingredient: DIAMOND_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.iron_to_diamond"
+
+  iron_to_gold:
+    # Gold is an optional endpoint branch, separate from the main diamond path.
+    enabled: true
+    from-tier: IRON
+    to-tier: GOLD
+    ingredient: GOLD_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.iron_to_gold"
+</code></pre>
             <p>The default upgrade chain is wood to stone, stone to copper, copper to iron, iron to diamond, and iron to gold. <code>VANILLA_RECIPE_COST</code> means shovel/spear 1, sword/hoe 2, pickaxe/axe 3.</p>
 
             <h2 id="tool-skins-yml">7. <code>tool-skins.yml</code></h2>
             <p>Defines netherite-only visual skin recipes and controls optional skin durability. Default skin ids are wood, stone, copper, iron, gold, and diamond.</p>
-            <pre class="code-block"><code>skins:
+            <pre class="code-block"><code># CoreToolsX netherite tool skin definitions.
+#
+# Skin recipes are netherite-only. A skin changes the real item Material to the
+# visual tier, then CoreToolsX applies netherite-equivalent tool components.
+#
+# Example: a netherite pickaxe with the iron skin becomes an IRON_PICKAXE with
+# netherite max damage, tool rules, weapon data, and CoreToolsX PDC.
+#
+# Supported fields:
+# - enabled: true/false
+# - display-name: name used in generated lore and messages
+# - ingredient: Bukkit Material or ingredient-groups.&lt;id&gt; from config.yml
+# - cost-mode: VANILLA_RECIPE_COST or CUSTOM
+# - count: explicit ingredient count, used only when cost-mode is CUSTOM
+# - permission: permission required when progression locks are enabled
+#
+# VANILLA_RECIPE_COST means:
+# - shovel: 1
+# - spear: 1
+# - sword: 2
+# - hoe: 2
+# - pickaxe: 3
+# - axe: 3
+
+skins:
+  wood:
+    enabled: true
+    display-name: "Wood"
+    ingredient: WOOD_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.wood"
+
+  stone:
+    enabled: true
+    display-name: "Stone"
+    ingredient: STONE_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.stone"
+
+  copper:
+    enabled: true
+    display-name: "Copper"
+    ingredient: COPPER_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.copper"
+
+  iron:
+    enabled: true
+    display-name: "Iron"
+    ingredient: IRON_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.iron"
+
+  gold:
+    enabled: true
+    display-name: "Gold"
+    ingredient: GOLD_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.gold"
+
   diamond:
     enabled: true
     display-name: "Diamond"
@@ -101,26 +394,289 @@ progression-locks:
     permission: "coretoolsx.skin.diamond"
 
 skin-durability:
+  # Skin durability is stored in CoreToolsX PDC and applies only to skinned
+  # tools. It does not replace vanilla DAMAGE/MAX_DAMAGE on the real item.
+  #
+  # Supported v1 modes:
+  # - DISABLED: no skin durability is tracked.
+  # - GLOBAL: every skin uses global.max-durability.
+  # - BY_SKIN: each skin reads by-skin.materials.&lt;skin&gt;, then fallback values.
+  # - BY_ITEM: each tool reads by-item.materials.&lt;skin&gt;.&lt;type&gt;, then fallback values.
   mode: DISABLED
+
+  global:
+    max-durability: 5000
+
+  by-skin:
+    default-max-durability: 5000
+    materials:
+      wood: 3500
+      stone: 4500
+      copper: 5000
+      iron: 6500
+      gold: 2500
+      diamond: 9000
+
+  by-item:
+    default-max-durability: 5000
+    materials:
+      wood:
+        default-max-durability: 3500
+        sword: 2500
+        pickaxe: 3200
+        axe: 3200
+        shovel: 1800
+        hoe: 2200
+        spear: 2500
+
+      stone:
+        default-max-durability: 4500
+        sword: 3200
+        pickaxe: 4100
+        axe: 4100
+        shovel: 2300
+        hoe: 2800
+        spear: 3200
+
+      copper:
+        default-max-durability: 5000
+        sword: 3600
+        pickaxe: 4550
+        axe: 4550
+        shovel: 2550
+        hoe: 3150
+        spear: 3600
+
+      iron:
+        default-max-durability: 6500
+        sword: 4700
+        pickaxe: 5900
+        axe: 5900
+        shovel: 3300
+        hoe: 4100
+        spear: 4700
+
+      gold:
+        default-max-durability: 2500
+        sword: 1800
+        pickaxe: 2250
+        axe: 2250
+        shovel: 1250
+        hoe: 1550
+        spear: 1800
+
+      diamond:
+        default-max-durability: 9000
+        sword: 6500
+        pickaxe: 8200
+        axe: 8200
+        shovel: 4600
+        hoe: 5700
+        spear: 6500
+
   damage:
     mode: MIRROR_REAL_DAMAGE
     multiplier: 1.0
-  on-break: REMOVE_SKIN</code></pre>
+
+  on-break: REMOVE_SKIN
+
+  mending:
+    mode: DISABLED
+
+  placeholders:
+    disabled-value: ""
+    bar-segments: 10
+    bar-full: "&lt;green&gt;|"
+    bar-empty: "&lt;dark_gray&gt;|"
+</code></pre>
             <p>Skin durability modes are <code>DISABLED</code>, <code>GLOBAL</code>, <code>BY_SKIN</code>, and <code>BY_ITEM</code>. Mending modes are <code>DISABLED</code>, <code>SPLIT</code>, and <code>DOUBLE</code>.</p>
 
             <h2 id="messages-yml">8. <code>messages.yml</code></h2>
             <p>Messages use Adventure MiniMessage. The configured prefix is prepended automatically. Only documented placeholders near each message should be used.</p>
             <p>Inspect messages are useful for checking current material, clean material, visual skin, inventory model mode, CoreToolsX data, generated lore state, original lore snapshot, skin durability, tier, and tool type.</p>
+            <pre class="code-block"><code># CoreToolsX messages.
+#
+# All user-facing text should live here.
+# Messages use Adventure MiniMessage syntax:
+# https://docs.advntr.dev/minimessage/format.html
+#
+# Placeholder format is {placeholder}. A message only receives placeholders
+# that are meaningful for that specific command or event.
+
+# Prefix is prepended automatically by MessageService to every configured message.
+prefix: "&lt;dark_gray&gt;[&lt;aqua&gt;CoreToolsX&lt;/aqua&gt;]&lt;/dark_gray&gt; "
+
+commands:
+  # Generic permission failure for commands.
+  no-permission: "&lt;red&gt;You do not have permission to do this."
+
+  # Sent when an unknown /coretoolsx subcommand is used.
+  unknown: "&lt;red&gt;Unknown command. Use &lt;white&gt;/coretoolsx help&lt;/white&gt;."
+
+  # Sent after /coretoolsx reload successfully reloads configs and recipes.
+  reloaded: "&lt;green&gt;CoreToolsX reloaded."
+
+  # Placeholder:
+  # - {version}: plugin version from plugin.yml
+  version: "&lt;gray&gt;CoreToolsX version &lt;white&gt;{version}&lt;/white&gt;."
+
+  # Help command lines. Permission-gated lines are only shown when the sender
+  # has the corresponding permission.
+  help-header: "&lt;gray&gt;CoreToolsX commands:"
+  help-version: "&lt;dark_gray&gt;- &lt;aqua&gt;/coretoolsx version&lt;/aqua&gt;"
+  help-reload: "&lt;dark_gray&gt;- &lt;aqua&gt;/coretoolsx reload&lt;/aqua&gt;"
+  help-inspect: "&lt;dark_gray&gt;- &lt;aqua&gt;/coretoolsx inspect&lt;/aqua&gt;"
+  help-fixitem: "&lt;dark_gray&gt;- &lt;aqua&gt;/coretoolsx fixitem&lt;/aqua&gt;"
+
+  # Sent when a player-only command is run from console.
+  player-only: "&lt;red&gt;This command can only be used by a player."
+
+crafting:
+  # Sent when a protected vanilla tool recipe is blocked.
+  blocked-vanilla-craft: "&lt;red&gt;You must upgrade the previous tool tier first."
+
+  # Sent when permission-based progression blocks an upgrade or skin recipe.
+  no-permission: "&lt;red&gt;You do not have permission for this tool progression."
+
+  # Sent when compatibility mode blocks transformation of a detected custom item.
+  custom-item-blocked: "&lt;red&gt;This custom item cannot be modified by CoreToolsX."
+
+progression:
+  # Sent when progression-locks.blocks.usage is true and the player lacks
+  # the required coretoolsx.use.&lt;tier&gt; permission.
+  usage-blocked: "&lt;red&gt;You do not have permission to use this tool tier."
+
+admin:
+  # Sent by /coretoolsx inspect when the player has no held item.
+  inspect-empty-hand: "&lt;red&gt;Hold a tool item first."
+
+  # Sent by /coretoolsx fixitem when the player has no held item.
+  fix-empty-hand: "&lt;red&gt;Hold a tool item first."
+
+  # Sent by /coretoolsx fixitem when the held item is not CoreToolsX skinned tool.
+  fix-not-skinned: "&lt;red&gt;This item is not a CoreToolsX skinned tool item."
+
+  # Sent by /coretoolsx fixitem after the profile/lore/PDC refresh completes.
+  fixed: "&lt;green&gt;Item fixed."
+
+  inspect:
+    # Header for /coretoolsx inspect output.
+    header: "&lt;gray&gt;Item inspection:"
+
+    # Placeholder:
+    # - {material}: current Bukkit Material name
+    current-material: "&lt;dark_gray&gt;- &lt;gray&gt;Current Material: &lt;white&gt;{material}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {material}: saved clean netherite Material for skinned tool
+    clean-material: "&lt;dark_gray&gt;- &lt;gray&gt;Clean Material: &lt;white&gt;{material}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {skin}: saved visual skin tier
+    visual-skin: "&lt;dark_gray&gt;- &lt;gray&gt;Visual Skin: &lt;white&gt;{skin}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {mode}: REAL_TIER or VISUAL_SKIN
+    inventory-model-mode: "&lt;dark_gray&gt;- &lt;gray&gt;Inventory Model Mode: &lt;white&gt;{mode}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {value}: true/false
+    has-core-data: "&lt;dark_gray&gt;- &lt;gray&gt;Has CoreToolsX Data: &lt;white&gt;{value}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {value}: true/false
+    generated-lore: "&lt;dark_gray&gt;- &lt;gray&gt;Generated Skin Lore: &lt;white&gt;{value}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {value}: true/false
+    original-lore: "&lt;dark_gray&gt;- &lt;gray&gt;Original Lore Snapshot: &lt;white&gt;{value}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {damage}: skin durability damage stored in PDC
+    # - {max}: skin max durability stored in PDC
+    # - {remaining}: max minus damage
+    # - {percent}: remaining percent
+    skin-durability: "&lt;dark_gray&gt;- &lt;gray&gt;Skin Durability: &lt;white&gt;{remaining}&lt;/white&gt;/&lt;white&gt;{max}&lt;/white&gt; &lt;dark_gray&gt;({percent}%, damage {damage})"
+
+    # Sent when skin durability mode is disabled or the item has no skin
+    # durability PDC.
+    skin-durability-disabled: "&lt;dark_gray&gt;- &lt;gray&gt;Skin Durability: &lt;white&gt;disabled&lt;/white&gt;"
+
+    # Placeholder:
+    # - {tier}: detected tool tier for normal tool
+    tier: "&lt;dark_gray&gt;- &lt;gray&gt;Tier: &lt;white&gt;{tier}&lt;/white&gt;"
+
+    # Placeholder:
+    # - {piece}: detected tool type for normal tool
+    piece: "&lt;dark_gray&gt;- &lt;gray&gt;Type: &lt;white&gt;{piece}&lt;/white&gt;"
+</code></pre>
 
             <h2 id="plugin-yml">9. <code>plugin.yml</code></h2>
             <pre class="code-block"><code>name: CoreToolsX
 main: it.icewolf23x.coretoolsx.CoreToolsXPlugin
+version: ${project.version}
 api-version: '1.21'
 description: Vanilla+ tool progression and netherite tool skins for Paper.
+author: IceWolf23X
+prefix: CoreToolsX
 commands:
   coretoolsx:
+    description: CoreToolsX main command.
+    usage: /coretoolsx
     aliases:
-      - ctx</code></pre>
+      - ctx
+permissions:
+  coretoolsx.admin:
+    description: Grants all CoreToolsX admin permissions.
+    default: op
+    children:
+      coretoolsx.admin.reload: true
+      coretoolsx.admin.inspect: true
+      coretoolsx.admin.fixitem: true
+      coretoolsx.progression.bypass: true
+  coretoolsx.admin.reload:
+    description: Allows reloading CoreToolsX configuration.
+    default: op
+  coretoolsx.admin.inspect:
+    description: Allows inspecting held CoreToolsX tool items.
+    default: op
+  coretoolsx.admin.fixitem:
+    description: Allows repairing CoreToolsX metadata/profile on the held item.
+    default: op
+  coretoolsx.progression.bypass:
+    description: Bypasses CoreToolsX permission progression locks.
+    default: op
+  coretoolsx.skin.*:
+    description: Allows every CoreToolsX tool skin.
+    default: op
+    children:
+      coretoolsx.skin.wood: true
+      coretoolsx.skin.stone: true
+      coretoolsx.skin.copper: true
+      coretoolsx.skin.iron: true
+      coretoolsx.skin.gold: true
+      coretoolsx.skin.diamond: true
+  coretoolsx.upgrade.*:
+    description: Allows every CoreToolsX tool upgrade.
+    default: op
+    children:
+      coretoolsx.upgrade.wood_to_stone: true
+      coretoolsx.upgrade.stone_to_copper: true
+      coretoolsx.upgrade.copper_to_iron: true
+      coretoolsx.upgrade.iron_to_gold: true
+      coretoolsx.upgrade.iron_to_diamond: true
+  coretoolsx.use.*:
+    description: Allows using every CoreToolsX tool tier when usage locks are enabled.
+    default: op
+    children:
+      coretoolsx.use.wood: true
+      coretoolsx.use.stone: true
+      coretoolsx.use.copper: true
+      coretoolsx.use.iron: true
+      coretoolsx.use.gold: true
+      coretoolsx.use.diamond: true
+      coretoolsx.use.netherite: true
+</code></pre>
 
             <h2 id="permissions">10. Permissions</h2>
             <pre class="code-block"><code>coretoolsx.admin
