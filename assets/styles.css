@@ -2012,6 +2012,19 @@ details p {
 
 .also-product-grid {
   align-items: stretch;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1120px) {
+  .also-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .also-product-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .resource-card.also-card {
@@ -2150,6 +2163,19 @@ details p {
   --also-accent: #ffd06d;
   --also-glow: rgba(255, 142, 76, 0.18);
   --also-shadow: rgba(25, 8, 4, 0.5);
+}
+
+.also-card--extraction {
+  --also-bg: #0c0a06;
+  --also-surface: #1a150c;
+  --also-surface-2: #2a210f;
+  --also-line: rgba(255, 243, 77, 0.24);
+  --also-line-strong: rgba(240, 148, 27, 0.5);
+  --also-text: #fffbe8;
+  --also-muted: #c7ad77;
+  --also-accent: #fff34d;
+  --also-glow: rgba(255, 243, 77, 0.18);
+  --also-shadow: rgba(12, 10, 6, 0.48);
 }
 
 .also-card--chat {
