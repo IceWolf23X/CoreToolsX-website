@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Install and validate CoreToolsX on Paper servers.">
+    <title>CoreToolsX Setup - Installation Guide</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
+    <meta name="theme-color" content="#050812">
+    <script>(()=>{try{if(localStorage.getItem("coretoolsx-theme")==="light"){document.documentElement.dataset.theme="light";}}catch(_){}})();</script>
+    <link rel="stylesheet" href="./assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header"><nav class="nav shell" aria-label="Main navigation"><a class="brand" href="./index.html" aria-label="CoreToolsX home"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="nav-links" id="nav-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div><div class="nav-actions"><a class="nav-cta nav-download" href="#download">Download</a><a class="nav-cta" href="./configuration.html">Configure</a></div></nav></header>
+    <main id="main">
+      <section class="page-hero"><div class="shell"><div class="section-heading"><p class="eyebrow">Installation guide</p><h1>Install CoreToolsX on a supported Paper server.</h1><p>CoreToolsX is a Paper-only plugin for Java 21 and Paper 1.21.11 or newer. It generates four YAML files on first boot.</p></div></div></section>
+      <section class="section doc-page">
+        <div class="shell doc-layout">
+          <aside class="doc-sidebar" aria-label="Setup sections"><strong>On this page</strong><a href="#requirements">Requirements</a><a href="#download">Download</a><a href="#install">Install</a><a href="#generated-files">Generated Files</a><a href="#reload">Reload vs Restart</a><a href="#first-test">First Tests</a><a href="#validation">Validation</a></aside>
+          <article class="markdown-body">
+            <h2 id="requirements">Requirements</h2>
+            <ul><li>Paper 1.21.11 or newer.</li><li>Java 21 or newer.</li><li>CoreToolsX jar installed on a Paper backend.</li><li>LuckPerms or another permission plugin only if progression locks are enabled.</li></ul>
+            <p>CoreToolsX does not require Vault, PlaceholderAPI, a database, custom GUI libraries, CoreArmorX, or custom item plugins. The resource-pack addon is optional and only needed for <code>REAL_TIER</code> inventory models.</p>
+
+            <h2 id="download">Download</h2>
+            <p>The current source build line is <code>2026.1.0</code>. Use the CoreToolsX plugin repository or your packaged jar artifact for deployment.</p>
+            <pre class="code-block"><code>CoreToolsX-2026.1.0.jar</code></pre>
+
+            <h2 id="install">Installation Flow</h2>
+            <ol><li>Stop the server.</li><li>Place the CoreToolsX jar in the Paper server <code>plugins</code> folder.</li><li>Start the server once so bundled defaults are generated.</li><li>Confirm the plugin enables without startup warnings.</li><li>Edit the generated files under <code>plugins/CoreToolsX/</code>.</li><li>Run <code>/coretoolsx reload</code> after normal YAML edits.</li></ol>
+
+            <h2 id="generated-files">Generated Files</h2>
+            <p>CoreToolsX creates its runtime folder under:</p>
+            <pre class="code-block"><code>plugins/CoreToolsX/</code></pre>
+            <p>Bundled admin config files:</p>
+            <pre class="code-block"><code>config.yml
+tool-upgrades.yml
+tool-skins.yml
+messages.yml
+resource-pack/        # optional addon for REAL_TIER mode</code></pre>
+            <p><code>plugin.yml</code> is bundled inside the jar. It documents plugin identity, command aliases, and permission declarations, but is not edited in the server data folder.</p>
+
+            <h2 id="reload">Reload vs Restart</h2>
+            <p>Safe with <code>/coretoolsx reload</code>: runtime toggles, upgrade definitions, skin definitions, messages, recipe registration, progression permission nodes in YAML, lore templates, inventory model mode for refreshed items, and skin durability settings for newly refreshed or newly skinned items.</p>
+            <p>Restart when replacing the jar, changing Paper/Minecraft version, recovering from startup-only classloading errors, or validating a completely clean boot after large config edits.</p>
+            <p>If you change the optional resource-pack zip, players must reload or reselect the pack client-side. A server restart is not required for the zip itself.</p>
+
+            <h2 id="first-test">First Tests</h2>
+            <ol><li>Craft one normal upgrade from each configured path.</li><li>Craft one netherite visual skin recipe.</li><li>Remove one skin with shears and confirm shears lose durability.</li><li>Inspect a skinned item with <code>/coretoolsx inspect</code>.</li><li>Run <code>/coretoolsx fixitem</code> on a skinned item.</li><li>If <code>REAL_TIER</code> is enabled, verify the addon pack renders inventory and hand models correctly.</li></ol>
+
+            <h2 id="validation">Production Validation</h2>
+            <ul><li>Run <code>/coretoolsx reload</code> and confirm console has no CoreToolsX warnings.</li><li>Test recipes with separate one-item ingredient slots.</li><li>Test progression permissions with a non-op account if locks are enabled.</li><li>Test fire/lava behavior if <code>skin-stripping.enabled</code> changed.</li><li>Keep <code>compatibility.custom-items.behavior: BLOCK_IF_DETECTED</code> unless you intentionally want to convert foreign custom items.</li></ul>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="shell footer-grid"><div><a class="brand footer-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p></div><div class="footer-links"><a href="./features.html">Features</a><a href="./configuration.html">Config</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div></div><div class="shell footer-bottom"><span>Copyright 2026 CoreToolsX. All rights reserved.</span><span>Installation guide for Paper servers.</span></div></footer>
+    <script src="./assets/site.js"></script>
+  </body>
+</html>

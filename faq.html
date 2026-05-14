@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CoreToolsX FAQ for Paper requirements, tool progression, netherite skins, metadata, permissions, and configuration behavior.">
+    <title>CoreToolsX FAQ</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
+    <meta name="theme-color" content="#050812">
+    <script>(()=>{try{if(localStorage.getItem("coretoolsx-theme")==="light"){document.documentElement.dataset.theme="light";}}catch(_){}})();</script>
+    <link rel="stylesheet" href="./assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header"><nav class="nav shell" aria-label="Main navigation"><a class="brand" href="./index.html" aria-label="CoreToolsX home"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="nav-links" id="nav-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div><div class="nav-actions"><a class="nav-cta nav-download" href="./installation.html#download">Download</a><a class="nav-cta" href="./docs.html">Docs</a></div></nav></header>
+    <main id="main">
+      <section class="page-hero"><div class="shell section-heading centered"><p class="eyebrow">FAQ</p><h1>Common questions about CoreToolsX.</h1><p>Short answers for server owners testing tool progression and netherite visual skins.</p></div></section>
+      <section class="section">
+        <div class="shell faq-list" data-animated-details>
+          <details open><summary>What server platform does CoreToolsX require?</summary><p>CoreToolsX requires Paper 1.21.11 or newer and Java 21 or newer.</p></details>
+          <details><summary>Does CoreToolsX require Vault, PlaceholderAPI, CoreArmorX, or a database?</summary><p>No. CoreToolsX does not require Vault, PlaceholderAPI, database storage, custom GUI libraries, CoreArmorX, or custom item plugins. A resource pack is optional and only needed for <code>REAL_TIER</code> inventory models.</p></details>
+          <details><summary>What does the default tool progression look like?</summary><p>The default chain is Wood to Stone, Stone to Copper, Copper to Iron, and Iron to Diamond, with Iron to Gold as an alternate endpoint.</p></details>
+          <details><summary>Does CoreToolsX remove vanilla recipes?</summary><p>No. Protected direct vanilla crafting is blocked at runtime when enabled. Wooden crafting and vanilla diamond to netherite smithing remain untouched.</p></details>
+          <details><summary>Do normal upgraded items receive CoreToolsX data?</summary><p>No. Normal upgraded tools stay clean and use their vanilla Bukkit material as the source of truth. CoreToolsX PDC is used only for skinned tools and internal skin state.</p></details>
+          <details><summary>What tool types are supported?</summary><p>Swords, pickaxes, axes, shovels, hoes, and spears are supported by the default upgrade and skin cost model.</p></details>
+          <details><summary>What skins are included by default?</summary><p>Netherite tools can receive wood, stone, copper, iron, gold, or diamond visual skins.</p></details>
+          <details><summary>Can skins have their own durability?</summary><p>Yes, but skin durability is optional and disabled by default. It can be configured globally, by skin, or by skin and tool type.</p></details>
+          <details><summary>How do players remove a skin?</summary><p>By default, a skinned tool plus shears crafts back into a clean netherite tool. Shears lose one durability instead of being consumed.</p></details>
+          <details><summary>How are progression locks stored?</summary><p>They are not stored by CoreToolsX. Locks are permission-based and can be handled by a permissions plugin such as LuckPerms.</p></details>
+          <details><summary>Why does a recipe output appear but not craft?</summary><p>Check progression permissions, separate one-item ingredient slots, whether the base item is already skinned, and custom item compatibility settings.</p></details>
+          <details><summary>What should I run after changing config?</summary><p>Use <code>/coretoolsx reload</code> for normal YAML changes. Restart when replacing the jar, changing Paper version, or recovering from startup-only errors.</p></details>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="shell footer-grid"><div><a class="brand footer-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p></div><div class="footer-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Config</a><a href="./docs.html">Docs</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div></div><div class="shell footer-bottom"><span>Copyright 2026 CoreToolsX. All rights reserved.</span><span>FAQ for Paper server owners.</span></div></footer>
+    <script src="./assets/site.js"></script>
+  </body>
+</html>

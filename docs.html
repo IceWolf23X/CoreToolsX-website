@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CoreToolsX documentation hub for setup, features, configuration, FAQ, and operational checks.">
+    <title>CoreToolsX Docs</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
+    <meta name="theme-color" content="#050812">
+    <script>(()=>{try{if(localStorage.getItem("coretoolsx-theme")==="light"){document.documentElement.dataset.theme="light";}}catch(_){}})();</script>
+    <link rel="stylesheet" href="./assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header"><nav class="nav shell" aria-label="Main navigation"><a class="brand" href="./index.html" aria-label="CoreToolsX home"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="nav-links" id="nav-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div><div class="nav-actions"><a class="nav-cta nav-download" href="./installation.html#download">Download</a><a class="nav-cta" href="./configuration.html">Configure</a></div></nav></header>
+    <main id="main">
+      <section class="page-hero"><div class="shell section-heading centered"><p class="eyebrow">Documentation</p><h1>Everything needed to install, configure, and validate CoreToolsX.</h1><p>Start with setup, then use the product overview and configuration reference for exact behavior and production checks.</p></div></section>
+      <section class="section">
+        <div class="shell resource-grid">
+          <a class="resource-card" href="./installation.html"><span>Setup</span><h3>Installation Guide</h3><p>Paper requirements, first boot, generated files, reload boundaries, first tests, and validation.</p></a>
+          <a class="resource-card" href="./features.html"><span>Product</span><h3>Feature Overview</h3><p>Tool progression, recipe safety, netherite skins, metadata preservation, optional resource-pack mode, permissions, and scope.</p></a>
+          <a class="resource-card" href="./configuration.html"><span>Config</span><h3>Configuration Reference</h3><p>YAML file layout, runtime model, commands, permissions, troubleshooting, and production checklist.</p></a>
+          <a class="resource-card" href="./faq.html"><span>FAQ</span><h3>Common Questions</h3><p>Requirements, skins, PDC, optional resource-pack behavior, custom item protection, and reload rules.</p></a>
+        </div>
+      </section>
+      <section class="section docs-section">
+        <div class="shell">
+          <div class="section-heading"><p class="eyebrow">Admin workflow</p><h2>Recommended order for a clean rollout.</h2></div>
+          <div class="setup-grid">
+            <article class="setup-card"><div class="setup-kicker">1</div><h3>Generate defaults</h3><p>Boot once, then review <code>config.yml</code>, <code>tool-upgrades.yml</code>, <code>tool-skins.yml</code>, and <code>messages.yml</code>.</p></article>
+            <article class="setup-card"><div class="setup-kicker">2</div><h3>Test crafting</h3><p>Craft one normal upgrade and one netherite skin recipe with separate one-item ingredient slots.</p></article>
+            <article class="setup-card"><div class="setup-kicker">3</div><h3>Inspect and fix</h3><p>Use <code>/coretoolsx inspect</code> and <code>/coretoolsx fixitem</code> on skinned tools before public rollout.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="shell footer-grid"><div><a class="brand footer-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p></div><div class="footer-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Config</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div></div><div class="shell footer-bottom"><span>Copyright 2026 CoreToolsX. All rights reserved.</span><span>Documentation hub for server owners.</span></div></footer>
+    <script src="./assets/site.js"></script>
+  </body>
+</html>
