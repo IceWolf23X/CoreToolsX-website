@@ -25,8 +25,8 @@
             <p>CoreToolsX does not require Vault, PlaceholderAPI, a database, custom GUI libraries, CoreArmorX, or custom item plugins. The resource-pack addon is optional and only needed for <code>REAL_TIER</code> inventory models.</p>
 
             <h2 id="download">Download</h2>
-            <p>The current source build line is <code>2026.1.0</code>. Use the CoreToolsX plugin repository or your packaged jar artifact for deployment.</p>
-            <pre class="code-block"><code>CoreToolsX-2026.1.0.jar</code></pre>
+            <p>The current source build line is <code>2026.1.1</code>. Use the CoreToolsX plugin repository or your packaged jar artifact for deployment.</p>
+            <pre class="code-block"><code>CoreToolsX-2026.1.1.jar</code></pre>
 
             <h2 id="install">Installation Flow</h2>
             <ol><li>Stop the server.</li><li>Place the CoreToolsX jar in the Paper server <code>plugins</code> folder.</li><li>Start the server once so bundled defaults are generated.</li><li>Confirm the plugin enables without startup warnings.</li><li>Edit the generated files under <code>plugins/CoreToolsX/</code>.</li><li>Run <code>/coretoolsx reload</code> after normal YAML edits.</li></ol>
@@ -43,7 +43,7 @@ resource-pack/        # optional addon for REAL_TIER mode</code></pre>
             <p><code>plugin.yml</code> is bundled inside the jar. It documents plugin identity, command aliases, and permission declarations, but is not edited in the server data folder.</p>
 
             <h2 id="reload">Reload vs Restart</h2>
-            <p>Safe with <code>/coretoolsx reload</code>: runtime toggles, upgrade definitions, skin definitions, messages, recipe registration, progression permission nodes in YAML, lore templates, inventory model mode for refreshed items, and skin durability settings for newly refreshed or newly skinned items.</p>
+            <p>Safe with <code>/coretoolsx reload</code>: runtime toggles, upgrade definitions, skin definitions, messages, recipe registration, protected vanilla recipe replacement, progression permission nodes in YAML, lore templates, inventory model mode for refreshed items, and skin durability settings for newly refreshed or newly skinned items.</p>
             <p>Restart when replacing the jar, changing Paper/Minecraft version, recovering from startup-only classloading errors, or validating a completely clean boot after large config edits.</p>
             <p>If you change the optional resource-pack zip, players must reload or reselect the pack client-side. A server restart is not required for the zip itself.</p>
 
@@ -51,7 +51,7 @@ resource-pack/        # optional addon for REAL_TIER mode</code></pre>
             <ol><li>Craft one normal upgrade from each configured path.</li><li>Craft one netherite visual skin recipe.</li><li>Remove one skin with shears and confirm shears lose durability.</li><li>Inspect a skinned item with <code>/coretoolsx inspect</code>.</li><li>Run <code>/coretoolsx fixitem</code> on a skinned item.</li><li>If <code>REAL_TIER</code> is enabled, verify the addon pack renders inventory and hand models correctly.</li></ol>
 
             <h2 id="validation">Production Validation</h2>
-            <ul><li>Run <code>/coretoolsx reload</code> and confirm console has no CoreToolsX warnings.</li><li>Test recipes with separate one-item ingredient slots.</li><li>Test progression permissions with a non-op account if locks are enabled.</li><li>Test fire/lava behavior if <code>skin-stripping.enabled</code> changed.</li><li>Keep <code>compatibility.custom-items.behavior: BLOCK_IF_DETECTED</code> unless you intentionally want to convert foreign custom items.</li></ul>
+            <ul><li>Run <code>/coretoolsx reload</code> and confirm console has no CoreToolsX warnings.</li><li>With vanilla override enabled, confirm protected vanilla tool outputs route through the CoreToolsX upgrade path.</li><li>Test recipes with separate one-item ingredient slots.</li><li>Test progression permissions with a non-op account if locks are enabled.</li><li>Test fire/lava behavior if <code>skin-stripping.enabled</code> changed.</li><li>Keep <code>compatibility.custom-items.behavior: BLOCK_IF_DETECTED</code> unless you intentionally want to convert foreign custom items.</li></ul>
           </article>
         </div>
       </section>

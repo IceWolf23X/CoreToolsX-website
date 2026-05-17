@@ -57,7 +57,7 @@
             <p class="eyebrow">Vanilla crafting, controlled progression</p>
             <h1>Tool progression for Paper servers.</h1>
             <p class="hero-lead">
-              CoreToolsX adds a server-owned path from wood to diamond or gold, protects direct crafting where needed,
+              CoreToolsX adds a server-owned path from wood to diamond or gold, replaces protected vanilla tool recipes where needed,
               and gives netherite tools configurable visual skins without databases, GUIs, economy hooks, or a mandatory resource pack.
             </p>
             <div class="hero-actions">
@@ -89,7 +89,7 @@
                   </div>
                   <div class="message-row">
                     <span class="rank owner">Craft</span>
-                    <p>Players upgrade tools through configured recipes instead of skipping protected tiers.</p>
+                    <p>Players upgrade tools through configured recipes registered over protected vanilla recipe keys.</p>
                   </div>
                   <div class="message-row">
                     <span class="rank staff">Skin</span>
@@ -174,7 +174,7 @@
             <h2>Tool progression with clean vanilla behavior.</h2>
             <p>
               CoreToolsX keeps normal upgraded tools clean, stores plugin identity only where it is needed,
-              and uses runtime recipe validation to make crafting predictable for real servers.
+              and replaces protected vanilla recipe entries while runtime validation keeps crafting predictable for real servers.
             </p>
           </div>
 
@@ -192,8 +192,8 @@
               <span class="card-icon recipe-icon" aria-hidden="true"></span>
               <h3>Runtime-Safe Recipes</h3>
               <p>
-                YAML recipes support ingredient groups, one-item-slot matching, recipe book discovery, and safe
-                reloads without duplicated CoreToolsX recipes.
+                YAML recipes support ingredient groups, one-item-slot matching, recipe book discovery, protected
+                <code>minecraft:*</code> recipe replacement, and safe reloads without duplicated CoreToolsX recipes.
               </p>
             </article>
 
@@ -274,7 +274,7 @@
             <h2>Progression control without turning tools into a database system.</h2>
             <p>
               The plugin is designed for owners who want a stronger crafting path and cosmetic netherite skins,
-              but still want vanilla items, vanilla crafting, and simple YAML operations.
+              but still want vanilla items, vanilla crafting tables, and simple YAML operations.
             </p>
           </div>
 

@@ -41,12 +41,13 @@ STONE -> COPPER
 COPPER -> IRON
 IRON -> DIAMOND
 IRON -> GOLD</code></pre>
-            <p>Swords, pickaxes, axes, shovels, hoes, and spears are supported. Protected direct vanilla crafting can be blocked at runtime, while wooden crafting and vanilla diamond to netherite smithing remain untouched.</p>
+            <p>Swords, pickaxes, axes, shovels, hoes, and spears are supported. Protected direct vanilla tool recipes can be replaced in the server registry, while wooden crafting and vanilla diamond to netherite smithing remain untouched.</p>
 
             <h2 id="recipes">Recipe System</h2>
             <p>Recipes are configured in YAML. Ingredient groups let one recipe accept a named set of materials, and runtime matching requires separate one-item ingredient slots to reduce stack-based crafting edge cases.</p>
             <ul>
               <li>Static recipe-book entries can be enabled for vanilla discovery.</li>
+              <li>With vanilla override enabled, protected direct tool recipes are replaced under the matching <code>minecraft:*</code> keys.</li>
               <li>Runtime validation checks the real item and CoreToolsX rules.</li>
               <li>Reload removes and re-registers CoreToolsX recipes without duplicating them.</li>
             </ul>

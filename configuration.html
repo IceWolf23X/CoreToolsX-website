@@ -42,14 +42,14 @@
 
             <h3 id="starter-workflow">Recommended Starter Workflow</h3>
             <p>For a first server setup, keep the default files close to stock until the basic crafting flow works. Change one area at a time, reload, then test in game before moving to the next file.</p>
-            <ol><li>Start with <code>VISUAL_SKIN</code> mode so no client resource pack is required.</li><li>Leave <code>progression-locks.enabled: false</code> until upgrade and skin recipes are confirmed working.</li><li>Keep <code>recipes.override-vanilla-equipment-recipes: true</code> if the server should enforce the CoreToolsX progression path.</li><li>Keep <code>skin-durability.mode: DISABLED</code> for the first test pass, then enable durability later if the server needs skins to wear down separately.</li><li>Edit <code>messages.yml</code> last, after recipes, permissions, and item behavior are already correct.</li><li>Enable <code>settings.debug: true</code> only while troubleshooting invalid materials, recipe loading, or blocked transformations.</li></ol>
+            <ol><li>Start with <code>VISUAL_SKIN</code> mode so no client resource pack is required.</li><li>Leave <code>progression-locks.enabled: false</code> until upgrade and skin recipes are confirmed working.</li><li>Keep <code>recipes.override-vanilla-equipment-recipes: true</code> if the server should replace protected <code>minecraft:*</code> tool recipes and enforce the CoreToolsX progression path.</li><li>Keep <code>skin-durability.mode: DISABLED</code> for the first test pass, then enable durability later if the server needs skins to wear down separately.</li><li>Edit <code>messages.yml</code> last, after recipes, permissions, and item behavior are already correct.</li><li>Enable <code>settings.debug: true</code> only while troubleshooting invalid materials, recipe loading, or blocked transformations.</li></ol>
 
             <h3 id="starter-profiles">Common Starting Profiles</h3>
-            <ul><li><strong>Simple vanilla+ progression:</strong> keep the default upgrade chain, no resource pack, progression locks disabled, recipe book enabled, and custom item protection on <code>BLOCK_IF_DETECTED</code>.</li><li><strong>Permission-gated progression:</strong> test recipes first with locks disabled, then enable <code>progression-locks.enabled</code> and grant the exact <code>coretoolsx.upgrade.*</code> and <code>coretoolsx.skin.*</code> nodes through a permission plugin.</li><li><strong>Cosmetic netherite skins only:</strong> leave skin recipes enabled, disable upgrade recipes if progression is not needed, and keep <code>VISUAL_SKIN</code> unless every player will install the CoreToolsX resource-pack addon.</li><li><strong>Resource-pack inventory models:</strong> install the addon pack before switching to <code>REAL_TIER</code>, then use <code>/coretoolsx fixitem</code> on existing skinned tools that need their model refreshed.</li></ul>
+            <ul><li><strong>Simple vanilla+ progression:</strong> keep the default upgrade chain, vanilla override enabled, no resource pack, progression locks disabled, recipe book enabled, and custom item protection on <code>BLOCK_IF_DETECTED</code>.</li><li><strong>Permission-gated progression:</strong> test recipes first with locks disabled, then enable <code>progression-locks.enabled</code> and grant the exact <code>coretoolsx.upgrade.*</code> and <code>coretoolsx.skin.*</code> nodes through a permission plugin.</li><li><strong>Cosmetic netherite skins only:</strong> leave skin recipes enabled, disable upgrade recipes if progression is not needed, and keep <code>VISUAL_SKIN</code> unless every player will install the CoreToolsX resource-pack addon.</li><li><strong>Resource-pack inventory models:</strong> install the addon pack before switching to <code>REAL_TIER</code>, then use <code>/coretoolsx fixitem</code> on existing skinned tools that need their model refreshed.</li></ul>
 
             <h3 id="first-recipe-tests">First Recipe Tests</h3>
             <p>Use a clean non-op player for the final pass. Recipe matching expects the tool and each ingredient to be placed as separate one-item slots, so do not test with one stacked ingredient item.</p>
-            <ol><li>Craft wood to stone, then stone to copper, copper to iron, and iron to diamond.</li><li>Craft the optional iron to gold branch if it remains enabled.</li><li>Craft one netherite skin recipe, inspect the item with <code>/coretoolsx inspect</code>, then remove the skin with the configured removal tool.</li><li>Run <code>/coretoolsx reload</code>, repeat one upgrade and one skin recipe, and confirm recipes were not duplicated.</li><li>If permissions are enabled, remove op status and confirm the player is blocked or allowed exactly as configured.</li></ol>
+            <ol><li>Craft wood to stone, then stone to copper, copper to iron, and iron to diamond.</li><li>Craft the optional iron to gold branch if it remains enabled.</li><li>With vanilla override enabled, try the protected vanilla output path and confirm it follows the CoreToolsX upgrade recipe instead of skipping progression.</li><li>Craft one netherite skin recipe, inspect the item with <code>/coretoolsx inspect</code>, then remove the skin with the configured removal tool.</li><li>Run <code>/coretoolsx reload</code>, repeat one upgrade and one skin recipe, and confirm recipes were not duplicated.</li><li>If permissions are enabled, remove op status and confirm the player is blocked or allowed exactly as configured.</li></ol>
 
             <h2 id="runtime-model">4. Runtime Model</h2>
             <p>CoreToolsX has two item modes. Normal upgraded tools use vanilla material as the source of truth and do not receive CoreToolsX PDC. Skinned netherite tools change material for the visual skin, keep netherite-equivalent tool behavior, and store clean material, skin identity, lore snapshot, model mode, and optional skin durability in PDC.</p>
@@ -77,7 +77,7 @@ progression-locks:
 compatibility:
   custom-items:
     behavior: BLOCK_IF_DETECTED</code></pre>
-            <ul><li>Use <code>VISUAL_SKIN</code> for the safest first setup because it works without a client resource pack.</li><li>Keep recipe-book discovery enabled while players learn the new progression path.</li><li>Enable progression locks only after the recipes work, otherwise permission mistakes can look like broken recipes.</li><li>Keep custom item protection enabled if the server also uses ItemsAdder, Oraxen, Nexo, or other item systems.</li></ul>
+            <ul><li>Use <code>VISUAL_SKIN</code> for the safest first setup because it works without a client resource pack.</li><li>Keep vanilla override enabled when protected direct vanilla recipes should be replaced with CoreToolsX progression recipes.</li><li>Keep recipe-book discovery enabled while players learn the new progression path.</li><li>Enable progression locks only after the recipes work, otherwise permission mistakes can look like broken recipes.</li><li>Keep custom item protection enabled if the server also uses ItemsAdder, Oraxen, Nexo, or other item systems.</li></ul>
             <pre class="code-block"><code># CoreToolsX main configuration.
 #
 # CoreToolsX is designed as a Paper-only vanilla+ tool progression plugin.
@@ -111,9 +111,9 @@ tool-skin:
     mode: VISUAL_SKIN
 
 recipes:
-  # When true, CoreToolsX blocks protected vanilla direct tool recipe outputs at
-  # crafting time and uses progression recipes instead. It does not remove
-  # minecraft:* recipes from the server registry, so reload/disable is safe.
+  # When true, CoreToolsX replaces protected minecraft:* direct tool recipes in
+  # the server registry with CoreToolsX progression recipes using the same keys.
+  # Runtime validation still protects the output and item metadata.
   # Wooden tools and vanilla diamond -&gt; netherite smithing are not touched.
   override-vanilla-equipment-recipes: true
 
@@ -745,7 +745,7 @@ lp group staff permission set coretoolsx.admin true</code></pre>
             <p>Check <code>progression-locks.blocks.usage</code>, then grant <code>coretoolsx.use.&lt;tier&gt;</code> or <code>coretoolsx.progression.bypass</code>.</p>
 
             <h2 id="production-validation-checklist">12. Production Validation Checklist</h2>
-            <ul><li>Run <code>/coretoolsx reload</code>.</li><li>Confirm console has no CoreToolsX warnings.</li><li>Craft one normal upgrade from each configured path.</li><li>Craft one skin recipe.</li><li>Remove one skin with shears.</li><li>Inspect a skinned item with <code>/coretoolsx inspect</code>.</li><li>Run <code>/coretoolsx fixitem</code>.</li><li>Test fire/lava behavior if skin stripping changed.</li><li>Test permissions with a non-op account if progression locks are enabled.</li></ul>
+            <ul><li>Run <code>/coretoolsx reload</code>.</li><li>Confirm console has no CoreToolsX warnings.</li><li>Craft one normal upgrade from each configured path.</li><li>Confirm protected vanilla tool recipes follow CoreToolsX when override is enabled.</li><li>Craft one skin recipe.</li><li>Remove one skin with shears.</li><li>Inspect a skinned item with <code>/coretoolsx inspect</code>.</li><li>Run <code>/coretoolsx fixitem</code>.</li><li>Test fire/lava behavior if skin stripping changed.</li><li>Test permissions with a non-op account if progression locks are enabled.</li></ul>
           </article>
         </div>
       </section>
