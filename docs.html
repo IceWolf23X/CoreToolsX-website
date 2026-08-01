@@ -1,41 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CoreToolsX documentation hub for setup, features, configuration, FAQ, and operational checks.">
-    <title>CoreToolsX Docs</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <link rel="shortcut icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <meta name="theme-color" content="#050812">
-    <script>(()=>{try{if(localStorage.getItem("coretoolsx-theme")==="light"){document.documentElement.dataset.theme="light";}}catch(_){}})();</script>
-    <link rel="stylesheet" href="./assets/styles.css">
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header"><nav class="nav shell" aria-label="Main navigation"><a class="brand" href="./index.html" aria-label="CoreToolsX home"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="nav-links" id="nav-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div><div class="nav-actions"><a class="nav-cta nav-download" href="./installation.html#download">Download</a><a class="nav-cta" href="./configuration.html">Configure</a><a class="nav-cta" href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a></div></nav></header>
-    <main id="main">
-      <section class="page-hero"><div class="shell section-heading centered"><p class="eyebrow">Documentation</p><h1>Everything needed to install, configure, and validate CoreToolsX.</h1><p>Start with setup, then use the product overview and configuration reference for exact behavior and production checks.</p></div></section>
-      <section class="section">
-        <div class="shell resource-grid">
-          <a class="resource-card" href="./installation.html"><span>Setup</span><h3>Installation Guide</h3><p>Paper requirements, first boot, generated files, reload boundaries, first tests, and validation.</p></a>
-          <a class="resource-card" href="./features.html"><span>Product</span><h3>Feature Overview</h3><p>Tool progression, vanilla recipe replacement, netherite skins, metadata preservation, optional resource-pack mode, permissions, and scope.</p></a>
-          <a class="resource-card" href="./configuration.html"><span>Config</span><h3>Configuration Reference</h3><p>YAML file layout, runtime model, commands, permissions, troubleshooting, and production checklist.</p></a>
-          <a class="resource-card" href="./faq.html"><span>FAQ</span><h3>Common Questions</h3><p>Requirements, skins, PDC, optional resource-pack behavior, custom item protection, and reload rules.</p></a>
-        </div>
-      </section>
-      <section class="section docs-section">
-        <div class="shell">
-          <div class="section-heading"><p class="eyebrow">Admin workflow</p><h2>Recommended order for a clean rollout.</h2></div>
-          <div class="setup-grid">
-            <article class="setup-card"><div class="setup-kicker">1</div><h3>Generate defaults</h3><p>Boot once, then review <code>config.yml</code>, <code>tool-upgrades.yml</code>, <code>tool-skins.yml</code>, and <code>messages.yml</code>.</p></article>
-            <article class="setup-card"><div class="setup-kicker">2</div><h3>Test crafting</h3><p>Craft one normal upgrade, confirm protected vanilla outputs follow CoreToolsX, and test one netherite skin recipe with separate one-item ingredient slots.</p></article>
-            <article class="setup-card"><div class="setup-kicker">3</div><h3>Inspect and fix</h3><p>Use <code>/coretoolsx inspect</code> and <code>/coretoolsx fixitem</code> on skinned tools before public rollout.</p></article>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer"><div class="shell footer-grid"><div><a class="brand footer-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p></div><div class="footer-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Config</a><a href="./faq.html">FAQ</a><a href="./support-policy.html">Support Policy</a><a href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div></div><div class="shell footer-bottom"><span>Copyright 2026 CoreToolsX. All rights reserved.</span><span>Documentation hub for server owners.</span></div></footer>
-    <script src="./assets/site.js"></script>
-  </body>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="CoreToolsX documentation hub for setup, features, configuration, FAQ, and operational checks." name="description"/>
+<title>CoreToolsX Docs</title>
+<link href="./assets/coretoolsx-logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="./assets/coretoolsx-logo.svg" rel="shortcut icon" type="image/svg+xml"/>
+<meta content="#2F3235" name="theme-color"/>
+<link href="./assets/vendor/framebasecss/framebase.min.css" rel="stylesheet"/><link href="./assets/vendor/framebasecss/framebase-highlight.min.css" rel="stylesheet"/><link href="./assets/styles.css" rel="stylesheet"/></head>
+<body>
+<a class="fb-skip-link" href="#main">Skip to content</a>
+<header class="fb-site-header fb-site-header--sticky">
+<div class="fb-container fb-container--wide fb-navbar">
+<a aria-label="CoreToolsX home" class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<button aria-controls="site-navigation" aria-expanded="false" class="fb-button fb-button--ghost fb-nav-toggle" data-nav-toggle="" type="button">Menu</button>
+<nav aria-label="Main navigation" class="fb-nav-panel fb-nav-region" data-nav-panel="" data-open="false" id="site-navigation">
+<ul class="fb-nav"><li><a href="./index.html">Overview</a></li><li><a href="./features.html">Features</a></li><li><a href="./installation.html">Setup</a></li><li><a aria-current="page" href="./docs.html">Documentation</a></li><li><a href="./faq.html">FAQ</a></li><li><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a></li><li><a href="./installation.html#download">Download</a></li></ul>
+</nav>
+</div>
+</header>
+<main class="fb-main" id="main">
+<header class="fb-doc-header corex-page-hero"><div class="fb-container fb-container--wide"><p class="fb-eyebrow">Documentation</p><h1>Everything needed to install, configure, and validate CoreToolsX.</h1><p>Start with setup, then use the product overview and configuration reference for exact behavior and production checks.</p></div></header>
+<section class="fb-section">
+<div class="fb-container fb-container--wide fb-card-grid">
+<a class="fb-card fb-card--interactive corex-link-card" href="./installation.html"><span>Setup</span><h3>Installation Guide</h3><p>Paper requirements, first boot, generated files, reload boundaries, first tests, and validation.</p></a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./features.html"><span>Product</span><h3>Feature Overview</h3><p>Tool progression, vanilla recipe replacement, netherite skins, metadata preservation, optional resource-pack mode, permissions, and scope.</p></a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./configuration.html"><span>Config</span><h3>Configuration Reference</h3><p>YAML file layout, runtime model, commands, permissions, troubleshooting, and production checklist.</p></a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./faq.html"><span>FAQ</span><h3>Common Questions</h3><p>Requirements, skins, PDC, optional resource-pack behavior, custom item protection, and reload rules.</p></a>
+</div>
+</section>
+<section class="fb-section">
+<div class="fb-container fb-container--wide">
+<div class="fb-section-header"><p class="fb-eyebrow">Admin workflow</p><h2>Recommended order for a clean rollout.</h2></div>
+<div class="fb-card-grid">
+<article class="fb-card fb-flow"><div>1</div><h3>Generate defaults</h3><p>Boot once, then review <code>config.yml</code>, <code>tool-upgrades.yml</code>, <code>tool-skins.yml</code>, and <code>messages.yml</code>.</p></article>
+<article class="fb-card fb-flow"><div>2</div><h3>Test crafting</h3><p>Craft one normal upgrade, confirm protected vanilla outputs follow CoreToolsX, and test one netherite skin recipe with separate one-item ingredient slots.</p></article>
+<article class="fb-card fb-flow"><div>3</div><h3>Inspect and fix</h3><p>Use <code>/coretoolsx inspect</code> and <code>/coretoolsx fixitem</code> on skinned tools before public rollout.</p></article>
+</div>
+</div>
+</section>
+</main>
+<footer class="fb-site-footer">
+<div class="fb-container fb-container--wide fb-stack">
+<div class="fb-grid fb-grid--2">
+<div class="fb-flow">
+<a class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p>
+</div>
+<nav aria-label="Footer navigation" class="fb-cluster"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Configuration</a><a href="./docs.html">Documentation</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a><a href="./installation.html#download">Download</a></nav>
+</div>
+<div class="fb-cluster corex-footer-meta">
+<span>Copyright 2026 CoreToolsX.</span>
+<span>Version 2026.1.1 · Java 21+ · Paper 1.21.11+</span>
+<a href="https://github.com/IceWolf23X/FrameBaseCSS" rel="noopener noreferrer" target="_blank">Built with FrameBaseCSS</a>
+</div>
+</div>
+</footer>
+<script src="./assets/vendor/highlightjs/highlight.min.js"></script><script src="./assets/vendor/highlightjs/languages/properties.min.js"></script><script src="./assets/site.js"></script></body>
 </html>

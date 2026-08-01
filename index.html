@@ -1,510 +1,369 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CoreToolsX is a Paper-only vanilla+ tool progression plugin with controlled upgrade crafting and netherite tool skins.">
-    <title>CoreToolsX - Vanilla+ Tool Progression for Paper Servers</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <link rel="shortcut icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <meta name="theme-color" content="#050812">
-    <script>
-      (() => {
-        try {
-          if (localStorage.getItem("coretoolsx-theme") === "light") {
-            document.documentElement.dataset.theme = "light";
-          }
-        } catch (_) {}
-      })();
-    </script>
-    <link rel="stylesheet" href="./assets/styles.css">
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-
-    <header class="site-header">
-      <nav class="nav shell" aria-label="Main navigation">
-        <a class="brand" href="./index.html" aria-label="CoreToolsX home">
-          <span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span>
-          <span class="brand-text">CoreToolsX</span>
-        </a>
-
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-
-        <div class="nav-links" id="nav-links">
-          <a href="#features">Features</a>
-          <a href="./installation.html">Setup</a>
-          <a href="./docs.html">Docs</a>
-          <a href="#faq">FAQ</a>
-          <a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a>
-        </div>
-
-        <div class="nav-actions">
-          <a class="nav-cta nav-download" href="./installation.html#download">Download</a>
-          <a class="nav-cta" href="./installation.html">Get Started</a>
-          <a class="nav-cta" href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a>
-        </div>
-      </nav>
-    </header>
-
-    <main id="main">
-      <section class="hero">
-        <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
-        <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
-
-        <div class="shell hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">Vanilla crafting, controlled progression</p>
-            <h1>Tool progression for Paper servers.</h1>
-            <p class="hero-lead">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="CoreToolsX is a Paper-only vanilla+ tool progression plugin with controlled upgrade crafting and netherite tool skins." name="description"/>
+<title>CoreToolsX - Vanilla+ Tool Progression for Paper Servers</title>
+<link href="./assets/coretoolsx-logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="./assets/coretoolsx-logo.svg" rel="shortcut icon" type="image/svg+xml"/>
+<meta content="#2F3235" name="theme-color"/>
+<link href="./assets/vendor/framebasecss/framebase.min.css" rel="stylesheet"/><link href="./assets/vendor/framebasecss/framebase-highlight.min.css" rel="stylesheet"/><link href="./assets/styles.css" rel="stylesheet"/></head>
+<body>
+<a class="fb-skip-link" href="#main">Skip to content</a>
+<header class="fb-site-header fb-site-header--sticky">
+<div class="fb-container fb-container--wide fb-navbar">
+<a aria-label="CoreToolsX home" class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<button aria-controls="site-navigation" aria-expanded="false" class="fb-button fb-button--ghost fb-nav-toggle" data-nav-toggle="" type="button">Menu</button>
+<nav aria-label="Main navigation" class="fb-nav-panel fb-nav-region" data-nav-panel="" data-open="false" id="site-navigation">
+<ul class="fb-nav"><li><a aria-current="page" href="./index.html">Overview</a></li><li><a href="./features.html">Features</a></li><li><a href="./installation.html">Setup</a></li><li><a href="./docs.html">Documentation</a></li><li><a href="./faq.html">FAQ</a></li><li><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a></li><li><a href="./installation.html#download">Download</a></li></ul>
+</nav>
+</div>
+</header>
+<main class="fb-main" id="main">
+<section class="fb-hero-section">
+<div class="fb-container fb-container--wide fb-hero corex-hero">
+<div class="fb-hero-copy">
+<p class="fb-eyebrow">Vanilla crafting, controlled progression</p>
+<h1 class="fb-display">Tool progression for Paper servers.</h1>
+<p class="fb-lead">
               CoreToolsX adds a server-owned path from wood to diamond or gold, replaces protected vanilla tool recipes where needed,
               and gives netherite tools configurable visual skins without databases, GUIs, economy hooks, or a mandatory resource pack.
             </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="./installation.html">Get Started</a>
-              <a class="button button-secondary" href="#features">Explore Features</a>
-            </div>
-            <ul class="hero-facts" aria-label="CoreToolsX platform facts">
-              <li>Paper 1.21.11+</li>
-              <li>Java 21+</li>
-              <li>YAML driven</li>
-              <li>Optional pack</li>
-            </ul>
-          </div>
-
-          <div class="hero-visual" aria-label="CoreToolsX tool progression preview">
-            <div class="product-frame">
-              <div class="frame-top">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="frame-title">Tool Progression Preview</span>
-              </div>
-
-              <div class="dashboard-grid">
-                <section class="chat-console case-board" aria-label="Progression preview">
-                  <div class="console-head">
-                    <span>upgrade path</span>
-                    <strong>Wood to Diamond</strong>
-                  </div>
-                  <div class="message-row">
-                    <span class="rank owner">Craft</span>
-                    <p>Players upgrade tools through configured recipes registered over protected vanilla recipe keys.</p>
-                  </div>
-                  <div class="message-row">
-                    <span class="rank staff">Skin</span>
-                    <p>Netherite tools can take visual wood, stone, copper, iron, gold, or diamond skins.</p>
-                  </div>
-                  <div class="message-row">
-                    <span class="rank player">Fix</span>
-                    <p>Admins can inspect or refresh skinned tools when config, lore, or model settings change.</p>
-                  </div>
-                </section>
-
-                <section class="status-column" aria-label="CoreToolsX systems">
-                  <article class="mini-card">
-                    <span class="mini-icon conversion-icon" aria-hidden="true"></span>
-                    <div>
-                      <strong>Upgrades</strong>
-                      <small>vanilla+ progression</small>
-                    </div>
-                  </article>
-                  <article class="mini-card">
-                    <span class="mini-icon style-icon" aria-hidden="true"></span>
-                    <div>
-                      <strong>Skins</strong>
-                      <small>netherite visuals</small>
-                    </div>
-                  </article>
-                  <article class="mini-card">
-                    <span class="mini-icon safe-icon" aria-hidden="true"></span>
-                    <div>
-                      <strong>PDC</strong>
-                      <small>safe skinned identity</small>
-                    </div>
-                  </article>
-                </section>
-
-                <section class="network-card" aria-label="Default tool path">
-                  <div class="network-node">Wood</div>
-                  <span class="network-line"></span>
-                  <div class="network-node active">Iron</div>
-                  <span class="network-line"></span>
-                  <div class="network-node">Diamond</div>
-                </section>
-
-                <section class="item-card" aria-label="Netherite skin support">
-                  <span class="mini-icon stats-icon" aria-hidden="true"></span>
-                  <div>
-                    <strong>Netherite Skins</strong>
-                    <small>visual material, netherite profile</small>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell stat-strip" aria-label="CoreToolsX summary">
-          <article>
-            <strong>6</strong>
-            <span>supported tool types</span>
-          </article>
-          <article>
-            <strong>6</strong>
-            <span>default netherite skins</span>
-          </article>
-          <article>
-            <strong>PDC</strong>
-            <span>skinned tool identity</span>
-          </article>
-          <article>
-            <strong>YAML</strong>
-            <span>all recipes and messages</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="features">
-        <div class="shell">
-          <div class="section-heading">
-            <p class="eyebrow">Core feature set</p>
-            <h2>Tool progression with clean vanilla behavior.</h2>
-            <p>
+<div class="fb-cluster">
+<a class="fb-button" href="./installation.html">Get Started</a>
+<a class="fb-button fb-button--secondary" href="#features">Explore Features</a>
+</div>
+<ul aria-label="CoreToolsX platform facts" class="fb-cluster corex-facts">
+<li>Paper 1.21.11+</li>
+<li>Java 21+</li>
+<li>YAML driven</li>
+<li>Optional pack</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="fb-section">
+<div aria-label="CoreToolsX summary" class="fb-container fb-container--wide fb-card-grid">
+<article class="fb-card fb-flow">
+<strong>6</strong>
+<span>supported tool types</span>
+</article>
+<article class="fb-card fb-flow">
+<strong>6</strong>
+<span>default netherite skins</span>
+</article>
+<article class="fb-card fb-flow">
+<strong>PDC</strong>
+<span>skinned tool identity</span>
+</article>
+<article class="fb-card fb-flow">
+<strong>YAML</strong>
+<span>all recipes and messages</span>
+</article>
+</div>
+</section>
+<section class="fb-section" id="features">
+<div class="fb-container fb-container--wide">
+<div class="fb-section-header">
+<p class="fb-eyebrow">Core feature set</p>
+<h2>Tool progression with clean vanilla behavior.</h2>
+<p>
               CoreToolsX keeps normal upgraded tools clean, stores plugin identity only where it is needed,
               and replaces protected vanilla recipe entries while runtime validation keeps crafting predictable for real servers.
             </p>
-          </div>
-
-          <div class="feature-grid main-feature-grid">
-            <article class="feature-card">
-              <span class="card-icon conversion-icon" aria-hidden="true"></span>
-              <h3>Controlled Tool Progression</h3>
-              <p>
+</div>
+<div class="fb-card-grid">
+<article class="fb-card fb-flow">
+<h3>Controlled Tool Progression</h3>
+<p>
                 Default recipes move tools through Wood, Stone, Copper, Iron, and Diamond, with Gold as an optional
                 endpoint branch from Iron.
               </p>
-            </article>
-
-            <article class="feature-card">
-              <span class="card-icon recipe-icon" aria-hidden="true"></span>
-              <h3>Runtime-Safe Recipes</h3>
-              <p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Runtime-Safe Recipes</h3>
+<p>
                 YAML recipes support ingredient groups, one-item-slot matching, recipe book discovery, protected
                 <code>minecraft:*</code> recipe replacement, and safe reloads without duplicated CoreToolsX recipes.
               </p>
-            </article>
-
-            <article class="feature-card">
-              <span class="card-icon style-icon" aria-hidden="true"></span>
-              <h3>Netherite Visual Skins</h3>
-              <p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Netherite Visual Skins</h3>
+<p>
                 Netherite tools can look like wood, stone, copper, iron, gold, or diamond while keeping
                 netherite-equivalent tool behavior.
               </p>
-            </article>
-
-            <article class="feature-card">
-              <span class="card-icon pdc-icon" aria-hidden="true"></span>
-              <h3>Metadata Preservation</h3>
-              <p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Metadata Preservation</h3>
+<p>
                 Names, original lore, enchants, damage, trims, flags, unbreakable state, compatible custom data,
                 and non-CoreToolsX PDC are preserved.
               </p>
-            </article>
-          </div>
-
-          <div class="more-features">
-            <button class="button button-secondary more-toggle" type="button" aria-expanded="false" aria-controls="secondary-features">
-              See more features
-            </button>
-
-            <div class="secondary-feature-grid" id="secondary-features" hidden>
-              <article class="feature-card feature-small">
-                <span class="card-icon stats-icon" aria-hidden="true"></span>
-                <h3>Inventory Model Modes</h3>
-                <p>Skinned tools can use no-pack <code>VISUAL_SKIN</code> mode or resource-pack-backed <code>REAL_TIER</code> inventory models.</p>
-              </article>
-              <article class="feature-card feature-small">
-                <span class="card-icon style-icon" aria-hidden="true"></span>
-                <h3>Supported Tool Types</h3>
-                <p>Swords, pickaxes, axes, shovels, hoes, and spears share the same upgrade and skin cost model.</p>
-              </article>
-              <article class="feature-card feature-small">
-                <span class="card-icon pdc-icon" aria-hidden="true"></span>
-                <h3>Configurable Lore</h3>
-                <p><code>skins.lore.generated-lines</code> controls generated lore and places saved original lore through <code>{item_lore}</code>.</p>
-              </article>
-              <article class="feature-card feature-small">
-                <span class="card-icon reset-icon" aria-hidden="true"></span>
-                <h3>Skin Removal</h3>
-                <p>Skinned tools can be crafted with the configured tool, shears by default, to restore clean netherite tools.</p>
-              </article>
-              <article class="feature-card feature-small">
-                <span class="card-icon safe-icon" aria-hidden="true"></span>
-                <h3>Fire and Lava Rules</h3>
-                <p>Dropped skinned tools can be protected from fire and lava or stripped back to clean netherite instead of being destroyed.</p>
-              </article>
-              <article class="feature-card feature-small">
-                <span class="card-icon controls-icon" aria-hidden="true"></span>
-                <h3>Permission Progression</h3>
-                <p>Optional locks use permissions for upgrades, skins, tool usage, and global bypass. CoreToolsX stores no player unlock database.</p>
-              </article>
-              <article class="feature-card feature-small">
-                <span class="card-icon moderation-icon" aria-hidden="true"></span>
-                <h3>Custom Item Protection</h3>
-                <p>Foreign PDC/custom item data can block transformations to avoid corrupting items from other systems.</p>
-              </article>
-              <article class="feature-card feature-small">
-                <span class="card-icon commands-icon" aria-hidden="true"></span>
-                <h3>Admin Commands</h3>
-                <p><code>/coretoolsx reload</code>, <code>inspect</code>, and <code>fixitem</code> cover normal production operations.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section why-section" id="why">
-        <div class="shell why-grid">
-          <div class="section-heading sticky-heading">
-            <p class="eyebrow">Why CoreToolsX</p>
-            <h2>Progression control without turning tools into a database system.</h2>
-            <p>
+</article>
+</div>
+<div>
+<div class="fb-card-grid" id="secondary-features">
+<article class="fb-card fb-flow">
+<h3>Inventory Model Modes</h3>
+<p>Skinned tools can use no-pack <code>VISUAL_SKIN</code> mode or resource-pack-backed <code>REAL_TIER</code> inventory models.</p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Supported Tool Types</h3>
+<p>Swords, pickaxes, axes, shovels, hoes, and spears share the same upgrade and skin cost model.</p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Configurable Lore</h3>
+<p><code>skins.lore.generated-lines</code> controls generated lore and places saved original lore through <code>{item_lore}</code>.</p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Skin Removal</h3>
+<p>Skinned tools can be crafted with the configured tool, shears by default, to restore clean netherite tools.</p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Fire and Lava Rules</h3>
+<p>Dropped skinned tools can be protected from fire and lava or stripped back to clean netherite instead of being destroyed.</p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Permission Progression</h3>
+<p>Optional locks use permissions for upgrades, skins, tool usage, and global bypass. CoreToolsX stores no player unlock database.</p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Custom Item Protection</h3>
+<p>Foreign PDC/custom item data can block transformations to avoid corrupting items from other systems.</p>
+</article>
+<article class="fb-card fb-flow">
+<h3>Admin Commands</h3>
+<p><code>/coretoolsx reload</code>, <code>inspect</code>, and <code>fixitem</code> cover normal production operations.</p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="fb-section fb-section--muted" id="why">
+<div class="fb-container fb-container--wide">
+<div class="fb-section-header">
+<p class="fb-eyebrow">Why CoreToolsX</p>
+<h2>Progression control without turning tools into a database system.</h2>
+<p>
               The plugin is designed for owners who want a stronger crafting path and cosmetic netherite skins,
               but still want vanilla items, vanilla crafting tables, and simple YAML operations.
             </p>
-          </div>
-
-          <div class="value-stack">
-            <article class="value-card">
-              <span>01</span>
-              <h3>Normal Upgrades Stay Clean</h3>
-              <p>Upgraded tools use Bukkit material as the source of truth and do not receive CoreToolsX PDC.</p>
-            </article>
-            <article class="value-card">
-              <span>02</span>
-              <h3>Skins Carry Explicit Identity</h3>
-              <p>Only skinned tools store clean material, skin identity, lore snapshot, model mode, and optional durability state.</p>
-            </article>
-            <article class="value-card">
-              <span>03</span>
-              <h3>No Heavy Integrations Required</h3>
-              <p>Vault, PlaceholderAPI, databases, custom GUIs, CoreArmorX, custom item plugins, and mandatory resource packs are not required.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="setup">
-        <div class="shell">
-          <div class="section-heading centered">
-            <p class="eyebrow">Setup and compatibility</p>
-            <h2>Built for modern Paper servers.</h2>
-            <p>
+</div>
+<div class="fb-stack">
+<article class="fb-card">
+<span>01</span>
+<h3>Normal Upgrades Stay Clean</h3>
+<p>Upgraded tools use Bukkit material as the source of truth and do not receive CoreToolsX PDC.</p>
+</article>
+<article class="fb-card">
+<span>02</span>
+<h3>Skins Carry Explicit Identity</h3>
+<p>Only skinned tools store clean material, skin identity, lore snapshot, model mode, and optional durability state.</p>
+</article>
+<article class="fb-card">
+<span>03</span>
+<h3>No Heavy Integrations Required</h3>
+<p>Vault, PlaceholderAPI, databases, custom GUIs, CoreArmorX, custom item plugins, and mandatory resource packs are not required.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="fb-section" id="setup">
+<div class="fb-container fb-container--wide">
+<div class="fb-section-header corex-center">
+<p class="fb-eyebrow">Setup and compatibility</p>
+<h2>Built for modern Paper servers.</h2>
+<p>
               Install the jar on Paper, let the default YAML files generate, then tune recipes, skins, progression locks,
               and lore in the plugin data folder.
             </p>
-          </div>
-
-          <div class="setup-grid">
-            <article class="setup-card">
-              <div class="setup-kicker">Runtime</div>
-              <h3>Paper 1.21.11+</h3>
-              <p>CoreToolsX is Paper-only and targets Java 21+. It does not ship proxy, web, or database modules.</p>
-              <ul>
-                <li>Paper server plugin</li>
-                <li>Java 21+</li>
-                <li>Vanilla crafting table flow</li>
-              </ul>
-            </article>
-
-            <article class="setup-card featured-setup">
-              <div class="setup-kicker">Files</div>
-              <h3>Four YAML surfaces</h3>
-              <p>Global behavior, upgrade paths, skins, and messages are split into focused files under <code>plugins/CoreToolsX/</code>.</p>
-              <ul>
-                <li><code>config.yml</code></li>
-                <li><code>tool-upgrades.yml</code></li>
-                <li><code>tool-skins.yml</code></li>
-                <li><code>messages.yml</code></li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="compat-line" aria-label="Supported runtime model">
-            <span>Paper only</span>
-            <span>Java 21+</span>
-            <span>Optional resource pack addon</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section docs-section" id="docs">
-        <div class="shell">
-          <div class="section-heading">
-            <p class="eyebrow">Resources</p>
-            <h2>Docs for setup, configuration, and production checks.</h2>
-          </div>
-
-          <div class="resource-grid">
-            <a class="resource-card" href="./docs.html">
-              <span>Hub</span>
-              <h3>Documentation Hub</h3>
-              <p>Entry point for setup, feature overview, configuration reference, FAQ, and operational checks.</p>
-            </a>
-            <a class="resource-card" href="./features.html">
-              <span>Product</span>
-              <h3>Product Overview</h3>
-              <p>Detailed view of upgrade recipes, netherite skins, metadata handling, permissions, and scope.</p>
-            </a>
-            <a class="resource-card" href="./installation.html">
-              <span>Setup</span>
-              <h3>Installation Guide</h3>
-              <p>Requirements, generated files, reload boundaries, first tests, and validation sequence.</p>
-            </a>
-            <a class="resource-card" href="./configuration.html">
-              <span>Config</span>
-              <h3>Configuration Reference</h3>
-              <p>YAML file map, runtime model, permissions, troubleshooting, and production checklist.</p>
-            </a>
-            <a class="resource-card" href="./faq.html">
-              <span>FAQ</span>
-              <h3>Complete FAQ</h3>
-              <p>Short answers for requirements, skins, PDC, permissions, lore, fire/lava behavior, and custom items.</p>
-            </a>
-            <a class="resource-card" href="./configuration.html#troubleshooting-quick-reference">
-              <span>Ops</span>
-              <h3>Troubleshooting</h3>
-              <p>Recipe discovery, permissions, stale lore, skin durability, usage locks, and reload checks.</p>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="faq">
-        <div class="shell faq-grid">
-          <div class="section-heading">
-            <p class="eyebrow">FAQ preview</p>
-            <h2>Answers before opening the config files.</h2>
-            <p>
+</div>
+<div class="fb-card-grid">
+<article class="fb-card fb-flow">
+<div>Runtime</div>
+<h3>Paper 1.21.11+</h3>
+<p>CoreToolsX is Paper-only and targets Java 21+. It does not ship proxy, web, or database modules.</p>
+<ul>
+<li>Paper server plugin</li>
+<li>Java 21+</li>
+<li>Vanilla crafting table flow</li>
+</ul>
+</article>
+<article class="fb-card fb-flow">
+<div>Files</div>
+<h3>Four YAML surfaces</h3>
+<p>Global behavior, upgrade paths, skins, and messages are split into focused files under <code>plugins/CoreToolsX/</code>.</p>
+<ul>
+<li><code>config.yml</code></li>
+<li><code>tool-upgrades.yml</code></li>
+<li><code>tool-skins.yml</code></li>
+<li><code>messages.yml</code></li>
+</ul>
+</article>
+</div>
+<div aria-label="Supported runtime model" class="fb-cluster">
+<span>Paper only</span>
+<span>Java 21+</span>
+<span>Optional resource pack addon</span>
+</div>
+</div>
+</section>
+<section class="fb-section" id="docs">
+<div class="fb-container fb-container--wide">
+<div class="fb-section-header">
+<p class="fb-eyebrow">Resources</p>
+<h2>Docs for setup, configuration, and production checks.</h2>
+</div>
+<div class="fb-card-grid">
+<a class="fb-card fb-card--interactive corex-link-card" href="./docs.html">
+<span>Hub</span>
+<h3>Documentation Hub</h3>
+<p>Entry point for setup, feature overview, configuration reference, FAQ, and operational checks.</p>
+</a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./features.html">
+<span>Product</span>
+<h3>Product Overview</h3>
+<p>Detailed view of upgrade recipes, netherite skins, metadata handling, permissions, and scope.</p>
+</a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./installation.html">
+<span>Setup</span>
+<h3>Installation Guide</h3>
+<p>Requirements, generated files, reload boundaries, first tests, and validation sequence.</p>
+</a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./configuration.html">
+<span>Config</span>
+<h3>Configuration Reference</h3>
+<p>YAML file map, runtime model, permissions, troubleshooting, and production checklist.</p>
+</a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./faq.html">
+<span>FAQ</span>
+<h3>Complete FAQ</h3>
+<p>Short answers for requirements, skins, PDC, permissions, lore, fire/lava behavior, and custom items.</p>
+</a>
+<a class="fb-card fb-card--interactive corex-link-card" href="./configuration.html#troubleshooting-quick-reference">
+<span>Ops</span>
+<h3>Troubleshooting</h3>
+<p>Recipe discovery, permissions, stale lore, skin durability, usage locks, and reload checks.</p>
+</a>
+</div>
+</div>
+</section>
+<section class="fb-section" id="faq">
+<div class="fb-container fb-container--wide">
+<div class="fb-section-header">
+<p class="fb-eyebrow">FAQ preview</p>
+<h2>Answers before opening the config files.</h2>
+<p>
               These are short operational answers. Use the configuration reference when you need exact keys and reload rules.
             </p>
-          </div>
-
-          <div class="faq-list faq-preview-list" data-animated-details>
-            <details class="animated-details" open>
-              <summary>Does CoreToolsX require a resource pack?</summary>
-              <p>No. The default <code>VISUAL_SKIN</code> mode uses vanilla tool materials and vanilla crafting behavior. The pack is only for <code>REAL_TIER</code> inventory models.</p>
-            </details>
-            <details class="animated-details">
-              <summary>Does it store player unlock data?</summary>
-              <p>No. Progression locks are permission-based. Use a permission plugin such as LuckPerms when locks are enabled.</p>
-            </details>
-            <details class="animated-details">
-              <summary>Do normal upgraded items get CoreToolsX PDC?</summary>
-              <p>No. Normal upgraded tools stay clean; CoreToolsX PDC is used for skinned tools and internal skin state.</p>
-            </details>
-            <details class="animated-details">
-              <summary>Can skinned tools be returned to netherite?</summary>
-              <p>Yes. The default removal recipe uses a skinned tool plus shears to restore a clean netherite tool.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="section docs-section also-try-section" id="also-try">
-        <div class="shell">
-          <div class="section-heading">
-            <p class="eyebrow">Also try</p>
-            <h2>More CoreX plugins for the same server stack.</h2>
-            <p>Each project stays focused, so you can add only the systems your Paper server actually needs.</p>
-          </div>
-
-          <div class="resource-grid also-product-grid">
-            <a class="resource-card also-card also-card--armor" href="https://icewolf23x.github.io/CoreArmorX-website/" aria-label="Open CoreArmorX website">
-              <div class="also-card-top">
-                <div class="also-logo" aria-hidden="true">
-                  <img src="https://icewolf23x.github.io/CoreArmorX-website/assets/corearmorx-logo.svg" alt="" width="56" height="56" loading="lazy">
-                </div>
-                <span class="also-label">Armor</span>
-              </div>
-              <h3>CoreArmorX</h3>
-              <p>Vanilla+ armor upgrade paths, netherite skins, metadata-safe conversions, and YAML control.</p>
-              <div class="also-card-footer">Open site <span aria-hidden="true">-&gt;</span></div>
-            </a>
-            <a class="resource-card also-card also-card--case" href="https://icewolf23x.github.io/CoreCaseX-website/" aria-label="Open CoreCaseX website">
-              <div class="also-card-top">
-                <div class="also-logo" aria-hidden="true">
-                  <img src="https://icewolf23x.github.io/CoreCaseX-website/assets/corecasex-logo.svg" alt="" width="56" height="56" loading="lazy">
-                </div>
-                <span class="also-label">Cases</span>
-              </div>
-              <h3>CoreCaseX</h3>
-              <p>Structured player reports, staff triage, evidence, replies, notes, and resolution workflows.</p>
-              <div class="also-card-footer">Open site <span aria-hidden="true">-&gt;</span></div>
-            </a>
-            <a class="resource-card also-card also-card--chat" href="https://icewolf23x.github.io/CoreChatX-website/" aria-label="Open CoreChatX website">
-              <div class="also-card-top">
-                <div class="also-logo" aria-hidden="true">
-                  <img src="https://icewolf23x.github.io/CoreChatX-website/assets/corechatx-logo.svg" alt="" width="56" height="56" loading="lazy">
-                </div>
-                <span class="also-label">Chat</span>
-              </div>
-              <h3>CoreChatX</h3>
-              <p>Channels, private messages, pings, ChatItems, moderation, bridges, locales, and Velocity support.</p>
-              <div class="also-card-footer">Open site <span aria-hidden="true">-&gt;</span></div>
-            </a>
-            <a class="resource-card also-card also-card--extraction" href="https://icewolf23x.github.io/CoreExtractionX-website/" aria-label="Open CoreExtractionX website">
-              <div class="also-card-top">
-                <div class="also-logo" aria-hidden="true">
-                  <img src="https://icewolf23x.github.io/CoreExtractionX-website/assets/coreextractionx-logo.svg" alt="" width="56" height="56" loading="lazy">
-                </div>
-                <span class="also-label">Extraction</span>
-              </div>
-              <h3>CoreExtractionX</h3>
-              <p>YAML-driven block extraction, block replacement, natural drops, and configurable extra item drops.</p>
-              <div class="also-card-footer">Open site <span aria-hidden="true">-&gt;</span></div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section final-section">
-        <div class="shell final-cta">
-          <p class="eyebrow">Ready to test the progression path?</p>
-          <h2>Install CoreToolsX, generate defaults, and craft through the chain.</h2>
-          <p>
+</div>
+<div class="fb-stack corex-faq" data-animated-details="">
+<details open=""><summary>Does CoreToolsX require a resource pack?</summary><div class="fb-details-body">
+<p>No. The default <code>VISUAL_SKIN</code> mode uses vanilla tool materials and vanilla crafting behavior. The pack is only for <code>REAL_TIER</code> inventory models.</p>
+</div></details>
+<details><summary>Does it store player unlock data?</summary><div class="fb-details-body">
+<p>No. Progression locks are permission-based. Use a permission plugin such as LuckPerms when locks are enabled.</p>
+</div></details>
+<details><summary>Do normal upgraded items get CoreToolsX PDC?</summary><div class="fb-details-body">
+<p>No. Normal upgraded tools stay clean; CoreToolsX PDC is used for skinned tools and internal skin state.</p>
+</div></details>
+<details><summary>Can skinned tools be returned to netherite?</summary><div class="fb-details-body">
+<p>Yes. The default removal recipe uses a skinned tool plus shears to restore a clean netherite tool.</p>
+</div></details>
+</div>
+</div>
+</section>
+<section class="fb-section fb-section--muted" id="also-try">
+<div class="fb-container fb-container--wide">
+<div class="fb-section-header">
+<p class="fb-eyebrow">Also try</p>
+<h2>More CoreX plugins for the same server stack.</h2>
+<p>Each project stays focused, so you can add only the systems your Paper server actually needs.</p>
+</div>
+<div class="fb-card-grid">
+<a aria-label="Open CoreArmorX website" class="fb-card fb-card--interactive corex-link-card" href="https://icewolf23x.github.io/CoreArmorX-website/" rel="noopener noreferrer" target="_blank">
+<div>
+<div aria-hidden="true">
+<img alt="" height="56" loading="lazy" src="https://icewolf23x.github.io/CoreArmorX-website/assets/corearmorx-logo.svg" width="56"/>
+</div>
+<span>Armor</span>
+</div>
+<h3>CoreArmorX</h3>
+<p>Vanilla+ armor upgrade paths, netherite skins, metadata-safe conversions, and YAML control.</p>
+<div>Open site <span aria-hidden="true">-&gt;</span></div>
+</a>
+<a aria-label="Open CoreCaseX website" class="fb-card fb-card--interactive corex-link-card" href="https://icewolf23x.github.io/CoreCaseX-website/" rel="noopener noreferrer" target="_blank">
+<div>
+<div aria-hidden="true">
+<img alt="" height="56" loading="lazy" src="https://icewolf23x.github.io/CoreCaseX-website/assets/corecasex-logo.svg" width="56"/>
+</div>
+<span>Cases</span>
+</div>
+<h3>CoreCaseX</h3>
+<p>Structured player reports, staff triage, evidence, replies, notes, and resolution workflows.</p>
+<div>Open site <span aria-hidden="true">-&gt;</span></div>
+</a>
+<a aria-label="Open CoreChatX website" class="fb-card fb-card--interactive corex-link-card" href="https://icewolf23x.github.io/CoreChatX-website/" rel="noopener noreferrer" target="_blank">
+<div>
+<div aria-hidden="true">
+<img alt="" height="56" loading="lazy" src="https://icewolf23x.github.io/CoreChatX-website/assets/corechatx-logo.svg" width="56"/>
+</div>
+<span>Chat</span>
+</div>
+<h3>CoreChatX</h3>
+<p>Channels, private messages, pings, ChatItems, moderation, bridges, locales, and Velocity support.</p>
+<div>Open site <span aria-hidden="true">-&gt;</span></div>
+</a>
+<a aria-label="Open CoreExtractionX website" class="fb-card fb-card--interactive corex-link-card" href="https://icewolf23x.github.io/CoreExtractionX-website/" rel="noopener noreferrer" target="_blank">
+<div>
+<div aria-hidden="true">
+<img alt="" height="56" loading="lazy" src="https://icewolf23x.github.io/CoreExtractionX-website/assets/coreextractionx-logo.svg" width="56"/>
+</div>
+<span>Extraction</span>
+</div>
+<h3>CoreExtractionX</h3>
+<p>YAML-driven block extraction, block replacement, natural drops, and configurable extra item drops.</p>
+<div>Open site <span aria-hidden="true">-&gt;</span></div>
+</a>
+</div>
+</div>
+</section>
+<section class="fb-section">
+<div class="fb-container fb-container--wide">
+<p class="fb-eyebrow">Ready to test the progression path?</p>
+<h2>Install CoreToolsX, generate defaults, and craft through the chain.</h2>
+<p>
             Start with the setup guide, then tune recipes, skins, lore, and permission locks from YAML.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="./installation.html">Open Installation Guide</a>
-            <a class="button button-secondary" href="./configuration.html">Open Configuration Reference</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-grid">
-        <div>
-          <a class="brand footer-brand" href="./index.html">
-            <span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span>
-            <span class="brand-text">CoreToolsX</span>
-          </a>
-          <p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p>
-        </div>
-        <div class="footer-links"><a href="./index.html#features">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="./support-policy.html">Support Policy</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a><a href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a><a href="./installation.html#download">Download</a></div>
-      </div>
-      <div class="shell footer-bottom">
-        <span>Copyright 2026 CoreToolsX. All rights reserved.</span>
-        <span>Product documentation for Paper server owners.</span>
-        <span>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</span>
-      </div>
-    </footer>
-
-    <script src="./assets/site.js"></script>
-  </body>
+<div class="fb-cluster">
+<a class="fb-button" href="./installation.html">Open Installation Guide</a>
+<a class="fb-button fb-button--secondary" href="./configuration.html">Open Configuration Reference</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="fb-site-footer">
+<div class="fb-container fb-container--wide fb-stack">
+<div class="fb-grid fb-grid--2">
+<div class="fb-flow">
+<a class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p>
+</div>
+<nav aria-label="Footer navigation" class="fb-cluster"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Configuration</a><a href="./docs.html">Documentation</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a><a href="./installation.html#download">Download</a></nav>
+</div>
+<div class="fb-cluster corex-footer-meta">
+<span>Copyright 2026 CoreToolsX.</span>
+<span>Version 2026.1.1 · Java 21+ · Paper 1.21.11+</span>
+<a href="https://github.com/IceWolf23X/FrameBaseCSS" rel="noopener noreferrer" target="_blank">Built with FrameBaseCSS</a>
+</div>
+</div>
+</footer>
+<script src="./assets/vendor/highlightjs/highlight.min.js"></script><script src="./assets/vendor/highlightjs/languages/properties.min.js"></script><script src="./assets/site.js"></script></body>
 </html>

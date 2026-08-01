@@ -1,65 +1,66 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CoreToolsX configuration guide for first setup, starter choices, YAML files, reload boundaries, permissions, runtime behavior, and troubleshooting.">
-    <title>CoreToolsX Configuration Reference</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <link rel="shortcut icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <meta name="theme-color" content="#050812">
-    <script>(()=>{try{if(localStorage.getItem("coretoolsx-theme")==="light"){document.documentElement.dataset.theme="light";}}catch(_){}})();</script>
-    <link rel="stylesheet" href="./assets/styles.css">
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header"><nav class="nav shell" aria-label="Main navigation"><a class="brand" href="./index.html" aria-label="CoreToolsX home"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="nav-links" id="nav-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div><div class="nav-actions"><a class="nav-cta nav-download" href="./installation.html#download">Download</a><a class="nav-cta" href="./installation.html">Get Started</a><a class="nav-cta" href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a></div></nav></header>
-    <main id="main">
-      <section class="page-hero"><div class="shell section-heading"><p class="eyebrow">Complete Configuration Reference</p><h1>Configuration Reference</h1><p>Start with the practical setup choices, then use the exact CoreToolsX YAML reference, reload boundaries, permissions, troubleshooting, and production checks.</p></div></section>
-      <section class="section doc-page">
-        <div class="shell doc-layout">
-          <aside class="doc-sidebar" aria-label="Page contents"><strong>Contents</strong><a href="#before-you-configure">0. Before You Configure</a><a href="#file-layout">1. File Layout</a><a href="#reload-vs-restart">2. Reload vs Restart</a><a href="#clean-setup">3. Clean Setup</a><a href="#starter-workflow">Starter Workflow</a><a href="#first-recipe-tests">First Recipe Tests</a><a href="#runtime-model">4. Runtime Model</a><a href="#config-yml">5. config.yml</a><a href="#tool-upgrades-yml">6. tool-upgrades.yml</a><a href="#tool-skins-yml">7. tool-skins.yml</a><a href="#messages-yml">8. messages.yml</a><a href="#plugin-yml">9. plugin.yml</a><a href="#permissions">10. Permissions</a><a href="#troubleshooting-quick-reference">11. Troubleshooting</a><a href="#production-validation-checklist">12. Production Checklist</a></aside>
-          <article class="markdown-body">
-            <h2 id="before-you-configure">0. Before You Configure</h2>
-            <p>Minimum requirements are Paper 1.21.11+, Java 21+, CoreToolsX installed on a Paper server, and a permission plugin only if progression locks are enabled.</p>
-            <p>Default behavior is conservative: progression locks, skin durability, and fire/lava stripping are disabled by default, foreign custom item transformations are blocked when detected, and <code>VISUAL_SKIN</code> mode works without a resource pack.</p>
+<!DOCTYPE html>
 
-            <h2 id="file-layout">1. File Layout</h2>
-            <pre class="code-block"><code>plugins/CoreToolsX/
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="CoreToolsX configuration guide for first setup, starter choices, YAML files, reload boundaries, permissions, runtime behavior, and troubleshooting." name="description"/>
+<title>CoreToolsX Configuration Reference</title>
+<link href="./assets/coretoolsx-logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="./assets/coretoolsx-logo.svg" rel="shortcut icon" type="image/svg+xml"/>
+<meta content="#2F3235" name="theme-color"/>
+<link href="./assets/vendor/framebasecss/framebase.min.css" rel="stylesheet"/><link href="./assets/vendor/framebasecss/framebase-highlight.min.css" rel="stylesheet"/><link href="./assets/styles.css" rel="stylesheet"/></head>
+<body>
+<a class="fb-skip-link" href="#main">Skip to content</a>
+<header class="fb-site-header fb-site-header--sticky">
+<div class="fb-container fb-container--wide fb-navbar">
+<a aria-label="CoreToolsX home" class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<button aria-controls="site-navigation" aria-expanded="false" class="fb-button fb-button--ghost fb-nav-toggle" data-nav-toggle="" type="button">Menu</button>
+<nav aria-label="Main navigation" class="fb-nav-panel fb-nav-region" data-nav-panel="" data-open="false" id="site-navigation">
+<ul class="fb-nav"><li><a href="./index.html">Overview</a></li><li><a href="./features.html">Features</a></li><li><a href="./installation.html">Setup</a></li><li><a href="./docs.html">Documentation</a></li><li><a href="./faq.html">FAQ</a></li><li><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a></li><li><a href="./installation.html#download">Download</a></li></ul>
+</nav>
+</div>
+</header>
+<main class="fb-main" id="main">
+<header class="fb-doc-header corex-page-hero"><div class="fb-container fb-container--wide"><p class="fb-eyebrow">Complete Configuration Reference</p><h1>Configuration Reference</h1><p>Start with the practical setup choices, then use the exact CoreToolsX YAML reference, reload boundaries, permissions, troubleshooting, and production checks.</p></div></header>
+<section class="fb-section">
+<div class="fb-container fb-container--wide fb-doc-shell corex-doc-shell">
+<aside aria-label="Page contents" class="fb-doc-sidebar fb-doc-nav-panel corex-toc"><strong>Contents</strong><a href="#before-you-configure">0. Before You Configure</a><a href="#file-layout">1. File Layout</a><a href="#reload-vs-restart">2. Reload vs Restart</a><a href="#clean-setup">3. Clean Setup</a><a href="#starter-workflow">Starter Workflow</a><a href="#first-recipe-tests">First Recipe Tests</a><a href="#runtime-model">4. Runtime Model</a><a href="#config-yml">5. config.yml</a><a href="#tool-upgrades-yml">6. tool-upgrades.yml</a><a href="#tool-skins-yml">7. tool-skins.yml</a><a href="#messages-yml">8. messages.yml</a><a href="#plugin-yml">9. plugin.yml</a><a href="#permissions">10. Permissions</a><a href="#troubleshooting-quick-reference">11. Troubleshooting</a><a href="#production-validation-checklist">12. Production Checklist</a></aside>
+<article class="fb-doc-main fb-doc-content">
+<h2 id="before-you-configure">0. Before You Configure</h2>
+<p>Minimum requirements are Paper 1.21.11+, Java 21+, CoreToolsX installed on a Paper server, and a permission plugin only if progression locks are enabled.</p>
+<p>Default behavior is conservative: progression locks, skin durability, and fire/lava stripping are disabled by default, foreign custom item transformations are blocked when detected, and <code>VISUAL_SKIN</code> mode works without a resource pack.</p>
+<h2 id="file-layout">1. File Layout</h2>
+<div class="fb-code-block"><pre><code class="language-yaml">plugins/CoreToolsX/
   config.yml
   tool-upgrades.yml
   tool-skins.yml
   messages.yml
-  resource-pack/        # optional addon for REAL_TIER inventory models</code></pre>
-            <p><code>plugin.yml</code> is bundled inside the jar and documents commands, aliases, permissions, and plugin identity.</p>
-
-            <h2 id="reload-vs-restart">2. Reload vs Restart</h2>
-            <p>Use <code>/coretoolsx reload</code> for normal YAML edits, recipe changes, message edits, lore template changes, progression permission node changes in YAML, and recipe re-registration. Restart when replacing the jar, changing Paper/Minecraft version, or recovering from startup-only errors.</p>
-            <p>The optional resource-pack addon does not require a server restart after zip changes, but players must reload or reselect the pack client-side.</p>
-
-            <h2 id="clean-setup">3. Clean Setup Checklist</h2>
-            <ul><li>Install the jar and let defaults generate.</li><li>Keep <code>tool-skin.inventory-model.mode: VISUAL_SKIN</code> unless the optional resource-pack addon is installed.</li><li>Decide whether to keep <code>recipes.override-vanilla-equipment-recipes: true</code>.</li><li>Configure upgrade and skin permissions only if <code>progression-locks.enabled: true</code>.</li><li>Keep custom item behavior on <code>BLOCK_IF_DETECTED</code> unless conversion is intentional.</li><li>Test recipes with separate one-item ingredient slots.</li></ul>
-
-            <h3 id="starter-workflow">Recommended Starter Workflow</h3>
-            <p>For a first server setup, keep the default files close to stock until the basic crafting flow works. Change one area at a time, reload, then test in game before moving to the next file.</p>
-            <ol><li>Start with <code>VISUAL_SKIN</code> mode so no client resource pack is required.</li><li>Leave <code>progression-locks.enabled: false</code> until upgrade and skin recipes are confirmed working.</li><li>Keep <code>recipes.override-vanilla-equipment-recipes: true</code> if the server should replace protected <code>minecraft:*</code> tool recipes and enforce the CoreToolsX progression path.</li><li>Keep <code>skin-durability.mode: DISABLED</code> for the first test pass, then enable durability later if the server needs skins to wear down separately.</li><li>Edit <code>messages.yml</code> last, after recipes, permissions, and item behavior are already correct.</li><li>Enable <code>settings.debug: true</code> only while troubleshooting invalid materials, recipe loading, or blocked transformations.</li></ol>
-
-            <h3 id="starter-profiles">Common Starting Profiles</h3>
-            <ul><li><strong>Simple vanilla+ progression:</strong> keep the default upgrade chain, vanilla override enabled, no resource pack, progression locks disabled, recipe book enabled, and custom item protection on <code>BLOCK_IF_DETECTED</code>.</li><li><strong>Permission-gated progression:</strong> test recipes first with locks disabled, then enable <code>progression-locks.enabled</code> and grant the exact <code>coretoolsx.upgrade.*</code> and <code>coretoolsx.skin.*</code> nodes through a permission plugin.</li><li><strong>Cosmetic netherite skins only:</strong> leave skin recipes enabled, disable upgrade recipes if progression is not needed, and keep <code>VISUAL_SKIN</code> unless every player will install the CoreToolsX resource-pack addon.</li><li><strong>Resource-pack inventory models:</strong> install the addon pack before switching to <code>REAL_TIER</code>, then use <code>/coretoolsx fixitem</code> on existing skinned tools that need their model refreshed.</li></ul>
-
-            <h3 id="first-recipe-tests">First Recipe Tests</h3>
-            <p>Use a clean non-op player for the final pass. Recipe matching expects the tool and each ingredient to be placed as separate one-item slots, so do not test with one stacked ingredient item.</p>
-            <ol><li>Craft wood to stone, then stone to copper, copper to iron, and iron to diamond.</li><li>Craft the optional iron to gold branch if it remains enabled.</li><li>With vanilla override enabled, try the protected vanilla output path and confirm it follows the CoreToolsX upgrade recipe instead of skipping progression.</li><li>Craft one netherite skin recipe, inspect the item with <code>/coretoolsx inspect</code>, then remove the skin with the configured removal tool.</li><li>Run <code>/coretoolsx reload</code>, repeat one upgrade and one skin recipe, and confirm recipes were not duplicated.</li><li>If permissions are enabled, remove op status and confirm the player is blocked or allowed exactly as configured.</li></ol>
-
-            <h2 id="runtime-model">4. Runtime Model</h2>
-            <p>CoreToolsX has two item modes. Normal upgraded tools use vanilla material as the source of truth and do not receive CoreToolsX PDC. Skinned netherite tools change material for the visual skin, keep netherite-equivalent tool behavior, and store clean material, skin identity, lore snapshot, model mode, and optional skin durability in PDC.</p>
-            <p>Already-skinned tools cannot be upgraded or skinned again until stripped. Supported types are sword, pickaxe, axe, shovel, hoe, and spear.</p>
-
-            <h2 id="config-yml">5. <code>config.yml</code></h2>
-            <p>Controls global debug mode, protected vanilla recipe behavior, recipe book discovery, ingredient groups, default upgrade behavior, generated lore, inventory model mode, skin removal, fire/lava stripping, progression locks, and custom item protection.</p>
-            <h3 id="config-first-pass">Useful First-Pass Settings</h3>
-            <p>Most new servers should review these settings before touching the full file. They define whether CoreToolsX is only adding recipes, enforcing progression, using a resource pack, or protecting other custom item systems.</p>
-            <pre class="code-block"><code>settings:
+  resource-pack/        # optional addon for REAL_TIER inventory models</code></pre></div>
+<p><code>plugin.yml</code> is bundled inside the jar and documents commands, aliases, permissions, and plugin identity.</p>
+<h2 id="reload-vs-restart">2. Reload vs Restart</h2>
+<p>Use <code>/coretoolsx reload</code> for normal YAML edits, recipe changes, message edits, lore template changes, progression permission node changes in YAML, and recipe re-registration. Restart when replacing the jar, changing Paper/Minecraft version, or recovering from startup-only errors.</p>
+<p>The optional resource-pack addon does not require a server restart after zip changes, but players must reload or reselect the pack client-side.</p>
+<h2 id="clean-setup">3. Clean Setup Checklist</h2>
+<ul><li>Install the jar and let defaults generate.</li><li>Keep <code>tool-skin.inventory-model.mode: VISUAL_SKIN</code> unless the optional resource-pack addon is installed.</li><li>Decide whether to keep <code>recipes.override-vanilla-equipment-recipes: true</code>.</li><li>Configure upgrade and skin permissions only if <code>progression-locks.enabled: true</code>.</li><li>Keep custom item behavior on <code>BLOCK_IF_DETECTED</code> unless conversion is intentional.</li><li>Test recipes with separate one-item ingredient slots.</li></ul>
+<h3 id="starter-workflow">Recommended Starter Workflow</h3>
+<p>For a first server setup, keep the default files close to stock until the basic crafting flow works. Change one area at a time, reload, then test in game before moving to the next file.</p>
+<ol><li>Start with <code>VISUAL_SKIN</code> mode so no client resource pack is required.</li><li>Leave <code>progression-locks.enabled: false</code> until upgrade and skin recipes are confirmed working.</li><li>Keep <code>recipes.override-vanilla-equipment-recipes: true</code> if the server should replace protected <code>minecraft:*</code> tool recipes and enforce the CoreToolsX progression path.</li><li>Keep <code>skin-durability.mode: DISABLED</code> for the first test pass, then enable durability later if the server needs skins to wear down separately.</li><li>Edit <code>messages.yml</code> last, after recipes, permissions, and item behavior are already correct.</li><li>Enable <code>settings.debug: true</code> only while troubleshooting invalid materials, recipe loading, or blocked transformations.</li></ol>
+<h3 id="starter-profiles">Common Starting Profiles</h3>
+<ul><li><strong>Simple vanilla+ progression:</strong> keep the default upgrade chain, vanilla override enabled, no resource pack, progression locks disabled, recipe book enabled, and custom item protection on <code>BLOCK_IF_DETECTED</code>.</li><li><strong>Permission-gated progression:</strong> test recipes first with locks disabled, then enable <code>progression-locks.enabled</code> and grant the exact <code>coretoolsx.upgrade.*</code> and <code>coretoolsx.skin.*</code> nodes through a permission plugin.</li><li><strong>Cosmetic netherite skins only:</strong> leave skin recipes enabled, disable upgrade recipes if progression is not needed, and keep <code>VISUAL_SKIN</code> unless every player will install the CoreToolsX resource-pack addon.</li><li><strong>Resource-pack inventory models:</strong> install the addon pack before switching to <code>REAL_TIER</code>, then use <code>/coretoolsx fixitem</code> on existing skinned tools that need their model refreshed.</li></ul>
+<h3 id="first-recipe-tests">First Recipe Tests</h3>
+<p>Use a clean non-op player for the final pass. Recipe matching expects the tool and each ingredient to be placed as separate one-item slots, so do not test with one stacked ingredient item.</p>
+<ol><li>Craft wood to stone, then stone to copper, copper to iron, and iron to diamond.</li><li>Craft the optional iron to gold branch if it remains enabled.</li><li>With vanilla override enabled, try the protected vanilla output path and confirm it follows the CoreToolsX upgrade recipe instead of skipping progression.</li><li>Craft one netherite skin recipe, inspect the item with <code>/coretoolsx inspect</code>, then remove the skin with the configured removal tool.</li><li>Run <code>/coretoolsx reload</code>, repeat one upgrade and one skin recipe, and confirm recipes were not duplicated.</li><li>If permissions are enabled, remove op status and confirm the player is blocked or allowed exactly as configured.</li></ol>
+<h2 id="runtime-model">4. Runtime Model</h2>
+<p>CoreToolsX has two item modes. Normal upgraded tools use vanilla material as the source of truth and do not receive CoreToolsX PDC. Skinned netherite tools change material for the visual skin, keep netherite-equivalent tool behavior, and store clean material, skin identity, lore snapshot, model mode, and optional skin durability in PDC.</p>
+<p>Already-skinned tools cannot be upgraded or skinned again until stripped. Supported types are sword, pickaxe, axe, shovel, hoe, and spear.</p>
+<h2 id="config-yml">5. <code>config.yml</code></h2>
+<p>Controls global debug mode, protected vanilla recipe behavior, recipe book discovery, ingredient groups, default upgrade behavior, generated lore, inventory model mode, skin removal, fire/lava stripping, progression locks, and custom item protection.</p>
+<h3 id="config-first-pass">Useful First-Pass Settings</h3>
+<p>Most new servers should review these settings before touching the full file. They define whether CoreToolsX is only adding recipes, enforcing progression, using a resource pack, or protecting other custom item systems.</p>
+<div class="fb-code-block"><pre><code class="language-yaml">settings:
   debug: false
 
 tool-skin:
@@ -76,9 +77,9 @@ progression-locks:
 
 compatibility:
   custom-items:
-    behavior: BLOCK_IF_DETECTED</code></pre>
-            <ul><li>Use <code>VISUAL_SKIN</code> for the safest first setup because it works without a client resource pack.</li><li>Keep vanilla override enabled when protected direct vanilla recipes should be replaced with CoreToolsX progression recipes.</li><li>Keep recipe-book discovery enabled while players learn the new progression path.</li><li>Enable progression locks only after the recipes work, otherwise permission mistakes can look like broken recipes.</li><li>Keep custom item protection enabled if the server also uses ItemsAdder, Oraxen, Nexo, or other item systems.</li></ul>
-            <pre class="code-block"><code># CoreToolsX main configuration.
+    behavior: BLOCK_IF_DETECTED</code></pre></div>
+<ul><li>Use <code>VISUAL_SKIN</code> for the safest first setup because it works without a client resource pack.</li><li>Keep vanilla override enabled when protected direct vanilla recipes should be replaced with CoreToolsX progression recipes.</li><li>Keep recipe-book discovery enabled while players learn the new progression path.</li><li>Enable progression locks only after the recipes work, otherwise permission mistakes can look like broken recipes.</li><li>Keep custom item protection enabled if the server also uses ItemsAdder, Oraxen, Nexo, or other item systems.</li></ul>
+<div class="fb-code-block"><pre><code class="language-yaml"># CoreToolsX main configuration.
 #
 # CoreToolsX is designed as a Paper-only vanilla+ tool progression plugin.
 # This file controls global behavior. Recipe definitions live in:
@@ -283,14 +284,13 @@ compatibility:
     # - REPLACE_ANYWAY: allow CoreToolsX transformations even when foreign PDC
     #   data is present. Use only when you know those custom items are safe.
     behavior: BLOCK_IF_DETECTED
-</code></pre>
-            <p><code>{item_lore}</code> must be its own generated lore entry. If it is missing, original lore remains stored in PDC but is not displayed.</p>
-
-            <h2 id="tool-upgrades-yml">6. <code>tool-upgrades.yml</code></h2>
-            <p>Defines normal tool progression recipes. Supported fields include <code>enabled</code>, <code>from-tier</code>, <code>from-material</code>, <code>to-tier</code>, <code>to-material</code>, <code>ingredient</code>, <code>cost-mode</code>, <code>count</code>, and <code>permission</code>.</p>
-            <h3 id="upgrade-editing">Editing Upgrade Recipes Safely</h3>
-            <ul><li>Disable an upgrade with <code>enabled: false</code> while testing instead of deleting the whole block.</li><li>Use ingredient groups from <code>config.yml</code> when several vanilla materials should count as the same cost.</li><li>Use <code>cost-mode: CUSTOM</code> plus <code>count</code> only when the server intentionally wants different costs from vanilla tools.</li><li>Keep custom counts within the practical crafting grid limit. The tool occupies one slot, so a normal shapeless recipe can only use the remaining ingredient slots.</li><li>When progression locks are enabled, each upgrade checks the permission listed in that upgrade entry.</li></ul>
-            <pre class="code-block"><code># CoreToolsX tool upgrade definitions.
+</code></pre></div>
+<p><code>{item_lore}</code> must be its own generated lore entry. If it is missing, original lore remains stored in PDC but is not displayed.</p>
+<h2 id="tool-upgrades-yml">6. <code>tool-upgrades.yml</code></h2>
+<p>Defines normal tool progression recipes. Supported fields include <code>enabled</code>, <code>from-tier</code>, <code>from-material</code>, <code>to-tier</code>, <code>to-material</code>, <code>ingredient</code>, <code>cost-mode</code>, <code>count</code>, and <code>permission</code>.</p>
+<h3 id="upgrade-editing">Editing Upgrade Recipes Safely</h3>
+<ul><li>Disable an upgrade with <code>enabled: false</code> while testing instead of deleting the whole block.</li><li>Use ingredient groups from <code>config.yml</code> when several vanilla materials should count as the same cost.</li><li>Use <code>cost-mode: CUSTOM</code> plus <code>count</code> only when the server intentionally wants different costs from vanilla tools.</li><li>Keep custom counts within the practical crafting grid limit. The tool occupies one slot, so a normal shapeless recipe can only use the remaining ingredient slots.</li><li>When progression locks are enabled, each upgrade checks the permission listed in that upgrade entry.</li></ul>
+<div class="fb-code-block"><pre><code class="language-yaml"># CoreToolsX tool upgrade definitions.
 #
 # These recipes change the real vanilla Material of the tool. Normal upgraded
 # tools do not receive CoreToolsX PDC; the Material remains the source of truth.
@@ -355,14 +355,13 @@ upgrades:
     ingredient: GOLD_TOOL_MATERIALS
     cost-mode: VANILLA_RECIPE_COST
     permission: "coretoolsx.upgrade.iron_to_gold"
-</code></pre>
-            <p>The default upgrade chain is wood to stone, stone to copper, copper to iron, iron to diamond, and iron to gold. <code>VANILLA_RECIPE_COST</code> means shovel/spear 1, sword/hoe 2, pickaxe/axe 3.</p>
-
-            <h2 id="tool-skins-yml">7. <code>tool-skins.yml</code></h2>
-            <p>Defines netherite-only visual skin recipes and controls optional skin durability. Default skin ids are wood, stone, copper, iron, gold, and diamond.</p>
-            <h3 id="skin-editing">Skin Setup Notes</h3>
-            <ul><li>Skin recipes are for clean netherite tools. A tool that is already skinned must be stripped before another skin can be applied.</li><li>The visual material changes, but CoreToolsX restores netherite-equivalent behavior through item components where Paper supports them.</li><li><code>VISUAL_SKIN</code> needs no resource pack. <code>REAL_TIER</code> should be used only after the CoreToolsX addon pack is installed and tested.</li><li>Skin durability is disabled by default. Enable it only if the server wants cosmetic skins to have their own wear system separate from normal tool durability.</li><li>If generated lore should keep the original item lore visible, keep <code>{item_lore}</code> as its own line in <code>skins.lore.generated-lines</code>.</li></ul>
-            <pre class="code-block"><code># CoreToolsX netherite tool skin definitions.
+</code></pre></div>
+<p>The default upgrade chain is wood to stone, stone to copper, copper to iron, iron to diamond, and iron to gold. <code>VANILLA_RECIPE_COST</code> means shovel/spear 1, sword/hoe 2, pickaxe/axe 3.</p>
+<h2 id="tool-skins-yml">7. <code>tool-skins.yml</code></h2>
+<p>Defines netherite-only visual skin recipes and controls optional skin durability. Default skin ids are wood, stone, copper, iron, gold, and diamond.</p>
+<h3 id="skin-editing">Skin Setup Notes</h3>
+<ul><li>Skin recipes are for clean netherite tools. A tool that is already skinned must be stripped before another skin can be applied.</li><li>The visual material changes, but CoreToolsX restores netherite-equivalent behavior through item components where Paper supports them.</li><li><code>VISUAL_SKIN</code> needs no resource pack. <code>REAL_TIER</code> should be used only after the CoreToolsX addon pack is installed and tested.</li><li>Skin durability is disabled by default. Enable it only if the server wants cosmetic skins to have their own wear system separate from normal tool durability.</li><li>If generated lore should keep the original item lore visible, keep <code>{item_lore}</code> as its own line in <code>skins.lore.generated-lines</code>.</li></ul>
+<div class="fb-code-block"><pre><code class="language-yaml"># CoreToolsX netherite tool skin definitions.
 #
 # Skin recipes are netherite-only. A skin changes the real item Material to the
 # visual tier, then CoreToolsX applies netherite-equivalent tool components.
@@ -524,13 +523,12 @@ skin-durability:
     bar-segments: 10
     bar-full: "&lt;green&gt;|"
     bar-empty: "&lt;dark_gray&gt;|"
-</code></pre>
-            <p>Skin durability modes are <code>DISABLED</code>, <code>GLOBAL</code>, <code>BY_SKIN</code>, and <code>BY_ITEM</code>. Mending modes are <code>DISABLED</code>, <code>SPLIT</code>, and <code>DOUBLE</code>.</p>
-
-            <h2 id="messages-yml">8. <code>messages.yml</code></h2>
-            <p>Messages use Adventure MiniMessage. The configured prefix is prepended automatically. Only documented placeholders near each message should be used.</p>
-            <p>Inspect messages are useful for checking current material, clean material, visual skin, inventory model mode, CoreToolsX data, generated lore state, original lore snapshot, skin durability, tier, and tool type.</p>
-            <pre class="code-block"><code># CoreToolsX messages.
+</code></pre></div>
+<p>Skin durability modes are <code>DISABLED</code>, <code>GLOBAL</code>, <code>BY_SKIN</code>, and <code>BY_ITEM</code>. Mending modes are <code>DISABLED</code>, <code>SPLIT</code>, and <code>DOUBLE</code>.</p>
+<h2 id="messages-yml">8. <code>messages.yml</code></h2>
+<p>Messages use Adventure MiniMessage. The configured prefix is prepended automatically. Only documented placeholders near each message should be used.</p>
+<p>Inspect messages are useful for checking current material, clean material, visual skin, inventory model mode, CoreToolsX data, generated lore state, original lore snapshot, skin durability, tier, and tool type.</p>
+<div class="fb-code-block"><pre><code class="language-yaml"># CoreToolsX messages.
 #
 # All user-facing text should live here.
 # Messages use Adventure MiniMessage syntax:
@@ -645,11 +643,10 @@ admin:
     # Placeholder:
     # - {piece}: detected tool type for normal tool
     piece: "&lt;dark_gray&gt;- &lt;gray&gt;Type: &lt;white&gt;{piece}&lt;/white&gt;"
-</code></pre>
-
-            <h2 id="plugin-yml">9. <code>plugin.yml</code></h2>
-            <p>Complete bundled plugin descriptor. Maven resolves <code>${project.version}</code> when the release jar is built.</p>
-            <pre class="code-block"><code>name: CoreToolsX
+</code></pre></div>
+<h2 id="plugin-yml">9. <code>plugin.yml</code></h2>
+<p>Complete bundled plugin descriptor. Maven resolves <code>${project.version}</code> when the release jar is built.</p>
+<div class="fb-code-block"><pre><code class="language-yaml">name: CoreToolsX
 main: it.icewolf23x.coretoolsx.CoreToolsXPlugin
 version: ${project.version}
 api-version: '1.21'
@@ -712,45 +709,58 @@ permissions:
       coretoolsx.use.iron: true
       coretoolsx.use.gold: true
       coretoolsx.use.diamond: true
-      coretoolsx.use.netherite: true</code></pre>
-
-            <h2 id="permissions">10. Permissions</h2>
-            <pre class="code-block"><code>coretoolsx.admin
+      coretoolsx.use.netherite: true</code></pre></div>
+<h2 id="permissions">10. Permissions</h2>
+<div class="fb-code-block"><pre><code class="language-yaml">coretoolsx.admin
 coretoolsx.admin.reload
 coretoolsx.admin.inspect
 coretoolsx.admin.fixitem
 coretoolsx.progression.bypass
 coretoolsx.upgrade.*
 coretoolsx.skin.*
-coretoolsx.use.*</code></pre>
-            <p>Usage permissions matter only when both <code>progression-locks.enabled</code> and <code>progression-locks.blocks.usage</code> are true.</p>
-            <h3 id="permission-start">Starter Permission Setup</h3>
-            <p>If progression locks are disabled, players do not need upgrade or skin permissions to use the default recipes. If locks are enabled, grant only the tiers and skins the player group should have.</p>
-            <pre class="code-block"><code>lp group default permission set coretoolsx.upgrade.wood_to_stone true
+coretoolsx.use.*</code></pre></div>
+<p>Usage permissions matter only when both <code>progression-locks.enabled</code> and <code>progression-locks.blocks.usage</code> are true.</p>
+<h3 id="permission-start">Starter Permission Setup</h3>
+<p>If progression locks are disabled, players do not need upgrade or skin permissions to use the default recipes. If locks are enabled, grant only the tiers and skins the player group should have.</p>
+<div class="fb-code-block"><pre><code class="language-yaml">lp group default permission set coretoolsx.upgrade.wood_to_stone true
 lp group default permission set coretoolsx.upgrade.stone_to_copper true
 lp group default permission set coretoolsx.skin.iron true
-lp group staff permission set coretoolsx.admin true</code></pre>
-            <p>Use <code>coretoolsx.progression.bypass</code> for staff or testing groups that should ignore all progression checks without granting every individual upgrade and skin node.</p>
-
-            <h2 id="troubleshooting-quick-reference">11. Troubleshooting Quick Reference</h2>
-            <h3>No recipe appears</h3>
-            <ul><li>Check <code>recipes.recipe-book.enabled</code>.</li><li>Check the relevant entry has <code>enabled: true</code>.</li><li>Run <code>/coretoolsx reload</code>.</li><li>Check console warnings for invalid materials or costs above 8.</li></ul>
-            <h3>Recipe output appears but clicking does nothing</h3>
-            <ul><li>Check progression permissions if locks are enabled.</li><li>Use separate one-item ingredient slots.</li><li>Confirm the base item is not already skinned.</li><li>Check custom item compatibility mode.</li></ul>
-            <h3>Skinned tool lost expected lore</h3>
-            <p>Ensure <code>{item_lore}</code> exists in <code>skins.lore.generated-lines</code>, then hold the item and run <code>/coretoolsx fixitem</code>.</p>
-            <h3>Missing texture or wrong inventory model</h3>
-            <p>Use <code>VISUAL_SKIN</code> mode with no pack, or install the CoreToolsX resource-pack addon before enabling <code>REAL_TIER</code>.</p>
-            <h3>Player cannot use tools</h3>
-            <p>Check <code>progression-locks.blocks.usage</code>, then grant <code>coretoolsx.use.&lt;tier&gt;</code> or <code>coretoolsx.progression.bypass</code>.</p>
-
-            <h2 id="production-validation-checklist">12. Production Validation Checklist</h2>
-            <ul><li>Run <code>/coretoolsx reload</code>.</li><li>Confirm console has no CoreToolsX warnings.</li><li>Craft one normal upgrade from each configured path.</li><li>Confirm protected vanilla tool recipes follow CoreToolsX when override is enabled.</li><li>Craft one skin recipe.</li><li>Remove one skin with shears.</li><li>Inspect a skinned item with <code>/coretoolsx inspect</code>.</li><li>Run <code>/coretoolsx fixitem</code>.</li><li>Test fire/lava behavior if skin stripping changed.</li><li>Test permissions with a non-op account if progression locks are enabled.</li></ul>
-          </article>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer"><div class="shell footer-grid"><div><a class="brand footer-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p></div><div class="footer-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="./support-policy.html">Support Policy</a><a href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div></div><div class="shell footer-bottom"><span>Copyright 2026 CoreToolsX. All rights reserved.</span><span>Configuration reference for server owners.</span></div></footer>
-    <script src="./assets/site.js"></script>
-  </body>
+lp group staff permission set coretoolsx.admin true</code></pre></div>
+<p>Use <code>coretoolsx.progression.bypass</code> for staff or testing groups that should ignore all progression checks without granting every individual upgrade and skin node.</p>
+<h2 id="troubleshooting-quick-reference">11. Troubleshooting Quick Reference</h2>
+<h3>No recipe appears</h3>
+<ul><li>Check <code>recipes.recipe-book.enabled</code>.</li><li>Check the relevant entry has <code>enabled: true</code>.</li><li>Run <code>/coretoolsx reload</code>.</li><li>Check console warnings for invalid materials or costs above 8.</li></ul>
+<h3>Recipe output appears but clicking does nothing</h3>
+<ul><li>Check progression permissions if locks are enabled.</li><li>Use separate one-item ingredient slots.</li><li>Confirm the base item is not already skinned.</li><li>Check custom item compatibility mode.</li></ul>
+<h3>Skinned tool lost expected lore</h3>
+<p>Ensure <code>{item_lore}</code> exists in <code>skins.lore.generated-lines</code>, then hold the item and run <code>/coretoolsx fixitem</code>.</p>
+<h3>Missing texture or wrong inventory model</h3>
+<p>Use <code>VISUAL_SKIN</code> mode with no pack, or install the CoreToolsX resource-pack addon before enabling <code>REAL_TIER</code>.</p>
+<h3>Player cannot use tools</h3>
+<p>Check <code>progression-locks.blocks.usage</code>, then grant <code>coretoolsx.use.&lt;tier&gt;</code> or <code>coretoolsx.progression.bypass</code>.</p>
+<h2 id="production-validation-checklist">12. Production Validation Checklist</h2>
+<ul><li>Run <code>/coretoolsx reload</code>.</li><li>Confirm console has no CoreToolsX warnings.</li><li>Craft one normal upgrade from each configured path.</li><li>Confirm protected vanilla tool recipes follow CoreToolsX when override is enabled.</li><li>Craft one skin recipe.</li><li>Remove one skin with shears.</li><li>Inspect a skinned item with <code>/coretoolsx inspect</code>.</li><li>Run <code>/coretoolsx fixitem</code>.</li><li>Test fire/lava behavior if skin stripping changed.</li><li>Test permissions with a non-op account if progression locks are enabled.</li></ul>
+</article>
+</div>
+</section>
+</main>
+<footer class="fb-site-footer">
+<div class="fb-container fb-container--wide fb-stack">
+<div class="fb-grid fb-grid--2">
+<div class="fb-flow">
+<a class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p>
+</div>
+<nav aria-label="Footer navigation" class="fb-cluster"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Configuration</a><a href="./docs.html">Documentation</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a><a href="./installation.html#download">Download</a></nav>
+</div>
+<div class="fb-cluster corex-footer-meta">
+<span>Copyright 2026 CoreToolsX.</span>
+<span>Version 2026.1.1 · Java 21+ · Paper 1.21.11+</span>
+<a href="https://github.com/IceWolf23X/FrameBaseCSS" rel="noopener noreferrer" target="_blank">Built with FrameBaseCSS</a>
+</div>
+</div>
+</footer>
+<script src="./assets/vendor/highlightjs/highlight.min.js"></script><script src="./assets/vendor/highlightjs/languages/properties.min.js"></script><script src="./assets/site.js"></script></body>
 </html>

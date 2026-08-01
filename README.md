@@ -1,20 +1,23 @@
 # CoreToolsX Website
 
-Static product website for CoreToolsX, a Paper-only vanilla+ tool progression plugin with netherite tool skins.
+Static GitHub Pages website for CoreToolsX, a Paper-only tool progression plugin with configurable upgrade recipes and netherite visual skins.
 
-The site is built with plain HTML, CSS, JavaScript, and SVG assets.
+The site uses plain HTML, CSS, JavaScript, SVG, and PNG. FrameBaseCSS `1.2.0` supplies the theme and component foundation; Highlight.js `11.11.1` and the FrameBaseCSS addon highlight configuration examples. Released assets are pinned under `assets/vendor/`.
 
 ## Pages
 
-- `index.html`
-- `features.html`
-- `installation.html`
-- `configuration.html`
-- `docs.html`
-- `faq.html`
+- `index.html`: product overview.
+- `features.html`: progression, recipes, skins, compatibility, and administration.
+- `installation.html`: Paper installation and first configuration.
+- `configuration.html`: complete server-owner configuration reference.
+- `docs.html`: documentation hub.
+- `faq.html`: practical questions and troubleshooting.
+- `support-policy.html`: release and support policy.
 
-`configurations.html` redirects to `configuration.html` for compatibility.
+`configurations.html` remains a compatibility redirect to `configuration.html`.
 
-## Local Preview
+## Authoritative sources
 
-Open `index.html` directly in a browser or serve this directory with any static file server.
+Keep technical claims aligned with `../plugin/FEATURES_LIST.md`, `../plugin/CONFIGURATION_INSTRUCTIONS.md`, `../plugin/src/main/resources/`, and `../plugin/src/main/resources/plugin.yml`.
+
+Backups named `CoreToolsX-website-*-backup-*.zip` are local recovery artifacts and must not be published.

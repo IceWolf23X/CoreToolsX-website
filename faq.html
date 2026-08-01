@@ -1,39 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CoreToolsX FAQ for Paper requirements, tool progression, netherite skins, metadata, permissions, and configuration behavior.">
-    <title>CoreToolsX FAQ</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <link rel="shortcut icon" type="image/svg+xml" href="./assets/coretoolsx-logo.svg">
-    <meta name="theme-color" content="#050812">
-    <script>(()=>{try{if(localStorage.getItem("coretoolsx-theme")==="light"){document.documentElement.dataset.theme="light";}}catch(_){}})();</script>
-    <link rel="stylesheet" href="./assets/styles.css">
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header"><nav class="nav shell" aria-label="Main navigation"><a class="brand" href="./index.html" aria-label="CoreToolsX home"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="nav-links" id="nav-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./docs.html">Docs</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div><div class="nav-actions"><a class="nav-cta nav-download" href="./installation.html#download">Download</a><a class="nav-cta" href="./installation.html">Get Started</a><a class="nav-cta" href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a></div></nav></header>
-    <main id="main">
-      <section class="page-hero"><div class="shell section-heading centered"><p class="eyebrow">FAQ</p><h1>Common questions about CoreToolsX.</h1><p>Short answers for server owners testing tool progression and netherite visual skins.</p></div></section>
-      <section class="section">
-        <div class="shell faq-list" data-animated-details>
-          <details open><summary>What server platform does CoreToolsX require?</summary><p>CoreToolsX requires Paper 1.21.11 or newer and Java 21 or newer.</p></details>
-          <details><summary>Does CoreToolsX require Vault, PlaceholderAPI, CoreArmorX, or a database?</summary><p>No. CoreToolsX does not require Vault, PlaceholderAPI, database storage, custom GUI libraries, CoreArmorX, or custom item plugins. A resource pack is optional and only needed for <code>REAL_TIER</code> inventory models.</p></details>
-          <details><summary>What does the default tool progression look like?</summary><p>The default chain is Wood to Stone, Stone to Copper, Copper to Iron, and Iron to Diamond, with Iron to Gold as an alternate endpoint.</p></details>
-          <details><summary>Does CoreToolsX remove vanilla recipes?</summary><p>When vanilla override is enabled, protected direct tool recipes are replaced in the server recipe registry with CoreToolsX progression recipes using the same <code>minecraft:*</code> keys. Wooden crafting and vanilla diamond to netherite smithing remain untouched.</p></details>
-          <details><summary>Do normal upgraded items receive CoreToolsX data?</summary><p>No. Normal upgraded tools stay clean and use their vanilla Bukkit material as the source of truth. CoreToolsX PDC is used only for skinned tools and internal skin state.</p></details>
-          <details><summary>What tool types are supported?</summary><p>Swords, pickaxes, axes, shovels, hoes, and spears are supported by the default upgrade and skin cost model.</p></details>
-          <details><summary>What skins are included by default?</summary><p>Netherite tools can receive wood, stone, copper, iron, gold, or diamond visual skins.</p></details>
-          <details><summary>Can skins have their own durability?</summary><p>Yes, but skin durability is optional and disabled by default. It can be configured globally, by skin, or by skin and tool type.</p></details>
-          <details><summary>How do players remove a skin?</summary><p>By default, a skinned tool plus shears crafts back into a clean netherite tool. Shears lose one durability instead of being consumed.</p></details>
-          <details><summary>How are progression locks stored?</summary><p>They are not stored by CoreToolsX. Locks are permission-based and can be handled by a permissions plugin such as LuckPerms.</p></details>
-          <details><summary>Why does a recipe output appear but not craft?</summary><p>Check progression permissions, separate one-item ingredient slots, whether the base item is already skinned, and custom item compatibility settings.</p></details>
-          <details><summary>What should I run after changing config?</summary><p>Use <code>/coretoolsx reload</code> for normal YAML changes. Restart when replacing the jar, changing Paper version, or recovering from startup-only errors.</p></details>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer"><div class="shell footer-grid"><div><a class="brand footer-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><img src="./assets/coretoolsx-logo.svg" alt="" width="40" height="40"></span><span class="brand-text">CoreToolsX</span></a><p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p></div><div class="footer-links"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Config</a><a href="./docs.html">Docs</a><a href="./support-policy.html">Support Policy</a><a href="https://buymeacoffee.com/lcewolf23x">Buy Me a Coffee</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues">GitHub</a></div></div><div class="shell footer-bottom"><span>Copyright 2026 CoreToolsX. All rights reserved.</span><span>FAQ for Paper server owners.</span></div></footer>
-    <script src="./assets/site.js"></script>
-  </body>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="CoreToolsX FAQ for Paper requirements, tool progression, netherite skins, metadata, permissions, and configuration behavior." name="description"/>
+<title>CoreToolsX FAQ</title>
+<link href="./assets/coretoolsx-logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="./assets/coretoolsx-logo.svg" rel="shortcut icon" type="image/svg+xml"/>
+<meta content="#2F3235" name="theme-color"/>
+<link href="./assets/vendor/framebasecss/framebase.min.css" rel="stylesheet"/><link href="./assets/vendor/framebasecss/framebase-highlight.min.css" rel="stylesheet"/><link href="./assets/styles.css" rel="stylesheet"/></head>
+<body>
+<a class="fb-skip-link" href="#main">Skip to content</a>
+<header class="fb-site-header fb-site-header--sticky">
+<div class="fb-container fb-container--wide fb-navbar">
+<a aria-label="CoreToolsX home" class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<button aria-controls="site-navigation" aria-expanded="false" class="fb-button fb-button--ghost fb-nav-toggle" data-nav-toggle="" type="button">Menu</button>
+<nav aria-label="Main navigation" class="fb-nav-panel fb-nav-region" data-nav-panel="" data-open="false" id="site-navigation">
+<ul class="fb-nav"><li><a href="./index.html">Overview</a></li><li><a href="./features.html">Features</a></li><li><a href="./installation.html">Setup</a></li><li><a href="./docs.html">Documentation</a></li><li><a aria-current="page" href="./faq.html">FAQ</a></li><li><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a></li><li><a href="./installation.html#download">Download</a></li></ul>
+</nav>
+</div>
+</header>
+<main class="fb-main" id="main">
+<header class="fb-doc-header corex-page-hero"><div class="fb-container fb-container--wide"><p class="fb-eyebrow">FAQ</p><h1>Common questions about CoreToolsX.</h1><p>Short answers for server owners testing tool progression and netherite visual skins.</p></div></header>
+<section class="fb-section">
+<div class="fb-container fb-container--wide fb-stack corex-faq" data-animated-details="">
+<details open=""><summary>What server platform does CoreToolsX require?</summary><div class="fb-details-body"><p>CoreToolsX requires Paper 1.21.11 or newer and Java 21 or newer.</p></div></details>
+<details><summary>Does CoreToolsX require Vault, PlaceholderAPI, CoreArmorX, or a database?</summary><div class="fb-details-body"><p>No. CoreToolsX does not require Vault, PlaceholderAPI, database storage, custom GUI libraries, CoreArmorX, or custom item plugins. A resource pack is optional and only needed for <code>REAL_TIER</code> inventory models.</p></div></details>
+<details><summary>What does the default tool progression look like?</summary><div class="fb-details-body"><p>The default chain is Wood to Stone, Stone to Copper, Copper to Iron, and Iron to Diamond, with Iron to Gold as an alternate endpoint.</p></div></details>
+<details><summary>Does CoreToolsX remove vanilla recipes?</summary><div class="fb-details-body"><p>When vanilla override is enabled, protected direct tool recipes are replaced in the server recipe registry with CoreToolsX progression recipes using the same <code>minecraft:*</code> keys. Wooden crafting and vanilla diamond to netherite smithing remain untouched.</p></div></details>
+<details><summary>Do normal upgraded items receive CoreToolsX data?</summary><div class="fb-details-body"><p>No. Normal upgraded tools stay clean and use their vanilla Bukkit material as the source of truth. CoreToolsX PDC is used only for skinned tools and internal skin state.</p></div></details>
+<details><summary>What tool types are supported?</summary><div class="fb-details-body"><p>Swords, pickaxes, axes, shovels, hoes, and spears are supported by the default upgrade and skin cost model.</p></div></details>
+<details><summary>What skins are included by default?</summary><div class="fb-details-body"><p>Netherite tools can receive wood, stone, copper, iron, gold, or diamond visual skins.</p></div></details>
+<details><summary>Can skins have their own durability?</summary><div class="fb-details-body"><p>Yes, but skin durability is optional and disabled by default. It can be configured globally, by skin, or by skin and tool type.</p></div></details>
+<details><summary>How do players remove a skin?</summary><div class="fb-details-body"><p>By default, a skinned tool plus shears crafts back into a clean netherite tool. Shears lose one durability instead of being consumed.</p></div></details>
+<details><summary>How are progression locks stored?</summary><div class="fb-details-body"><p>They are not stored by CoreToolsX. Locks are permission-based and can be handled by a permissions plugin such as LuckPerms.</p></div></details>
+<details><summary>Why does a recipe output appear but not craft?</summary><div class="fb-details-body"><p>Check progression permissions, separate one-item ingredient slots, whether the base item is already skinned, and custom item compatibility settings.</p></div></details>
+<details><summary>What should I run after changing config?</summary><div class="fb-details-body"><p>Use <code>/coretoolsx reload</code> for normal YAML changes. Restart when replacing the jar, changing Paper version, or recovering from startup-only errors.</p></div></details>
+</div>
+</section>
+</main>
+<footer class="fb-site-footer">
+<div class="fb-container fb-container--wide fb-stack">
+<div class="fb-grid fb-grid--2">
+<div class="fb-flow">
+<a class="fb-brand corex-brand" href="./index.html">
+<img alt="" height="36" src="./assets/coretoolsx-logo.svg" width="36"/><span>CoreToolsX</span>
+</a>
+<p>Vanilla+ tool progression and netherite tool skins for Paper servers.</p>
+</div>
+<nav aria-label="Footer navigation" class="fb-cluster"><a href="./features.html">Features</a><a href="./installation.html">Setup</a><a href="./configuration.html">Configuration</a><a href="./docs.html">Documentation</a><a href="./faq.html">FAQ</a><a href="https://github.com/IceWolf23X/CoreToolsX-issues" rel="noopener noreferrer" target="_blank">GitHub</a><a href="./installation.html#download">Download</a></nav>
+</div>
+<div class="fb-cluster corex-footer-meta">
+<span>Copyright 2026 CoreToolsX.</span>
+<span>Version 2026.1.1 · Java 21+ · Paper 1.21.11+</span>
+<a href="https://github.com/IceWolf23X/FrameBaseCSS" rel="noopener noreferrer" target="_blank">Built with FrameBaseCSS</a>
+</div>
+</div>
+</footer>
+<script src="./assets/vendor/highlightjs/highlight.min.js"></script><script src="./assets/vendor/highlightjs/languages/properties.min.js"></script><script src="./assets/site.js"></script></body>
 </html>

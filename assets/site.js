@@ -1,225 +1,58 @@
-const navToggle = document.querySelector(".nav-toggle");
-const navLinks = document.querySelector(".nav-links");
-const root = document.documentElement;
-const themeMeta = document.querySelector('meta[name="theme-color"]');
-const themeKey = "coretoolsx-theme";
+"use strict";
 
-const getStoredTheme = () => {
-  try {
-    return localStorage.getItem(themeKey);
-  } catch (_) {
-    return null;
+// Closes the responsive navigation and optionally returns focus to its trigger.
+function closeNavigation(toggle, panel, restoreFocus = false) {
+  panel.dataset.open = "false";
+  toggle.setAttribute("aria-expanded", "false");
+  if (restoreFocus) {
+    toggle.focus();
   }
-};
-
-const setStoredTheme = (theme) => {
-  try {
-    localStorage.setItem(themeKey, theme);
-  } catch (_) {
-    // Storage can fail in private contexts; the current page still updates.
-  }
-};
-
-const normalizeTheme = (theme) => (theme === "light" ? "light" : "dark");
-
-const applyTheme = (theme) => {
-  const nextTheme = normalizeTheme(theme);
-
-  if (nextTheme === "light") {
-    root.dataset.theme = "light";
-  } else {
-    root.removeAttribute("data-theme");
-  }
-
-  if (themeMeta) {
-    themeMeta.setAttribute("content", nextTheme === "light" ? "#eef8ff" : "#050812");
-  }
-
-  document.querySelectorAll(".theme-toggle").forEach((button) => {
-    button.setAttribute("aria-pressed", String(nextTheme === "light"));
-    button.setAttribute(
-      "aria-label",
-      nextTheme === "light" ? "Switch to dark theme" : "Switch to light theme"
-    );
-    button.title = nextTheme === "light" ? "Switch to dark theme" : "Switch to light theme";
-
-    const label = button.querySelector(".theme-toggle-text");
-    if (label) {
-      label.textContent = nextTheme === "light" ? "Dark" : "Light";
-    }
-  });
-};
-
-applyTheme(root.dataset.theme === "light" ? "light" : getStoredTheme());
-
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  navLinks.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLAnchorElement) {
-      navLinks.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-    }
-  });
 }
 
-if (navLinks && !navLinks.querySelector(".theme-toggle")) {
-  const themeToggle = document.createElement("button");
-  themeToggle.className = "theme-toggle";
-  themeToggle.type = "button";
-  themeToggle.innerHTML =
-    '<span class="theme-toggle-icon" aria-hidden="true"></span><span class="theme-toggle-text"></span>';
-
-  themeToggle.addEventListener("click", () => {
-    const currentTheme = root.dataset.theme === "light" ? "light" : "dark";
-    const nextTheme = currentTheme === "light" ? "dark" : "light";
-    setStoredTheme(nextTheme);
-    applyTheme(nextTheme);
-  });
-
-  navLinks.appendChild(themeToggle);
-  applyTheme(root.dataset.theme === "light" ? "light" : getStoredTheme());
-}
-
-const moreToggle = document.querySelector(".more-toggle");
-const secondaryFeatures = document.querySelector("#secondary-features");
-
-if (moreToggle && secondaryFeatures) {
-  moreToggle.addEventListener("click", () => {
-    const willOpen = secondaryFeatures.hasAttribute("hidden");
-    secondaryFeatures.toggleAttribute("hidden", !willOpen);
-    secondaryFeatures.classList.toggle("is-open", willOpen);
-    moreToggle.setAttribute("aria-expanded", String(willOpen));
-    moreToggle.textContent = willOpen ? "Hide extra features" : "See more features";
-  });
-}
-
-document.querySelectorAll("[data-animated-details] details").forEach((details) => {
-  const summary = details.querySelector("summary");
-  if (!summary) {
+// Adds the mobile navigation behavior required by the FrameBaseCSS nav contract.
+function initializeNavigation() {
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const panel = document.querySelector("[data-nav-panel]");
+  if (!toggle || !panel) {
     return;
   }
 
-  let animation = null;
+  closeNavigation(toggle, panel);
 
-  const setHeight = (height) => {
-    details.style.height = `${height}px`;
-  };
-
-  const finish = (open) => {
-    details.open = open;
-    details.classList.remove("is-animating");
-    details.style.height = "";
-    details.style.overflow = "";
-    animation = null;
-  };
-
-  summary.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    if (animation) {
-      animation.cancel();
-    }
-
-    const startHeight = details.offsetHeight;
-    details.classList.add("is-animating");
-    details.style.overflow = "hidden";
-
-    if (details.open) {
-      const endHeight = summary.offsetHeight;
-      animation = details.animate(
-        { height: [`${startHeight}px`, `${endHeight}px`] },
-        { duration: 240, easing: "cubic-bezier(.2, .8, .2, 1)" }
-      );
-      setHeight(endHeight);
-      animation.onfinish = () => finish(false);
-      animation.oncancel = () => finish(false);
-      return;
-    }
-
-    details.open = true;
-    const endHeight = details.scrollHeight;
-    setHeight(startHeight);
-    animation = details.animate(
-      { height: [`${startHeight}px`, `${endHeight}px`] },
-      { duration: 260, easing: "cubic-bezier(.2, .8, .2, 1)" }
-    );
-    setHeight(endHeight);
-    animation.onfinish = () => finish(true);
-    animation.oncancel = () => finish(true);
+  toggle.addEventListener("click", () => {
+    const willOpen = panel.dataset.open !== "true";
+    panel.dataset.open = String(willOpen);
+    toggle.setAttribute("aria-expanded", String(willOpen));
   });
-});
 
-const resourcePages = {
-  "features.html": "./features.html",
-  "installation.html": "./installation.html",
-  "configuration.html": "./configuration.html",
-  "faq.html": "./faq.html",
-};
+  panel.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => closeNavigation(toggle, panel));
+  });
 
-const resourceLinks = [
-  {
-    label: "Product",
-    title: "Product Overview",
-    copy: "Tool progression, skins, metadata, and scope.",
-    href: "./features.html",
-  },
-  {
-    label: "Setup",
-    title: "Installation Guide",
-    copy: "Paper requirements, generated files, and validation.",
-    href: "./installation.html",
-  },
-  {
-    label: "Config",
-    title: "Configuration Reference",
-    copy: "YAML files, reload rules, permissions, and troubleshooting.",
-    href: "./configuration.html",
-  },
-  {
-    label: "FAQ",
-    title: "Complete FAQ",
-    copy: "Common server-owner questions and short answers.",
-    href: "./faq.html",
-  },
-  {
-    label: "Ops",
-    title: "Troubleshooting",
-    copy: "Recipe, permission, lore, skin durability, and reload checks.",
-    href: "./configuration.html#troubleshooting-quick-reference",
-  },
-  {
-    label: "Release",
-    title: "Production Validation",
-    copy: "Checklist before giving progression and skins to players.",
-    href: "./configuration.html#production-validation-checklist",
-  },
-];
+  document.addEventListener("click", (event) => {
+    if (panel.dataset.open === "true" && !panel.contains(event.target) && !toggle.contains(event.target)) {
+      closeNavigation(toggle, panel);
+    }
+  });
 
-const currentPage = window.location.pathname.split("/").pop() || "index.html";
-const docLayout = document.querySelector(".doc-layout");
-const docArticle = docLayout?.querySelector(".markdown-body");
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && panel.dataset.open === "true") {
+      closeNavigation(toggle, panel, true);
+    }
+  });
+}
 
-if (docLayout && docArticle && resourcePages[currentPage]) {
-  if (!docLayout.querySelector(".resource-sidebar")) {
-    const resourceSidebar = document.createElement("aside");
-    resourceSidebar.className = "resource-sidebar";
-    resourceSidebar.setAttribute("aria-label", "Related resources");
-    resourceSidebar.innerHTML = `<strong>Resources</strong>${resourceLinks
-      .map((item) => {
-        const isCurrent = resourcePages[currentPage] === item.href ? " is-current" : "";
-        return `
-          <a class="side-resource-card${isCurrent}" href="${item.href}">
-            <span>${item.label}</span>
-            <h3>${item.title}</h3>
-            <p>${item.copy}</p>
-          </a>
-        `;
-      })
-      .join("")}`;
-    docArticle.insertAdjacentElement("afterend", resourceSidebar);
+// Lets Highlight.js process the declared YAML and properties blocks.
+function initializeSyntaxHighlighting() {
+  if (globalThis.hljs) {
+    globalThis.hljs.highlightAll();
   }
 }
+
+// Initializes the small amount of behavior that semantic HTML and CSS cannot provide.
+function initializeSite() {
+  initializeNavigation();
+  initializeSyntaxHighlighting();
+}
+
+document.addEventListener("DOMContentLoaded", initializeSite);
