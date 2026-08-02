@@ -2,7 +2,7 @@
 
 ## Public pages
 
-- `index.html` — Landing page, public product summary, and links to the other five CoreX plugins.
+- `index.html` — Landing page, public product summary, live CoreX-Badges metrics, and links to the other five CoreX plugins.
 - `features.html` — Tool progression, recipe, skin, compatibility, and administration overview.
 - `installation.html` — Paper requirements, installation, first startup, and setup checks.
 - `configuration.html` — Complete administrator configuration reference and public configuration contract.
@@ -17,7 +17,7 @@
 - `assets/coretoolsx-logo.png` — Raster distribution copy of the official logo.
 - `assets/vendor/framebasecss/` — Unmodified pinned FrameBaseCSS 1.2.0 distribution and license.
 - `assets/vendor/highlightjs/` — Pinned Highlight.js 11.11.1 browser distribution and license.
-- `assets/styles.css` — Shared CoreX layout compositions built on FrameBaseCSS tokens.
+- `assets/styles.css` — Shared CoreX layout and responsive bStats metric compositions built on FrameBaseCSS tokens.
 - `assets/site.js` — Responsive navigation and syntax-highlighting initialization.
 - `.gitignore` — Excludes local website backup archives from publication.
 - `README.md` — Site technology, page map, authoritative content sources, and backup policy.
