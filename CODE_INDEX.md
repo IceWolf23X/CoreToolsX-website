@@ -2,24 +2,21 @@
 
 ## Public pages
 
-- `index.html` — Landing page, public product summary, live CoreX-Badges metrics, and links to the other five CoreX plugins.
-- `features.html` — Tool progression, recipe, skin, compatibility, and administration overview.
+- `index.html` — Product overview, live bStats data, and related CoreX plugins.
+- `features.html` — Tool progression, recipes, skins, compatibility, and administration.
 - `installation.html` — Paper requirements, installation, first startup, and setup checks.
-- `configuration.html` — Complete administrator configuration reference and public configuration contract.
-- `configurations.html` — Legacy redirect to `configuration.html`.
+- `configuration.html` — Administrator configuration reference.
 - `docs.html` — Documentation entry point.
 - `faq.html` — Common setup and behavior questions.
-- `support-policy.html` — Public release and support policy.
+- `support-policy.html` — Release and support policy.
 
-## Shared assets and contracts
+## Shared assets
 
-- `assets/coretoolsx-logo.svg` — Official header, footer, and favicon logo.
-- `assets/coretoolsx-logo.png` — Raster distribution copy of the official logo.
-- `assets/vendor/framebasecss/` — Unmodified pinned FrameBaseCSS 1.2.0 distribution and license.
-- `assets/vendor/highlightjs/` — Pinned Highlight.js 11.11.1 browser distribution and license.
-- `assets/styles.css` — Shared CoreX layout and responsive bStats metric compositions built on FrameBaseCSS tokens.
-- `assets/site.js` — Responsive navigation and syntax-highlighting initialization.
-- `.gitignore` — Excludes local website backup archives from publication.
-- `README.md` — Site technology, page map, authoritative content sources, and backup policy.
-
-Build output and `.git/` are intentionally excluded from this index.
+- `assets/coretoolsx-logo.svg` — Header, footer, and favicon logo.
+- `assets/coretoolsx-logo.png` — Raster logo.
+- `assets/vendor/framebasecss/` — FrameBaseCSS distribution and license.
+- `assets/vendor/highlightjs/` — Highlight.js distribution and license.
+- `assets/styles.css` — CoreToolsX layouts, bStats presentation, and responsive adjustments.
+- `assets/site.js` — Responsive navigation and syntax highlighting.
+- `.gitignore` — Local file exclusions.
+- `README.md` — Repository overview, page map, technology, and local preview instructions.
