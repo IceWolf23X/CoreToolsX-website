@@ -13,7 +13,6 @@
 ## Shared assets
 
 - `assets/coretoolsx-logo.svg` — Header, footer, and favicon logo.
-- `assets/coretoolsx-logo.png` — Raster logo.
 - `assets/vendor/framebasecss/` — FrameBaseCSS distribution and license.
 - `assets/vendor/highlightjs/` — Highlight.js distribution and license.
 - `assets/styles.css` — CoreToolsX layouts, bStats presentation, and responsive adjustments.
