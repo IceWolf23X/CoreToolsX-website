@@ -27,7 +27,7 @@
 <header class="fb-doc-header corex-page-hero"><div class="fb-container fb-container--wide"><p class="fb-eyebrow">Complete Configuration Reference</p><h1>Configuration Reference</h1><p>Start with the practical setup choices, then use the exact CoreToolsX YAML reference, reload boundaries, permissions, troubleshooting, and production checks.</p></div></header>
 <section class="fb-section">
 <div class="fb-container fb-container--wide fb-doc-shell corex-doc-shell">
-<aside aria-label="Page contents" class="fb-doc-sidebar fb-doc-nav-panel corex-toc"><strong>Contents</strong><a href="#before-you-configure">0. Before You Configure</a><a href="#file-layout">1. File Layout</a><a href="#reload-vs-restart">2. Reload vs Restart</a><a href="#clean-setup">3. Clean Setup</a><a href="#starter-workflow">Starter Workflow</a><a href="#first-recipe-tests">First Recipe Tests</a><a href="#runtime-model">4. Runtime Model</a><a href="#config-yml">5. config.yml</a><a href="#tool-upgrades-yml">6. tool-upgrades.yml</a><a href="#tool-skins-yml">7. tool-skins.yml</a><a href="#messages-yml">8. messages.yml</a><a href="#plugin-yml">9. plugin.yml</a><a href="#permissions">10. Permissions</a><a href="#troubleshooting-quick-reference">11. Troubleshooting</a><a href="#production-validation-checklist">12. Production Checklist</a></aside>
+<aside aria-label="Page contents" class="fb-doc-sidebar fb-doc-nav-panel corex-toc"><strong>Contents</strong><a href="#before-you-configure">0. Before You Configure</a><a href="#file-layout">1. File Layout</a><a href="#reload-vs-restart">2. Reload vs Restart</a><a href="#clean-setup">3. Clean Setup</a><a href="#starter-workflow">Starter Workflow</a><a href="#first-recipe-tests">First Recipe Tests</a><a href="#runtime-model">4. Runtime Model</a><a href="#config-yml">5. config.yml</a><a href="#tool-upgrades-yml">6. tool-upgrades.yml</a><a href="#tool-skins-yml">7. tool-skins.yml</a><a href="#messages-yml">8. messages.yml</a><a href="#permissions">9. Permissions</a><a href="#troubleshooting-quick-reference">10. Troubleshooting</a><a href="#production-validation-checklist">11. Production Checklist</a></aside>
 <article class="fb-doc-main fb-doc-content">
 <h2 id="before-you-configure">0. Before You Configure</h2>
 <p>Minimum requirements are Paper 1.21.11+, Java 21+, CoreToolsX installed on a Paper server, and a permission plugin only if progression locks are enabled.</p>
@@ -39,7 +39,6 @@
   tool-skins.yml
   messages.yml
   resource-pack/        # optional addon for REAL_TIER inventory models</code></pre></div>
-<p><code>plugin.yml</code> is bundled inside the jar and documents commands, aliases, permissions, and plugin identity.</p>
 <h2 id="reload-vs-restart">2. Reload vs Restart</h2>
 <p>Use <code>/coretoolsx reload</code> for normal YAML edits, recipe changes, message edits, lore template changes, progression permission node changes in YAML, and recipe re-registration. Restart when replacing the jar, changing Paper/Minecraft version, or recovering from startup-only errors.</p>
 <p>The optional resource-pack addon does not require a server restart after zip changes, but players must reload or reselect the pack client-side.</p>
@@ -551,7 +550,7 @@ commands:
   reloaded: "&lt;green&gt;CoreToolsX reloaded."
 
   # Placeholder:
-  # - {version}: plugin version from plugin.yml
+  # - {version}: currently loaded plugin version
   version: "&lt;gray&gt;CoreToolsX version &lt;white&gt;{version}&lt;/white&gt;."
 
   # Help command lines. Permission-gated lines are only shown when the sender
@@ -644,73 +643,7 @@ admin:
     # - {piece}: detected tool type for normal tool
     piece: "&lt;dark_gray&gt;- &lt;gray&gt;Type: &lt;white&gt;{piece}&lt;/white&gt;"
 </code></pre></div>
-<h2 id="plugin-yml">9. <code>plugin.yml</code></h2>
-<p>Complete bundled plugin descriptor. Maven resolves <code>${project.version}</code> when the release jar is built.</p>
-<div class="fb-code-block"><pre><code class="language-yaml">name: CoreToolsX
-main: it.icewolf23x.coretoolsx.CoreToolsXPlugin
-version: ${project.version}
-api-version: '1.21'
-description: Vanilla+ tool progression and netherite tool skins for Paper.
-author: IceWolf23X
-prefix: CoreToolsX
-commands:
-  coretoolsx:
-    description: CoreToolsX main command.
-    usage: /coretoolsx
-    aliases:
-      - ctx
-permissions:
-  coretoolsx.admin:
-    description: Grants all CoreToolsX admin permissions.
-    default: op
-    children:
-      coretoolsx.admin.reload: true
-      coretoolsx.admin.inspect: true
-      coretoolsx.admin.fixitem: true
-      coretoolsx.progression.bypass: true
-  coretoolsx.admin.reload:
-    description: Allows reloading CoreToolsX configuration.
-    default: op
-  coretoolsx.admin.inspect:
-    description: Allows inspecting held CoreToolsX tool items.
-    default: op
-  coretoolsx.admin.fixitem:
-    description: Allows repairing CoreToolsX metadata/profile on the held item.
-    default: op
-  coretoolsx.progression.bypass:
-    description: Bypasses CoreToolsX permission progression locks.
-    default: op
-  coretoolsx.skin.*:
-    description: Allows every CoreToolsX tool skin.
-    default: op
-    children:
-      coretoolsx.skin.wood: true
-      coretoolsx.skin.stone: true
-      coretoolsx.skin.copper: true
-      coretoolsx.skin.iron: true
-      coretoolsx.skin.gold: true
-      coretoolsx.skin.diamond: true
-  coretoolsx.upgrade.*:
-    description: Allows every CoreToolsX tool upgrade.
-    default: op
-    children:
-      coretoolsx.upgrade.wood_to_stone: true
-      coretoolsx.upgrade.stone_to_copper: true
-      coretoolsx.upgrade.copper_to_iron: true
-      coretoolsx.upgrade.iron_to_gold: true
-      coretoolsx.upgrade.iron_to_diamond: true
-  coretoolsx.use.*:
-    description: Allows using every CoreToolsX tool tier when usage locks are enabled.
-    default: op
-    children:
-      coretoolsx.use.wood: true
-      coretoolsx.use.stone: true
-      coretoolsx.use.copper: true
-      coretoolsx.use.iron: true
-      coretoolsx.use.gold: true
-      coretoolsx.use.diamond: true
-      coretoolsx.use.netherite: true</code></pre></div>
-<h2 id="permissions">10. Permissions</h2>
+<h2 id="permissions">9. Permissions</h2>
 <div class="fb-code-block"><pre><code class="language-yaml">coretoolsx.admin
 coretoolsx.admin.reload
 coretoolsx.admin.inspect
@@ -727,7 +660,7 @@ lp group default permission set coretoolsx.upgrade.stone_to_copper true
 lp group default permission set coretoolsx.skin.iron true
 lp group staff permission set coretoolsx.admin true</code></pre></div>
 <p>Use <code>coretoolsx.progression.bypass</code> for staff or testing groups that should ignore all progression checks without granting every individual upgrade and skin node.</p>
-<h2 id="troubleshooting-quick-reference">11. Troubleshooting Quick Reference</h2>
+<h2 id="troubleshooting-quick-reference">10. Troubleshooting Quick Reference</h2>
 <h3>No recipe appears</h3>
 <ul><li>Check <code>recipes.recipe-book.enabled</code>.</li><li>Check the relevant entry has <code>enabled: true</code>.</li><li>Run <code>/coretoolsx reload</code>.</li><li>Check console warnings for invalid materials or costs above 8.</li></ul>
 <h3>Recipe output appears but clicking does nothing</h3>
