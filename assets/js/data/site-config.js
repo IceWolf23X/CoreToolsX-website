@@ -28,7 +28,7 @@ window.COREX_SITE = {
   },
   theme: {
     default: 'light', storageKey: 'corex.theme',
-    light: { accent: '#354ed1', accentHover: '#293ca9', accentSoft: '#edf0ff', accentLine: '#cbd3fb', onAccent: '#ffffff', page: '#fbfcff', surface: '#ffffff', surfaceAlt: '#f2f4fc', surfaceHover: '#e8ecf8', ink: '#23283c', muted: '#5f6882', quiet: '#646e88', line: '#e0e5f2', lineStrong: '#c8d0e5' },
-    dark: { accent: '#8da8ff', accentHover: '#afc2ff', accentSoft: '#222b47', accentLine: '#405686', onAccent: '#142044', page: '#161923', surface: '#1c2230', surfaceAlt: '#252d3e', surfaceHover: '#2e384c', ink: '#edf1fb', muted: '#a7b3cf', quiet: '#8c9dbd', line: '#303c54', lineStrong: '#445574' }
+    light: { accent: '#354ed1', accentHover: '#293ca9', accentSoft: '#edf0ff', accentLine: '#cbd3fb', onAccent: '#ffffff', page: '#fcfcfb', surface: '#ffffff', surfaceAlt: '#f5f5f3', surfaceHover: '#eeedeb', ink: '#24232a', muted: '#65636f', quiet: '#726d7a', line: '#e7e5e9', lineStrong: '#d4d1da' },
+    dark: { accent: '#8da8ff', accentHover: '#afc2ff', accentSoft: '#222b47', accentLine: '#405686', onAccent: '#142044', page: '#17171a', surface: '#1d1d21', surfaceAlt: '#232327', surfaceHover: '#2b2a30', ink: '#eeedf1', muted: '#aaa7b3', quiet: '#8c8797', line: '#313037', lineStrong: '#45424e' }
   }
 };
