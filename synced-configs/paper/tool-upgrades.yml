@@ -1,0 +1,65 @@
+# CoreToolsX tool upgrade definitions.
+#
+# These recipes change the real vanilla Material of the tool. Normal upgraded
+# tools do not receive CoreToolsX PDC; the Material remains the source of truth.
+#
+# Supported fields:
+# - enabled: true/false
+# - from-tier: WOOD, STONE, COPPER, IRON, GOLD, DIAMOND, NETHERITE
+# - from-material: exact Bukkit Material for a special one-tool recipe
+# - to-tier: target tier for all configured tool types
+# - to-material: exact Bukkit Material for a special one-tool recipe
+# - ingredient: Bukkit Material or ingredient-groups.<id> from config.yml
+# - cost-mode: VANILLA_RECIPE_COST or CUSTOM
+# - count: explicit ingredient count, used only when cost-mode is CUSTOM
+# - permission: permission required when progression locks are enabled
+#
+# VANILLA_RECIPE_COST means:
+# - shovel: 1
+# - spear: 1
+# - sword: 2
+# - hoe: 2
+# - pickaxe: 3
+# - axe: 3
+
+upgrades:
+  wood_to_stone:
+    enabled: true
+    from-tier: WOOD
+    to-tier: STONE
+    ingredient: STONE_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.wood_to_stone"
+
+  stone_to_copper:
+    enabled: true
+    from-tier: STONE
+    to-tier: COPPER
+    ingredient: COPPER_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.stone_to_copper"
+
+  copper_to_iron:
+    enabled: true
+    from-tier: COPPER
+    to-tier: IRON
+    ingredient: IRON_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.copper_to_iron"
+
+  iron_to_diamond:
+    enabled: true
+    from-tier: IRON
+    to-tier: DIAMOND
+    ingredient: DIAMOND_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.iron_to_diamond"
+
+  iron_to_gold:
+    # Gold is an optional endpoint branch, separate from the main diamond path.
+    enabled: true
+    from-tier: IRON
+    to-tier: GOLD
+    ingredient: GOLD_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.upgrade.iron_to_gold"

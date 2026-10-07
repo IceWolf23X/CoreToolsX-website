@@ -1,0 +1,162 @@
+# CoreToolsX netherite tool skin definitions.
+#
+# Skin recipes are netherite-only. A skin changes the real item Material to the
+# visual tier, then CoreToolsX applies netherite-equivalent tool components.
+#
+# Example: a netherite pickaxe with the iron skin becomes an IRON_PICKAXE with
+# netherite max damage, tool rules, weapon data, and CoreToolsX PDC.
+#
+# Supported fields:
+# - enabled: true/false
+# - display-name: name used in generated lore and messages
+# - ingredient: Bukkit Material or ingredient-groups.<id> from config.yml
+# - cost-mode: VANILLA_RECIPE_COST or CUSTOM
+# - count: explicit ingredient count, used only when cost-mode is CUSTOM
+# - permission: permission required when progression locks are enabled
+#
+# VANILLA_RECIPE_COST means:
+# - shovel: 1
+# - spear: 1
+# - sword: 2
+# - hoe: 2
+# - pickaxe: 3
+# - axe: 3
+
+skins:
+  wood:
+    enabled: true
+    display-name: "Wood"
+    ingredient: WOOD_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.wood"
+
+  stone:
+    enabled: true
+    display-name: "Stone"
+    ingredient: STONE_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.stone"
+
+  copper:
+    enabled: true
+    display-name: "Copper"
+    ingredient: COPPER_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.copper"
+
+  iron:
+    enabled: true
+    display-name: "Iron"
+    ingredient: IRON_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.iron"
+
+  gold:
+    enabled: true
+    display-name: "Gold"
+    ingredient: GOLD_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.gold"
+
+  diamond:
+    enabled: true
+    display-name: "Diamond"
+    ingredient: DIAMOND_TOOL_MATERIALS
+    cost-mode: VANILLA_RECIPE_COST
+    permission: "coretoolsx.skin.diamond"
+
+skin-durability:
+  # Skin durability is stored in CoreToolsX PDC and applies only to skinned
+  # tools. It does not replace vanilla DAMAGE/MAX_DAMAGE on the real item.
+  #
+  # Supported v1 modes:
+  # - DISABLED: no skin durability is tracked.
+  # - GLOBAL: every skin uses global.max-durability.
+  # - BY_SKIN: each skin reads by-skin.materials.<skin>, then fallback values.
+  # - BY_ITEM: each tool reads by-item.materials.<skin>.<type>, then fallback values.
+  mode: DISABLED
+
+  global:
+    max-durability: 5000
+
+  by-skin:
+    default-max-durability: 5000
+    materials:
+      wood: 3500
+      stone: 4500
+      copper: 5000
+      iron: 6500
+      gold: 2500
+      diamond: 9000
+
+  by-item:
+    default-max-durability: 5000
+    materials:
+      wood:
+        default-max-durability: 3500
+        sword: 2500
+        pickaxe: 3200
+        axe: 3200
+        shovel: 1800
+        hoe: 2200
+        spear: 2500
+
+      stone:
+        default-max-durability: 4500
+        sword: 3200
+        pickaxe: 4100
+        axe: 4100
+        shovel: 2300
+        hoe: 2800
+        spear: 3200
+
+      copper:
+        default-max-durability: 5000
+        sword: 3600
+        pickaxe: 4550
+        axe: 4550
+        shovel: 2550
+        hoe: 3150
+        spear: 3600
+
+      iron:
+        default-max-durability: 6500
+        sword: 4700
+        pickaxe: 5900
+        axe: 5900
+        shovel: 3300
+        hoe: 4100
+        spear: 4700
+
+      gold:
+        default-max-durability: 2500
+        sword: 1800
+        pickaxe: 2250
+        axe: 2250
+        shovel: 1250
+        hoe: 1550
+        spear: 1800
+
+      diamond:
+        default-max-durability: 9000
+        sword: 6500
+        pickaxe: 8200
+        axe: 8200
+        shovel: 4600
+        hoe: 5700
+        spear: 6500
+
+  damage:
+    mode: MIRROR_REAL_DAMAGE
+    multiplier: 1.0
+
+  on-break: REMOVE_SKIN
+
+  mending:
+    mode: DISABLED
+
+  placeholders:
+    disabled-value: ""
+    bar-segments: 10
+    bar-full: "<green>|"
+    bar-empty: "<dark_gray>|"

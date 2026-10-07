@@ -1,0 +1,15 @@
+# Keep LF-normalized published configuration snapshots stable across Windows and Actions.
+/synced-configs/** -text
+*.js text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+# Article sources must match the LF text stored in the generated offline bundle.
+/assets/content/docs/** text eol=lf
+# More-specific rule is repeated last to avoid Git conversion of published snapshots.
+/synced-configs/** -text
+*.html text eol=lf
+/.gitignore text eol=lf

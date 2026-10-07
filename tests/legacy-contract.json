@@ -1,0 +1,69 @@
+{
+  "configuration.html": [
+    "site-navigation",
+    "main",
+    "before-you-configure",
+    "file-layout",
+    "reload-vs-restart",
+    "clean-setup",
+    "starter-workflow",
+    "starter-profiles",
+    "first-recipe-tests",
+    "runtime-model",
+    "config-yml",
+    "config-first-pass",
+    "tool-upgrades-yml",
+    "upgrade-editing",
+    "tool-skins-yml",
+    "skin-editing",
+    "messages-yml",
+    "permissions",
+    "permission-start",
+    "troubleshooting-quick-reference",
+    "production-validation-checklist"
+  ],
+  "docs.html": [
+    "site-navigation",
+    "main"
+  ],
+  "faq.html": [
+    "site-navigation",
+    "main"
+  ],
+  "features.html": [
+    "site-navigation",
+    "main",
+    "core-design",
+    "progression",
+    "recipes",
+    "metadata",
+    "skins",
+    "model-mode",
+    "lore",
+    "durability",
+    "removal",
+    "permissions",
+    "scope"
+  ],
+  "installation.html": [
+    "site-navigation",
+    "main",
+    "requirements",
+    "download",
+    "install",
+    "generated-files",
+    "reload",
+    "first-test",
+    "validation"
+  ],
+  "support-policy.html": [
+    "site-navigation",
+    "main",
+    "release-channels",
+    "supporter-preview-builds",
+    "critical-fix-policy",
+    "paid-memberships",
+    "discord-authentication",
+    "disclaimer"
+  ]
+}

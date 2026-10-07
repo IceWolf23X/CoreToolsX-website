@@ -1,0 +1,79 @@
+name: Sync plugin configuration defaults
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [corex-plugin-defaults-updated]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-plugin-configs
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out website
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+          token: ${{ secrets.COREX_WEBSITE_WRITE_TOKEN || github.token }}
+
+      - name: Set up Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Read source manifest and optional credential status
+        id: source
+        env:
+          READ_TOKEN: ${{ secrets.COREX_PLUGIN_READ_TOKEN }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs';
+          import { SOURCE_REPOSITORY, SOURCE_REF } from './tools/config-sync-map.mjs';
+          const enabled = Boolean(process.env.READ_TOKEN);
+          appendFileSync(process.env.GITHUB_OUTPUT, `repository=${SOURCE_REPOSITORY}\nref=${SOURCE_REF}\nenabled=${enabled}\n`);
+          if (!enabled) console.log('::notice::Configure COREX_PLUGIN_READ_TOKEN with read-only Contents access to the mapped plugin repository. Bundled defaults remain available.');
+          NODE
+
+      - name: Check out private plugin source
+        if: steps.source.outputs.enabled == 'true'
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          repository: ${{ steps.source.outputs.repository }}
+          ref: ${{ steps.source.outputs.ref }}
+          token: ${{ secrets.COREX_PLUGIN_READ_TOKEN }}
+          path: .sync/plugin
+          persist-credentials: false
+
+      - name: Synchronize mapped defaults and validate
+        if: steps.source.outputs.enabled == 'true'
+        run: |
+          node tools/sync-plugin-configs.mjs .sync/plugin .
+          node tools/build-config-bundle.mjs .
+          node --test
+          node tests/validate-theme.mjs
+
+      - name: Commit synchronized snapshots
+        if: steps.source.outputs.enabled == 'true'
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- synced-configs assets/js/generated/config-files.js; then
+            echo "No published configuration changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- synced-configs assets/js/generated/config-files.js
+          git commit -m "docs: sync plugin configuration defaults"
+          git pull --rebase origin "$DEFAULT_BRANCH"
+          git push origin "HEAD:$DEFAULT_BRANCH"

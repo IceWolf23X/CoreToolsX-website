@@ -1,0 +1,35 @@
+/* Use the existing light/dark code palette without adding another code-box layout. */
+.code-block .hljs-comment,
+.code-block .hljs-quote {
+  color: var(--code-comment);
+}
+
+.code-block .hljs-attr,
+.code-block .hljs-attribute,
+.code-block .hljs-keyword,
+.code-block .hljs-selector-tag,
+.code-block .hljs-name,
+.code-block .hljs-section,
+.code-block .hljs-title {
+  color: var(--code-key);
+}
+
+.code-block .hljs-string,
+.code-block .hljs-regexp,
+.code-block .hljs-symbol,
+.code-block .hljs-bullet,
+.code-block .hljs-addition {
+  color: var(--code-string);
+}
+
+.code-block .hljs-number,
+.code-block .hljs-literal,
+.code-block .hljs-built_in,
+.code-block .hljs-variable,
+.code-block .hljs-meta,
+.code-block .hljs-deletion {
+  color: var(--code-number);
+}
+
+.code-block .hljs-emphasis { font-style: italic; }
+.code-block .hljs-strong { font-weight: 700; }

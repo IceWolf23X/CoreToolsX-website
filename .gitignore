@@ -1,1 +1,19 @@
-CoreToolsX-website-*-backup-*.zip
+.sync/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Local publication/build files (never commit).
+_site/
+_site.tmp/
+.wip-publish-state.json
+.env
+.env.*
+*.pem
+*.key
+
+
+
+# Preserve local historical main-site backups.
+*-website-*-backup-*.zip

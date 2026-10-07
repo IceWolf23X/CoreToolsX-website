@@ -1,0 +1,115 @@
+# CoreToolsX messages.
+#
+# All user-facing text should live here.
+# Messages use Adventure MiniMessage syntax:
+# https://docs.advntr.dev/minimessage/format.html
+#
+# Placeholder format is {placeholder}. A message only receives placeholders
+# that are meaningful for that specific command or event.
+
+# Prefix is prepended automatically by MessageService to every configured message.
+prefix: "<dark_gray>[<aqua>CoreToolsX</aqua>]</dark_gray> "
+
+commands:
+  # Generic permission failure for commands.
+  no-permission: "<red>You do not have permission to do this."
+
+  # Sent when an unknown /coretoolsx subcommand is used.
+  unknown: "<red>Unknown command. Use <white>/coretoolsx help</white>."
+
+  # Sent after /coretoolsx reload successfully reloads configs and recipes.
+  reloaded: "<green>CoreToolsX reloaded."
+
+  # Placeholder:
+  # - {version}: plugin version from plugin.yml
+  version: "<gray>CoreToolsX version <white>{version}</white>."
+
+  # Help command lines. Permission-gated lines are only shown when the sender
+  # has the corresponding permission.
+  help-header: "<gray>CoreToolsX commands:"
+  help-version: "<dark_gray>- <aqua>/coretoolsx version</aqua>"
+  help-reload: "<dark_gray>- <aqua>/coretoolsx reload</aqua>"
+  help-inspect: "<dark_gray>- <aqua>/coretoolsx inspect</aqua>"
+  help-fixitem: "<dark_gray>- <aqua>/coretoolsx fixitem</aqua>"
+
+  # Sent when a player-only command is run from console.
+  player-only: "<red>This command can only be used by a player."
+
+crafting:
+  # Sent when a protected vanilla tool recipe is blocked.
+  blocked-vanilla-craft: "<red>You must upgrade the previous tool tier first."
+
+  # Sent when permission-based progression blocks an upgrade or skin recipe.
+  no-permission: "<red>You do not have permission for this tool progression."
+
+  # Sent when compatibility mode blocks transformation of a detected custom item.
+  custom-item-blocked: "<red>This custom item cannot be modified by CoreToolsX."
+
+progression:
+  # Sent when progression-locks.blocks.usage is true and the player lacks
+  # the required coretoolsx.use.<tier> permission.
+  usage-blocked: "<red>You do not have permission to use this tool tier."
+
+admin:
+  # Sent by /coretoolsx inspect when the player has no held item.
+  inspect-empty-hand: "<red>Hold a tool item first."
+
+  # Sent by /coretoolsx fixitem when the player has no held item.
+  fix-empty-hand: "<red>Hold a tool item first."
+
+  # Sent by /coretoolsx fixitem when the held item is not CoreToolsX skinned tool.
+  fix-not-skinned: "<red>This item is not a CoreToolsX skinned tool item."
+
+  # Sent by /coretoolsx fixitem after the profile/lore/PDC refresh completes.
+  fixed: "<green>Item fixed."
+
+  inspect:
+    # Header for /coretoolsx inspect output.
+    header: "<gray>Item inspection:"
+
+    # Placeholder:
+    # - {material}: current Bukkit Material name
+    current-material: "<dark_gray>- <gray>Current Material: <white>{material}</white>"
+
+    # Placeholder:
+    # - {material}: saved clean netherite Material for skinned tool
+    clean-material: "<dark_gray>- <gray>Clean Material: <white>{material}</white>"
+
+    # Placeholder:
+    # - {skin}: saved visual skin tier
+    visual-skin: "<dark_gray>- <gray>Visual Skin: <white>{skin}</white>"
+
+    # Placeholder:
+    # - {mode}: REAL_TIER or VISUAL_SKIN
+    inventory-model-mode: "<dark_gray>- <gray>Inventory Model Mode: <white>{mode}</white>"
+
+    # Placeholder:
+    # - {value}: true/false
+    has-core-data: "<dark_gray>- <gray>Has CoreToolsX Data: <white>{value}</white>"
+
+    # Placeholder:
+    # - {value}: true/false
+    generated-lore: "<dark_gray>- <gray>Generated Skin Lore: <white>{value}</white>"
+
+    # Placeholder:
+    # - {value}: true/false
+    original-lore: "<dark_gray>- <gray>Original Lore Snapshot: <white>{value}</white>"
+
+    # Placeholder:
+    # - {damage}: skin durability damage stored in PDC
+    # - {max}: skin max durability stored in PDC
+    # - {remaining}: max minus damage
+    # - {percent}: remaining percent
+    skin-durability: "<dark_gray>- <gray>Skin Durability: <white>{remaining}</white>/<white>{max}</white> <dark_gray>({percent}%, damage {damage})"
+
+    # Sent when skin durability mode is disabled or the item has no skin
+    # durability PDC.
+    skin-durability-disabled: "<dark_gray>- <gray>Skin Durability: <white>disabled</white>"
+
+    # Placeholder:
+    # - {tier}: detected tool tier for normal tool
+    tier: "<dark_gray>- <gray>Tier: <white>{tier}</white>"
+
+    # Placeholder:
+    # - {piece}: detected tool type for normal tool
+    piece: "<dark_gray>- <gray>Type: <white>{piece}</white>"

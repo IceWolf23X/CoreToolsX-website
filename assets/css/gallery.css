@@ -1,0 +1,66 @@
+/* Only gallery internals are styled here. The preview-shell rotation and
+   responsive canvas dimensions continue to come from landing/ultrawide.css. */
+.preview-canvas.has-gallery::before { display: none; }
+.preview-canvas.has-gallery > .capture-label,
+.preview-canvas.has-gallery > .capture-corner,
+.preview-canvas.has-gallery > .preview-placeholder,
+.preview-canvas.has-gallery > .capture-dimensions { display: none; }
+.gallery-stage { position: absolute; inset: 0; z-index: 3; overflow: hidden; border-radius: inherit; }
+.gallery-stage.is-interactive { cursor: pointer; touch-action: pan-y pinch-zoom; }
+.gallery-stage .gallery-slide {
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%;
+  opacity: 0; z-index: 0; pointer-events: none; user-select: none;
+  background: var(--surface-alt); animation: none; transition-property: none;
+}
+.gallery-stage .gallery-slide.is-leaving { opacity: 1; z-index: 1; }
+.gallery-stage .gallery-slide.is-active { opacity: 1; z-index: 2; }
+.gallery-stage .gallery-slide.is-entering {
+  animation: corex-gallery-in var(--gallery-transition, 240ms) var(--ease, ease-out) both;
+}
+@keyframes corex-gallery-in { from { opacity: 0; } to { opacity: 1; } }
+.gallery-controls {
+  display: flex; align-items: center; gap: 8px; min-width: 0;
+  padding: 10px 8px 0; color: var(--muted);
+}
+.gallery-button {
+  flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+  min-width: 36px; min-height: 36px; padding: 6px 9px;
+  border: 1px solid var(--line); border-radius: 7px; background: var(--surface);
+  color: var(--ink); font: inherit; font-size: 17px; cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.gallery-button:hover { background: var(--surface-hover); border-color: var(--accent-line); }
+.gallery-button:focus-visible, .gallery-dot:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.gallery-toggle { min-width: 54px; font-size: 11px; }
+.gallery-pagination {
+  flex: 1 1 0; display: flex; align-items: center; justify-content: flex-start;
+  min-width: 0; overflow: auto; padding: 4px 2px; scrollbar-width: thin;
+}
+.gallery-dot {
+  position: relative; flex: 0 0 24px; width: 24px; height: 28px;
+  border: 0; padding: 0; border-radius: 5px; cursor: pointer; background: transparent;
+}
+.gallery-dot::before {
+  content: ''; position: absolute; top: 10px; left: 8px; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--line-strong);
+  transition: background 140ms ease;
+}
+.gallery-dot[aria-current="true"]::before { background: var(--accent); }
+.gallery-dot:hover::before { background: var(--accent-hover); }
+.gallery-counter { flex-shrink: 0; white-space: nowrap; font: 10px var(--mono); font-variant-numeric: tabular-nums; }
+.gallery-status { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.preview-caption [data-preview-caption-text] { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.preview-caption > span:first-child { min-width: 0; }
+.preview-caption > span:last-child { flex-shrink: 0; }
+@media (max-width: 420px) {
+  .gallery-controls { gap: 5px; padding-inline: 0; }
+  .gallery-button { min-width: 36px; min-height: 36px; }
+  .gallery-toggle { min-width: 48px; font-size: 10px; }
+  .gallery-counter { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-stage .gallery-slide.is-entering { animation: none; }
+  .gallery-button, .gallery-dot::before { transition: none; }
+}

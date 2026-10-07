@@ -1,23 +1,26 @@
-# CoreToolsX Website
+# CoreToolsX website
 
-Static GitHub Pages website for CoreToolsX, a Paper tool progression plugin with configurable upgrade recipes and netherite visual skins.
+Primary site: <https://wiki-coretoolsx.icewolf23x.dev/>. This repository contains the CoreToolsX 2026.1.2 landing page, offline-capable wiki, synchronized public configuration reference and optional public website-release catalog.
 
-<https://icewolf23x.github.io/CoreToolsX-website/>
+The site has no backend and can open directly from `index.html`. Product identity and links live in `assets/js/data/site-config.js`; landing copy in `landing-content.js`; wiki metadata in `docs-content.js`; each article body is independently editable under `assets/content/docs/`. Root `features.html`, `installation.html`, `configuration.html`, `docs.html`, `faq.html` and `support-policy.html` preserve previous URLs/bookmarks through `assets/js/legacy-routes.js`.
 
-## Pages
+## Configuration defaults
 
-- `index.html`: product overview, live bStats data, and related CoreX plugins.
-- `features.html`: progression, recipes, skins, compatibility, and administration.
-- `installation.html`: requirements, installation, and first setup.
-- `configuration.html`: server configuration reference.
-- `docs.html`: documentation hub.
-- `faq.html`: common questions and troubleshooting.
-- `support-policy.html`: release and support policy.
+Only four public resources are allow-listed from private `IceWolf23X/CoreToolsX-plugin` on `main`: `config.yml`, `tool-upgrades.yml`, `tool-skins.yml` and `messages.yml`. `plugin.yml`, sources, tests, secrets, runtime data and the separate resource-pack tree are excluded. LF-normalized text snapshots live in `synced-configs/paper/`; the generated JavaScript bundle exists for offline `file://` use.
 
-## Technology
+```powershell
+node tools/sync-plugin-configs.mjs ..\plugin .
+node tools/build-config-bundle.mjs .
+node tools/build-docs-bundle.mjs .
+node tools/build-docs-bundle.mjs . --check
+node --test
+node tests/validate-theme.mjs
+```
 
-The site uses plain HTML, CSS, JavaScript, SVG, and PNG. FrameBaseCSS `1.2.0` provides the layout and components. Highlight.js `11.11.1` highlights configuration examples. Required browser assets are stored under `assets/vendor/`.
+The GitHub sync workflow does nothing without the later `COREX_PLUGIN_READ_TOKEN`. That secret needs read-only Contents access to the private plugin repository. Credentials never belong in browser assets or synchronized state.
 
-## Local preview
+## Resource pack and downloads
 
-Serve the repository root with a static HTTP server and open `index.html`.
+The optional REAL_TIER pack is a separate client asset and is not a generated configuration file. Download buttons point to <https://modrinth.com/plugin/coretoolsx>. The Releases view may also read public releases from `IceWolf23X/CoreToolsX-website`; an empty catalog is valid.
+
+See [SETUP.md](SETUP.md) for local work. Local preparation does not authorize a commit, push, release or deployment.

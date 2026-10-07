@@ -1,0 +1,5 @@
+<p>Each child of <code>upgrades</code> is an independent route.</p>
+<h2 id="definition-schema">Definition schema</h2><ul><li><code>enabled</code>.</li><li><code>from-tier</code> or exact <code>from-material</code>.</li><li><code>to-tier</code> or exact <code>to-material</code>.</li><li><code>ingredient</code>: Bukkit material or configured group.</li><li><code>cost-mode</code>: <code>VANILLA_RECIPE_COST|CUSTOM</code>.</li><li>Positive <code>count</code> for a custom cost.</li><li><code>permission</code> when locks apply.</li></ul>
+<h2 id="defaults">Bundled definitions</h2><p><code>wood_to_stone</code>, <code>stone_to_copper</code>, <code>copper_to_iron</code>, <code>iron_to_gold</code> and <code>iron_to_diamond</code>. Supported tiers are wood, stone, copper, iron, gold, diamond and netherite.</p>
+<h2 id="validation">Validation</h2><p>Missing endpoints, unknown materials/groups and invalid costs disable the affected definition with a warning.</p>
+<div class="config-file-mount" data-config-file="paper/tool-upgrades.yml"></div>

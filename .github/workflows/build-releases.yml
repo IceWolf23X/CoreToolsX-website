@@ -1,0 +1,69 @@
+# Optional offline fallback only. The browser reads PUBLIC GitHub Releases directly.
+# Put this workflow on the default branch BEFORE publishing a tag containing it.
+name: Refresh GitHub release snapshot
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published, edited, deleted, unpublished, released, prereleased]
+  schedule:
+    # Also captures asset-only edits which may not emit a release event.
+    - cron: '17 3 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'assets/js/data/site-config.js'
+      - 'assets/js/core/github-releases.js'
+      - 'assets/js/core/releases-core.js'
+      - 'tools/build-releases.mjs'
+      - '.github/workflows/build-releases.yml'
+
+permissions:
+  contents: write
+concurrency:
+  group: corex-github-release-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out current website branch, not release-tag code
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+          token: ${{ secrets.COREX_WEBSITE_WRITE_TOKEN || github.token }}
+
+      - name: Set up Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Run all Node regression tests
+        run: node --test
+
+      - name: Update offline public release snapshot
+        # No token is passed to the API client; private or draft data is not exported.
+        run: node tools/build-releases.mjs .
+
+      - name: Validate website theme data
+        run: node tests/validate-theme.mjs
+
+      - name: Commit snapshot only when public metadata changed
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- assets/js/generated/releases.js; then
+            echo "Public release snapshot is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/js/generated/releases.js
+          git commit -m "site: refresh public GitHub release snapshot"
+          git pull --rebase origin "$DEFAULT_BRANCH"
+          git push origin "HEAD:$DEFAULT_BRANCH"

@@ -1,0 +1,242 @@
+/*
+ * CoreX wide-screen layout, shared by the landing and documentation.
+ * The browser's available CSS width controls reflow, not the monitor's label.
+ * Narrow windows keep the existing mobile/tablet/desktop layouts.
+ * All changes are screen-only so printed documentation remains single-column.
+ */
+@media screen and (min-width: 1600px) {
+  :root {
+    --wide-content-max: clamp(1248px, calc(87.5vw - 152px), 3840px);
+    --wide-gutter: clamp(48px, 4vw, 160px);
+    --wide-docs-max: 4160px;
+    --wide-docs-gutter: clamp(24px, 2vw, 96px);
+    --wide-sidebar: clamp(258px, 10vw, 336px);
+    --wide-outline: clamp(170px, 7vw, 248px);
+    --wide-article-padding: clamp(40px, 2vw, 88px);
+    --wide-reading-measure: 78ch;
+  }
+
+  /* A continuously growing content area, rather than a 1248px desktop island. */
+  .container {
+    width: min(var(--wide-content-max), calc(100% - var(--wide-gutter) * 2));
+  }
+  .header-inner {
+    width: min(var(--wide-docs-max), calc(100% - var(--wide-docs-gutter) * 2));
+    padding-inline: 20px;
+  }
+  .header-nav { gap: clamp(29px, 1.5vw, 52px); font-size: 13px; }
+  .header-actions { gap: 14px; }
+  .footer-nav { gap: clamp(32px, 2vw, 64px); }
+
+  .hero { padding-block: clamp(88px, 7vh, 112px); }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+    gap: clamp(68px, 5vw, 176px);
+  }
+  .hero-copy { width: 100%; max-width: 1000px; justify-self: center; }
+  .hero h1 {
+    font-size: clamp(78px, 4.2vw, 116px);
+    max-width: 1000px;
+  }
+  .hero-description {
+    font-size: clamp(16px, .8vw, 20px);
+    max-width: 49ch;
+  }
+  .hero-platforms { font-size: clamp(10px, .5vw, 13px); }
+  .hero-ctas { flex-wrap: wrap; }
+  /* Keep the original resting tilt and hover transition from landing.css. */
+  .preview-shell { min-width: 0; width: 100%; justify-self: center; }
+  .preview-canvas {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: clamp(350px, 52vh, 720px);
+  }
+  .preview-placeholder strong { font-size: clamp(15px, .8vw, 23px); }
+  .preview-placeholder p { font-size: clamp(10px, .5vw, 14px); }
+  .preview-top, .preview-caption { font-size: clamp(9px, .4vw, 12px); }
+  .preview-tag { right: 22px; transform: none; }
+  .compatibility-inner { gap: clamp(30px, 3vw, 100px); }
+  .integrations { max-width: none; gap: clamp(35px, 3vw, 100px); }
+  .integration { font-size: clamp(14px, .75vw, 21px); }
+  .integration .icon { width: 24px; height: 24px; }
+
+  .section { padding-block: clamp(88px, 6vh, 112px); }
+  .section-heading { gap: 64px; }
+  .section-heading h2, .setup-intro h2, .bridge-section h2, .faq-heading h2 {
+    font-size: clamp(39px, 2.1vw, 58px);
+    max-width: 24ch;
+  }
+  .section-heading > p { max-width: 46ch; font-size: clamp(13px, .7vw, 17px); }
+  .feature-grid { gap: clamp(14px, .7vw, 24px); }
+  .feature-card { padding: clamp(26px, 1.15vw, 40px); min-height: 280px; min-width: 0; }
+  .feature-card h3 { max-width: 26ch; font-size: clamp(19px, .9vw, 26px); }
+  .feature-card p { max-width: 42ch; font-size: clamp(12px, .6vw, 16px); }
+  .feature-card .text-link { font-size: 12px; }
+  .features-bottom p { font-size: clamp(12px, .65vw, 16px); }
+  .setup-panel { gap: clamp(72px, 4vw, 160px); }
+  .setup-copy h3 { font-size: clamp(26px, 1.3vw, 36px); }
+  .setup-copy > p { max-width: 58ch; font-size: clamp(13px, .7vw, 17px); }
+  .setup-steps li { font-size: clamp(12px, .7vw, 16px); }
+  .topology-map { min-height: clamp(180px, 13vw, 320px); padding: 40px; }
+  .topology-node { font-size: clamp(11px, .65vw, 17px); padding: 20px 26px; }
+  .topology-node small { font-size: clamp(8px, .45vw, 12px); }
+  .topology-group .topology-node { font-size: clamp(10px, .55vw, 15px); padding: 14px 20px; }
+  .topology-connector { width: clamp(32px, 3vw, 112px); }
+  .topology-label, .topology-note { font-size: clamp(10px, .55vw, 14px); }
+  .bridge-section { gap: clamp(88px, 4vw, 176px); }
+  .bridge-section > div > p { max-width: 55ch; font-size: clamp(13px, .7vw, 17px); }
+  .bridge-pair { gap: clamp(16px, 2vw, 64px); }
+  .bridge-card p { max-width: 48ch; font-size: clamp(12px, .65vw, 16px); }
+  .bridge-card h3 { font-size: clamp(20px, 1vw, 29px); }
+  .docs-promo { gap: clamp(55px, 4vw, 120px); padding: clamp(38px, 2vw, 64px); }
+  .docs-promo h2 { font-size: clamp(30px, 1.6vw, 44px); max-width: 26ch; }
+  .docs-promo p { max-width: 48ch; font-size: clamp(12px, .65vw, 16px); }
+  .docs-promo-links { gap: clamp(14px, 1vw, 36px); }
+  .docs-promo-card { padding: clamp(22px, 1.5vw, 44px); }
+  .faq-section { gap: clamp(88px, 4vw, 176px); }
+  .faq-heading p { max-width: 46ch; font-size: clamp(13px, .7vw, 17px); }
+  .faq-list summary { font-size: clamp(13px, .75vw, 18px); }
+  .faq-list details > div { font-size: clamp(12px, .65vw, 16px); max-width: 80ch; }
+  .final-cta h2 { font-size: clamp(34px, 1.8vw, 48px); max-width: 30ch; }
+  .final-cta p { font-size: clamp(12px, .65vw, 16px); max-width: 65ch; }
+
+  /* One grid owns all three rails: navigation never gets stranded at an edge. */
+  .docs-layout {
+    display: grid;
+    grid-template-columns: var(--wide-sidebar) minmax(0, 1fr) var(--wide-outline);
+    align-items: start;
+    width: min(var(--wide-docs-max), calc(100% - var(--wide-docs-gutter) * 2));
+    margin-inline: auto;
+  }
+  .docs-sidebar {
+    position: sticky;
+    top: var(--header-height);
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
+    min-height: 0;
+  }
+  .sidebar-top { flex-shrink: 0; }
+  .sidebar-scroll { min-height: 0; }
+  .sidebar-title { font-size: clamp(13px, .7vw, 16px); }
+  .sidebar-search, .docs-mode-tabs a { font-size: clamp(11px, .6vw, 13px); }
+  .sidebar-group > summary { font-size: clamp(9px, .5vw, 11px); }
+  .nav-item { font-size: clamp(11px, .6vw, 14px); padding-block: 8px; }
+  .sidebar-bottom { flex-shrink: 0; font-size: 11px; }
+  .docs-main {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 44px var(--wide-article-padding) 88px;
+  }
+  .toc-rail {
+    position: sticky;
+    top: calc(var(--header-height) + 44px);
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-height: calc(100vh - var(--header-height) - 68px);
+    max-height: calc(100dvh - var(--header-height) - 68px);
+    padding-right: 12px;
+    min-width: 0;
+  }
+  .toc-heading { font-size: clamp(10px, .6vw, 13px); }
+  .toc-link { font-size: clamp(10px, .55vw, 13px); }
+  .toc-link.sub { font-size: clamp(9px, .5vw, 12px); }
+  .toc-help p, .toc-help a { font-size: clamp(10px, .5vw, 12px); }
+  #article-title { font-size: clamp(39px, 2vw, 54px); max-width: 32ch; }
+  .article-description { font-size: clamp(14px, .7vw, 18px); max-width: 74ch; }
+  .article-kicker .eyebrow, .breadcrumbs { font-size: 11px; }
+  .article-tool { font-size: 12px; }
+  .prose { font-size: clamp(13px, .68vw, 16px); }
+  .prose p, .prose ul, .prose ol, .prose blockquote {
+    max-width: var(--wide-reading-measure);
+  }
+  .prose h2 { font-size: clamp(22px, 1.1vw, 29px); max-width: 52ch; }
+  .prose h3 { font-size: clamp(17px, .9vw, 23px); max-width: 56ch; }
+  .prose :not(pre) > code { font-size: .89em; }
+  .code-block pre { font-size: clamp(11px, .58vw, 14px); }
+  .code-header, .code-header button { font-size: 11px; }
+  .code-block.is-long:not(.is-expanded) pre {
+    max-height: clamp(300px, calc(100vh - 280px), 620px);
+    max-height: clamp(300px, calc(100dvh - 280px), 620px);
+  }
+  .prose table { font-size: clamp(11px, .65vw, 15px); }
+  .prose th { font-size: clamp(10px, .6vw, 14px); }
+  .prose td code { font-size: .9em; }
+  .source-box { font-size: 12px; }
+  .source-box strong { font-size: 12px; }
+  .pagination-card strong { font-size: 13px; }
+  .pagination-card span { font-size: 11px; }
+  .doc-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, clamp(260px, 14vw, 480px)), 1fr));
+    gap: 18px;
+  }
+  .doc-card { padding: clamp(20px, 1.1vw, 32px); min-width: 0; }
+  .doc-card h3 { font-size: clamp(14px, .8vw, 20px); max-width: 30ch; }
+  .doc-card p { font-size: clamp(10px, .65vw, 15px); max-width: 48ch; }
+  .doc-card .doc-card-label { font-size: 11px; }
+  .doc-card-grid.compact h3 { font-size: clamp(12px, .7vw, 17px); }
+  .doc-card-grid.compact p { font-size: clamp(10px, .65vw, 15px); }
+  .hub-section-header h2 { font-size: clamp(18px, 1vw, 28px); }
+  .hub-intro { font-size: clamp(11px, .7vw, 16px); }
+  .start-card { padding: 24px; }
+  .start-card h3 { font-size: clamp(13px, .85vw, 21px); }
+  .start-card p { font-size: clamp(10px, .65vw, 15px); }
+
+  /* The no-JavaScript reference also gets wider code/tables, not wider prose. */
+  .static-reference.prose {
+    width: min(2400px, calc(100% - var(--wide-gutter) * 2));
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  .feature-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+  /* Source order remains example -> explanation on mobile and for screen readers. */
+  .reference-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(32px, 1.5vw, 64px);
+    align-items: start;
+    margin-block: 36px;
+  }
+  .reference-example, .reference-notes { min-width: 0; }
+  .reference-example > :first-child, .reference-notes > :first-child { margin-top: 0; }
+  .reference-example > .code-block:last-child { margin-bottom: 0; }
+  .reference-example:has(.is-long:not(.is-expanded)) {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+  }
+  .reference-notes { border-left: 1px solid var(--line); padding-left: clamp(24px, 1.2vw, 48px); }
+  .reference-notes ul, .reference-notes ol { padding-right: 3px; }
+  .prose .table-scroll { width: 100%; }
+  .prose td:last-child { width: 50%; }
+}
+
+/* Very wide but short windows (e.g. browser zoom / 3840x1080) stay operable. */
+@media screen and (min-width: 1600px) and (max-height: 680px) {
+  .hero { padding-block: 56px; }
+  .preview-canvas { max-height: 320px; }
+  .sidebar-top { padding-top: 16px; padding-bottom: 10px; }
+  .sidebar-title { margin-bottom: 10px; }
+  .docs-mode-tabs { margin-top: 10px; }
+  .toc-links { max-height: max(100px, calc(100vh - 280px)); }
+  .reference-example:has(.is-long:not(.is-expanded)) { position: static; }
+}
+
+/* Regression guards for narrow windows reached when zooming or resizing. */
+@media screen and (max-width: 420px) {
+  .final-cta .hero-ctas { flex-wrap: wrap; max-width: 100%; }
+}
+@media screen and (max-width: 360px) {
+  .header-actions > .button { padding-inline: 8px; font-size: 10px; }
+  .header-actions > .button .icon { display: none; }
+  #setup-network .topology-map { flex-direction: column; }
+  #setup-network .topology-connector { width: 1px; height: 18px; }
+  #setup-network .topology-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
