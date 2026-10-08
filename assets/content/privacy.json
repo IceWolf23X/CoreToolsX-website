@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "title": "Privacy & cookies",
+  "updated": "2026-10-08",
+  "controller": {
+    "name": "Mirica Andrei Valentin",
+    "email": "miricaandrei2004@gmail.com"
+  },
+  "summary": "This notice explains the technical data, browser storage and external services involved when you use the {{product}} website. There are no site accounts, advertising pixels or audience-analytics scripts in the current website code.",
+  "sections": [
+    {
+      "id": "scope",
+      "title": "Scope and contact",
+      "paragraphs": [
+        "The controller identified above operates the {{product}} documentation and download website at {{siteUrl}}. Use the email address above for privacy questions or requests.",
+        "This notice covers the website. Data handled by installed Minecraft plugins, individual server operators and external websites are outside its scope and may be subject to separate notices. Downloading a plugin does not send that server's player or configuration data to this website."
+      ]
+    },
+    {
+      "id": "hosting",
+      "title": "Hosting and technical connection data",
+      "paragraphs": [
+        "GitHub Pages hosts the site and Cloudflare provides content delivery and security. These services process technical connection information, which can include IP addresses, requested resources, request times and browser or protocol information, to deliver and protect the service. GitHub states that visitor IP addresses are logged for security.",
+        "The site has no registration or contact form and does not maintain its own visitor-account database. This does not mean that browsing involves no personal data: infrastructure services still handle the technical information needed for a connection."
+      ]
+    },
+    {
+      "id": "releases-external",
+      "title": "Release catalog, downloads and external links",
+      "paragraphs": [
+        "Opening the Releases view requests public release metadata from the GitHub API. The catalog request does not include GitHub sign-in credentials. Downloading a file connects your browser to GitHub and its download infrastructure; ordinary connection data is involved in those requests.",
+        "Links to GitHub, Modrinth or other external sites open services governed by their own privacy notices. The website does not load those sites' account or marketing pages merely because their links are displayed."
+      ]
+    },
+    {
+      "id": "browser-storage",
+      "title": "Cookies and browser storage",
+      "paragraphs": [
+        "The current site code does not set advertising or profiling cookies. It uses the functional browser storage listed below to remember your chosen appearance and reuse public release information. These records are not site-generated visitor identifiers or cross-site advertising profiles.",
+        "Cloudflare can use technical security cookies when a security check or challenge requires them. Whether a particular cookie is set depends on the security feature invoked. Its purpose and lifetime follow the provider's configuration and cookie documentation; this notice does not claim that every Cloudflare cookie is present on every visit."
+      ],
+      "storageTable": true,
+      "links": [
+        { "label": "Cloudflare cookie documentation", "url": "https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/" }
+      ]
+    },
+    {
+      "id": "purposes",
+      "title": "Purposes and legal bases",
+      "paragraphs": [
+        "Where the GDPR applies, the purposes of technical delivery, service security and responding to ordinary correspondence are the controller's legitimate interests in operating useful, secure public documentation, under Article 6(1)(f). Handling privacy requests and other applicable legal requirements may rely on Article 6(1)(c).",
+        "Ordinary network information is needed to retrieve a page. Sending an email is voluntary, but sufficient contact information is needed to answer it. The website code does not profile visitors or make automated decisions with legal or similarly significant effects."
+      ]
+    },
+    {
+      "id": "email-retention",
+      "title": "Email correspondence and retention",
+      "paragraphs": [
+        "If you email the privacy contact, the controller receives your address and the content you send, including a name or attachments if you provide them. This information is used to handle the request and any related legal obligations, not to add you to a newsletter or marketing list. The contact mailbox uses Gmail; Google's privacy notice applies to that service.",
+        "Correspondence is kept for the time needed to resolve the request, necessary follow-up and applicable legal retention requirements. Include only information relevant to your request. Infrastructure-log retention follows the providers' policies. Browser-storage persistence is described in the table above; a cache refresh interval is not an automatic deletion deadline."
+      ]
+    },
+    {
+      "id": "providers-transfers",
+      "title": "Service providers and international processing",
+      "paragraphs": [
+        "The services involved are GitHub for hosting, the release API and downloads; Cloudflare for delivery and security; and Gmail if you contact the controller. Modrinth and other linked services are involved when you choose to visit them.",
+        "These providers operate internationally, so relevant technical data or correspondence may be processed outside your country or the European Economic Area. Their linked privacy notices describe the applicable transfer arrangements and safeguards. Contact the controller for questions about processing related to this website."
+      ]
+    },
+    {
+      "id": "choices-rights",
+      "title": "Your choices and rights",
+      "paragraphs": [
+        "Browser controls let you inspect, block or remove cookies and local site data. Removing this site's local storage resets its saved theme and cached release information. Blocking storage does not create an account or subscribe you to anything; the site can use its default appearance and included release snapshot. Blocking infrastructure security cookies may prevent a provider's security check from completing.",
+        "Where applicable, you may request access, correction, erasure, restriction, portability or object to processing. Where processing is based on consent, you may withdraw it without affecting earlier lawful processing. Use the contact above rather than posting private information in a public issue tracker.",
+        "You may complain to a competent supervisory authority, particularly in the place of your usual residence, workplace or the alleged infringement. The European Data Protection Board directory lists national authorities."
+      ],
+      "links": [
+        { "label": "European data protection authorities", "url": "https://www.edpb.europa.eu/about-edpb/our-members_en" }
+      ]
+    },
+    {
+      "id": "changes",
+      "title": "Changes to this notice",
+      "paragraphs": [
+        "The update date is shown above. This notice should be revised when website functions, providers or data practices change. Optional tracking would require a separate assessment and any legally required consent before activation."
+      ]
+    }
+  ],
+  "sources": [
+    { "label": "GitHub Pages and visitor data", "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" },
+    { "label": "GitHub privacy statement", "url": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" },
+    { "label": "Cloudflare privacy policy", "url": "https://www.cloudflare.com/privacypolicy/" },
+    { "label": "Google privacy policy", "url": "https://policies.google.com/privacy" },
+    { "label": "Modrinth privacy policy", "url": "https://modrinth.com/legal/privacy" },
+    { "label": "GDPR", "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng" },
+    { "label": "Cookie and similar-technology guidance", "url": "https://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/9677876" }
+  ]
+}

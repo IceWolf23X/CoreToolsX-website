@@ -49,6 +49,12 @@ jobs:
         run: node tools/build-config-bundle.mjs .
       - name: Rebuild the offline documentation bundle
         run: node tools/build-docs-bundle.mjs .
+      - name: Build static search metadata
+        run: node tools/build-page-meta.mjs .
+      - name: Build the static privacy notice
+        run: node tools/build-privacy-page.mjs .
+      - name: Build canonical sitemap and robots reference
+        run: node tools/build-sitemap.mjs .
       - name: Run Node regression tests
         run: node --test
       - name: Validate theme data and snapshots

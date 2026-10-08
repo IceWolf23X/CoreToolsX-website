@@ -1,5 +1,6 @@
 /* Shared interface wording. Product/editorial content lives in landing-content.js and docs-content.js. */
 window.COREX_UI = {
+  legal: { href: 'privacy.html', label: 'Privacy & cookies' },
   skipToContent: 'Skip to content',
   theme: {
     toDark: 'Switch to dark theme',

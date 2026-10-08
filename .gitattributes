@@ -13,3 +13,9 @@
 /synced-configs/** -text
 *.html text eol=lf
 /.gitignore text eol=lf
+# Generated public notice and crawler files must match their deterministic builders.
+/privacy.html text eol=lf
+/sitemap.xml text eol=lf
+/robots.txt text eol=lf
+/assets/content/privacy.json text eol=lf
+/assets/content/seo.json text eol=lf

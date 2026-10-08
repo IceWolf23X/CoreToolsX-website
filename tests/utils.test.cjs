@@ -26,11 +26,15 @@ const vm = require('node:vm');
 const fs = require('node:fs');
 const path = require('node:path');
 const boot = fs.readFileSync(path.join(__dirname,'../assets/js/boot.js'),'utf8');
-function bootContext(getItem){
+/** Model ordinary and standalone metadata while recording any extra canonical link. */
+function bootContext(getItem, staticMeta=false){
+ const description={content:'Notice description'},canonical={href:'https://example.test/privacy.html'};
  const document={
-   documentElement:{dataset:{},style:{setProperty:()=>{}},lang:''},
-   querySelector:()=>({content:''}),
-   getElementById:()=>({href:''})
+   documentElement:{dataset:{},style:{setProperty:()=>{}},lang:'',hasAttribute:attribute=>attribute==='data-static-meta'&&staticMeta},
+   title:'Privacy notice',
+   querySelector:selector=>selector.includes('canonical')?canonical:description,
+   getElementById:()=>({href:''}),
+   head:{appendChild:()=>{throw Error('Existing canonical must be preserved');}}
  };
  const context={document,localStorage:{getItem}};
  context.window=context;
@@ -53,4 +57,16 @@ test('release routes select the releases page and optional version', () => {
 
 test('GitHub release routes retain encoded slash and build-metadata tags',()=>{
   assert.deepEqual(U.routeParts('#/releases/release%2Fv1.2.3%2Bbuild.4'), {view:'releases',id:'release/v1.2.3+build.4',anchor:''});
+});
+
+// Standalone legal metadata must survive the shared boot even when the site's homepage URL exists.
+test('standalone notice keeps its title description and canonical',()=>{
+ const context=bootContext(()=> 'dark',true);
+ context.COREX_SITE.brand.description='Product description';
+ context.COREX_SITE.links={official:'https://example.test/'};
+ vm.runInNewContext(boot,context);
+ assert.equal(context.document.title,'Privacy notice');
+ assert.equal(context.document.querySelector('meta[name="description"]').content,'Notice description');
+ assert.equal(context.document.querySelector('link[rel="canonical"]').href,'https://example.test/privacy.html');
+ assert.equal(context.document.documentElement.dataset.theme,'dark');
 });

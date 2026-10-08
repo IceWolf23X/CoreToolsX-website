@@ -36,3 +36,20 @@ Excluded: private plugin source, `plugin.yml`, runtime/player data, separate res
 - `tests/legacy-contract.json`, `tests/legacy-pages.test.mjs` — Independent baseline of old pages/bookmarks and tests of their maintained article/section targets.
 - `tests/browser_docs_content.cjs` — Real offline Chromium validation of every article/config, reference, search, logo and responsive layout; requires an already installed Node Playwright runtime.
 - `.gitattributes` — LF policy for authored HTML/data and stable normalized config snapshots.
+
+## Privacy notice and crawl discovery
+
+- `assets/content/privacy.json` — Editable English website notice, confirmed controller/contact, providers, retention criteria and rights; separate from the plugin documentation catalog.
+- `assets/content/seo.json` — Canonical maintained page inventory: home, full reference and privacy; excludes hash routes and compatibility redirects.
+- `assets/js/data/ui-text.js` — Shared `legal` destination/label used by landing, wiki, Releases and full-reference navigation.
+- `privacy.html`, `tools/build-privacy-page.mjs` — Generated static notice readable without JavaScript; uses public site identity/storage settings. `--check` validates freshness.
+- `assets/css/legal.css`, `assets/js/core/legal-page.js` — Scoped legal layout and existing theme preference; no additional network or storage services.
+- `sitemap.xml`, `robots.txt`, `tools/build-sitemap.mjs` — Deterministic canonical XML and crawler reference; preserves other robots directives, omits unverified modification dates.
+- `assets/js/boot.js` — Preserves standalone title, description and existing canonical while applying the shared theme.
+- `tools/prepare-pages.mjs`, `.github/workflows/deploy-pages.yml` — Package legal/crawler outputs, reject stale generated content and rebuild it in the optional Pages workflow.
+- `tests/legal-seo.test.mjs` — Authored-text escaping, stale-output preservation, invalid links/routes, crawler directives and Pages packaging contracts.
+- `docs/PRIVACY_AND_SEO.md` — Editing/build workflow, infrastructure evidence, references and operational boundaries.
+
+- `tools/build-page-meta.mjs` — Generates static product-specific home/reference title, description and canonical from `assets/content/seo.json` templates and site identity; preserves application shells and supports read-only freshness validation. Pages preflight/workflow include this contract.
+
+- `assets/js/app.js` — Restores the generated homepage title when returning from wiki or Releases, keeping authored initial and rendered metadata consistent.

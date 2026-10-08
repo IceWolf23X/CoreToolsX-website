@@ -7,9 +7,11 @@ import { createHash } from 'node:crypto';
 import vm from 'node:vm';
 import { CONFIG_FILES } from '../tools/config-sync-map.mjs';
 import { buildDocsBundle } from '../tools/build-docs-bundle.mjs';
+import { buildPageMeta } from '../tools/build-page-meta.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 await buildDocsBundle(root, { check: true });
+await buildPageMeta(root, { check: true });
 const context = vm.createContext({ window: {} });
 for (const rel of [
   'assets/js/data/site-config.js',
@@ -82,7 +84,9 @@ for(const image of gallery.normalizeSlides(site.assets?.[previewKey])) {
 
 const index=readFileSync(resolve(root,'index.html'),'utf8');
 assert(index.includes('<div id="app-root"></div>'),'index.html is not a theme shell');
-assert(!index.includes(site.brand.description), 'Product copy leaked into the generic shell');
+// Generated search metadata is validated above; product prose must still remain out of the authored shell.
+const authoredShell=index.replace(/<!-- COREX_SEO_START -->[\s\S]*?<!-- COREX_SEO_END -->/g,'');
+assert(!authoredShell.includes(site.brand.description), 'Product copy leaked outside generated search metadata');
 assert(index.includes('assets/js/data/landing-content.js'),'index.html does not load landing-content.js');
 assert(index.includes('assets/js/data/docs-content.js'),'index.html does not load docs-content.js');
 assert(index.includes('assets/js/generated/config-files.js'),'index.html does not load generated config bundle');

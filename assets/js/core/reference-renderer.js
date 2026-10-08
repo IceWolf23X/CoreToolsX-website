@@ -1,4 +1,4 @@
-// Build the offline full reference with shared configuration and syntax rendering.
+// Build the offline full reference with shared rendering and public privacy navigation.
 (function () {
   'use strict';
   var site=window.COREX_SITE,docs=window.COREX_DOCS,ui=window.COREX_UI,E=window.CCX_UTILS.escapeHTML;
@@ -7,6 +7,7 @@
   function article(a){return '<section class="reference-article" data-article-id="'+E(a.id)+'"><header class="reference-article-head"><span class="eyebrow">'+E(a.id)+'</span><h2>'+E(a.title)+'</h2><p>'+E(a.description)+'</p></header><div class="prose reference-article-body">'+a.bodyHtml+'</div></section>';}
   var html='<header class="site-header reference-header"><div class="header-inner">'+brand()+'<div class="header-actions"><a class="button ghost" href="index.html#/docs/overview">'+icon('arrow-left')+'Documentation</a><button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="'+E(ui.theme.toDark)+'">'+icon('sun')+icon('moon')+'</button></div></div></header>'+
     '<main class="static-reference prose" id="reference-main"><header class="reference-title"><p class="eyebrow">Complete documentation snapshot</p><h1>'+E(site.brand.product)+' reference</h1><p>All documentation articles and synchronized configuration defaults in one local page.</p></header>'+docs.articles.map(article).join('')+'</main>'+
+    (ui.legal ? '<footer class="container legal-reference-footer"><a data-legal-link href="'+E(ui.legal.href)+'">'+E(ui.legal.label)+'</a></footer>' : '')+
     '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
   document.getElementById('app-root').innerHTML=html;
   window.COREX_CONFIG_VIEW.renderMounts(document.getElementById('reference-main'));

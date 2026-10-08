@@ -1,6 +1,8 @@
+/* Coordinate site views while restoring the authored homepage search title after navigation. */
 (function () {
   'use strict';
   var U=window.CCX_UTILS,site=window.COREX_SITE,ui=window.COREX_UI,landingContent=window.COREX_LANDING;
+  var homeTitle=document.title;
   var lastView=null,lastID=null,toastTimer=null;
   var landing=document.getElementById('landing-view'),docs=document.getElementById('docs-view'),releases=document.getElementById('releases-view');
   var sidebar=document.getElementById('docs-sidebar'),overlay=document.getElementById('sidebar-overlay');
@@ -56,6 +58,7 @@
       else window.scrollTo({top:0,behavior:'instant'});
     });
   }
+  /** Activate the requested view and restore the static homepage title when returning home. */
   function renderRoute(initial){
     var r=U.routeParts(location.hash),same=r.view===lastView&&r.id===lastID;
     var isDocs=r.view==='docs',isReleases=r.view==='releases';landing.hidden=isDocs||isReleases;docs.hidden=!isDocs;releases.hidden=!isReleases;document.body.classList.toggle('docs-active',isDocs);
@@ -63,7 +66,7 @@
     if(window.COREX_PREVIEW)window.COREX_PREVIEW.setActive(!isDocs&&!isReleases);
     if(isDocs&&!same)window.CCX_DOCS.render(r.id);
     if(isReleases&&(!same||initial))window.COREX_RELEASES_UI.render(r.id);
-    if(!isDocs&&!isReleases)document.title=site.brand.product+' — '+site.brand.tagline;
+    if(!isDocs&&!isReleases)document.title=homeTitle;
     document.querySelectorAll('[data-nav]').forEach(function(a){
       var active=a.dataset.nav===(isDocs?'docs':(isReleases?'releases':r.anchor));
       a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');

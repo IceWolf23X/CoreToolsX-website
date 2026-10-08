@@ -24,3 +24,7 @@ The GitHub sync workflow does nothing without the later `COREX_PLUGIN_READ_TOKEN
 The optional REAL_TIER pack is a separate client asset and is not a generated configuration file. Download buttons point to <https://modrinth.com/plugin/coretoolsx>. The Releases view may also read public releases from `IceWolf23X/CoreToolsX-website`; an empty catalog is valid.
 
 See [SETUP.md](SETUP.md) for local work. Local preparation does not authorize a commit, push, release or deployment.
+
+## Privacy and sitemap
+
+See [Privacy and crawl-discovery maintenance](docs/PRIVACY_AND_SEO.md) for editable notice content, controller/contact, canonical page inventory and required generation checks.

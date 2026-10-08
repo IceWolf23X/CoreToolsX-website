@@ -3,6 +3,11 @@
   var site = window.COREX_SITE, content = window.COREX_LANDING, ui = window.COREX_UI, U = window.CCX_UTILS;
   var E = U.escapeHTML;
 
+  /** Render the optional public legal link using shared interface data. */
+  function legalLink() {
+    return ui.legal ? '<a data-legal-link href="' + E(ui.legal.href) + '">' + E(ui.legal.label) + '</a>' : '';
+  }
+
   function icon(name, extra) {
     return '<svg class="icon ' + (extra || '') + '" aria-hidden="true"><use href="#i-' + E(name) + '"></use></svg>';
   }
@@ -136,20 +141,20 @@
     return '<div id="landing-view"><main id="landing-main" tabindex="-1">' + sections + '</main>' + renderFooter() + '</div>';
   }
 
-  // Render shared footer navigation and the documentation-scope link.
+  // Render shared footer navigation, the privacy notice and documentation-scope link.
   function renderFooter() {
     var f=content.footer;
     return '<footer class="site-footer"><div class="container"><div class="footer-main"><div>' + brand() + '<p class="footer-caption">' + E(f.caption) + '</p></div><nav class="footer-nav" aria-label="Footer">' +
-      f.nav.map(function(n){return '<a'+linkAttrs(n)+'>'+E(n.label)+'</a>';}).join('') + '</nav></div><div class="footer-bottom"><span>' + E(f.copyright) + '</span><a href="' + E(f.scopeLink.href) + '">' + E(f.scopeLink.label) + '</a></div></div></footer>';
+      f.nav.map(function(n){return '<a'+linkAttrs(n)+'>'+E(n.label)+'</a>';}).join('') + legalLink() + '</nav></div><div class="footer-bottom"><span>' + E(f.copyright) + '</span><a href="' + E(f.scopeLink.href) + '">' + E(f.scopeLink.label) + '</a></div></div></footer>';
   }
 
-  // Build the wiki navigation, article tools and documentation-scope controls.
-  /** Render wiki navigation with product-owned scope and troubleshooting routes. */
+  // Build wiki navigation, article tools and the documentation-scope/privacy controls.
+  /** Render wiki navigation with product-owned scope, privacy and troubleshooting routes. */
   function renderDocsShell() {
     var d=ui.docs;
     return '<div id="docs-view" hidden><div class="docs-mobilebar"><button data-sidebar-toggle aria-controls="docs-sidebar" aria-expanded="false">' + icon('list') + E(d.mobileMenu) + '</button><button data-search-open aria-label="' + E(d.mobileSearch) + '">' + icon('search') + E(d.mobileSearch) + '</button></div><div class="docs-layout">' +
       '<aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentation navigation"><div class="sidebar-top"><div class="sidebar-title"><span>' + icon('book') + E(d.sidebarTitle) + '</span><button class="icon-button sidebar-close" data-sidebar-close aria-label="Close documentation menu">' + icon('close') + '</button></div><button class="sidebar-search" data-search-open>' + icon('search') + E(d.sidebarSearch) + '<kbd>Ctrl K</kbd></button><div class="docs-mode-tabs"><a href="#/docs/overview" data-doc-mode="overview">' + E(d.overviewTab) + '</a><a href="#/docs/instructions" data-doc-mode="instructions">' + E(d.instructionsTab) + '</a></div></div><nav class="sidebar-scroll" id="sidebar-tree" aria-label="Article navigation"></nav><a class="sidebar-bottom" href="#/docs/' + E(window.COREX_DOCS.navigation.scope) + '">' + icon('file') + E(d.sidebarBottom) + icon('arrow') + '</a></aside>' +
-      '<main class="docs-main" id="docs-main" tabindex="-1"><nav class="breadcrumbs" id="breadcrumbs" aria-label="Breadcrumb"></nav><header class="article-header"><div class="article-kicker" id="article-kicker"></div><h1 id="article-title" tabindex="-1"></h1><p class="article-description" id="article-description"></p><div class="article-tools" id="article-tools"></div></header><details class="mobile-toc" id="mobile-toc"><summary>' + icon('list') + E(d.onThisPage) + icon('chevron') + '</summary><nav class="toc-links" id="mobile-toc-links" aria-label="' + E(d.onThisPage) + '"></nav></details><div id="article-body"></div><nav class="article-pagination" id="article-pagination" aria-label="Previous and next articles"></nav><p class="docs-bottom-note"><span data-product-name></span> ' + E(d.bottomNote) + ' · <a href="#/docs/' + E(window.COREX_DOCS.navigation.scope) + '">' + E(d.scope) + '</a></p></main>' +
+      '<main class="docs-main" id="docs-main" tabindex="-1"><nav class="breadcrumbs" id="breadcrumbs" aria-label="Breadcrumb"></nav><header class="article-header"><div class="article-kicker" id="article-kicker"></div><h1 id="article-title" tabindex="-1"></h1><p class="article-description" id="article-description"></p><div class="article-tools" id="article-tools"></div></header><details class="mobile-toc" id="mobile-toc"><summary>' + icon('list') + E(d.onThisPage) + icon('chevron') + '</summary><nav class="toc-links" id="mobile-toc-links" aria-label="' + E(d.onThisPage) + '"></nav></details><div id="article-body"></div><nav class="article-pagination" id="article-pagination" aria-label="Previous and next articles"></nav><p class="docs-bottom-note"><span data-product-name></span> ' + E(d.bottomNote) + ' · <a href="#/docs/' + E(window.COREX_DOCS.navigation.scope) + '">' + E(d.scope) + '</a> · ' + legalLink() + '</p></main>' +
       '<aside class="toc-rail" aria-label="' + E(d.onThisPage) + '"><p class="toc-heading">' + icon('list') + E(d.onThisPage) + '</p><nav class="toc-links" id="toc-links"></nav><div class="toc-help"><p>' + E(d.helpText).replace(/\n/g,'<br>') + '</p><a href="#/docs/' + E(window.COREX_DOCS.navigation.troubleshooting) + '">' + icon('help') + E(d.troubleshooting) + '</a><a data-link="issues" href="' + E(site.links.issues) + '" target="_blank" rel="noopener noreferrer">' + icon('github') + E(d.reportIssue) + icon('external') + '</a><a href="reference.html">' + icon('book') + E(d.fullReference) + '</a></div></aside></div></div>';
   }
 
