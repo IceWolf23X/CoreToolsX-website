@@ -48,6 +48,7 @@ test('static notice includes controller, real keys, canonical and clear persiste
   const policy = JSON.parse(await fs.readFile(path.join(dir, 'assets/content/privacy.json'), 'utf8'));
   assert.ok(html.includes(policy.controller.name));
   assert.ok(html.includes('mailto:' + policy.controller.email));
+  assert.ok(html.includes('<!--email_off--><a href="mailto:' + policy.controller.email + '">'), 'Public privacy contact must remain readable when provider email obfuscation is enabled');
   assert.ok(html.includes(site.theme.storageKey));
   assert.ok(html.includes('corex.github-releases.v2:' + (site.releases.owner + '/' + site.releases.repository).toLowerCase()));
   assert.match(html, /not automatically deleted/);
