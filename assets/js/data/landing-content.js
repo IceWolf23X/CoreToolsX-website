@@ -5,7 +5,7 @@ window.COREX_LANDING = {
     { label: 'Features', href: '#/features', nav: 'features' }, { label: 'Setup', href: '#/setup', nav: 'setup' },
     { label: 'Documentation', href: '#/docs/overview', nav: 'docs', docsLink: true },
     { label: 'FAQ', href: '#/docs/reference/faq', nav: 'faq', docsLink: true },
-    { label: 'Support', href: '#/docs/reference/support-policy', nav: 'docs', docsLink: true }
+    { label: 'Releases', href: '#/releases', nav: 'releases' }
   ] },
   hero: {
     eyebrow: 'Vanilla crafting, controlled progression', title: [{ text: 'Tool progression,' }, { text: 'kept vanilla.', accent: true }],
