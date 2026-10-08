@@ -3,7 +3,7 @@ window.COREX_RELEASES = {
   "schemaVersion": 2,
   "provider": "github",
   "repository": "IceWolf23X/CoreToolsX-website",
-  "generatedAt": "2026-10-08T00:39:16.077Z",
+  "generatedAt": "2026-10-08T10:36:10.365Z",
   "releases": [
     {
       "tag_name": "v2026.1.2",
@@ -20,7 +20,7 @@ window.COREX_RELEASES = {
           "size": 154889,
           "digest": "sha256:4074188c510353fd84f6c153d2bb8a4ce2e27f8847d66a7d7c8f4604753c3362",
           "browser_download_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/download/v2026.1.2/CoreToolsX-2026.1.2.jar",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
@@ -39,7 +39,7 @@ window.COREX_RELEASES = {
           "size": 130025,
           "digest": "sha256:e06c105f46d9e13eb2e39b252753d45dc84946123eb1bec5fe1ca39a324d22e8",
           "browser_download_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/download/v2026.1.1/CoreToolsX-2026.1.1.jar",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
@@ -58,7 +58,7 @@ window.COREX_RELEASES = {
           "size": 129005,
           "digest": "sha256:1d7f5412f3b234c1e80e1c0c65e9300090a2da9194c6ade4a45b5b9fdda17d60",
           "browser_download_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/download/v2026.1.0/CoreToolsX-2026.1.0.jar",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     }
