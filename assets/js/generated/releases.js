@@ -3,6 +3,64 @@ window.COREX_RELEASES = {
   "schemaVersion": 2,
   "provider": "github",
   "repository": "IceWolf23X/CoreToolsX-website",
-  "generatedAt": "2026-10-07T21:45:57.409Z",
-  "releases": []
+  "generatedAt": "2026-10-08T00:39:16.077Z",
+  "releases": [
+    {
+      "tag_name": "v2026.1.2",
+      "name": "CoreToolsX 2026.1.2 (Beta)",
+      "body": "# CoreToolsX 2026.1.2\n\n## Added\n\n- Added anonymous bStats reporting for Paper/Purpur, including current and record server/player statistics.\n\n## Compatibility\n\n- Metrics respect the server-wide bStats setting in `plugins/bStats/config.yml`; no CoreToolsX configuration migration is required.\n- A metrics connection failure does not prevent CoreToolsX from starting.\n",
+      "html_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/tag/v2026.1.2",
+      "draft": false,
+      "prerelease": true,
+      "published_at": "2026-10-08T00:39:10Z",
+      "assets": [
+        {
+          "name": "CoreToolsX-2026.1.2.jar",
+          "state": "uploaded",
+          "size": 154889,
+          "digest": "sha256:4074188c510353fd84f6c153d2bb8a4ce2e27f8847d66a7d7c8f4604753c3362",
+          "browser_download_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/download/v2026.1.2/CoreToolsX-2026.1.2.jar",
+          "download_count": 0
+        }
+      ]
+    },
+    {
+      "tag_name": "v2026.1.1",
+      "name": "CoreToolsX 2026.1.1",
+      "body": "# CoreToolsX 2026.1.1\n\n## Changed\n- `recipes.override-vanilla-equipment-recipes: true` now replaces protected vanilla tool recipes with CoreToolsX progression recipes under the matching `minecraft:*` recipe keys.\n",
+      "html_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/tag/v2026.1.1",
+      "draft": false,
+      "prerelease": false,
+      "published_at": "2026-10-08T00:39:06Z",
+      "assets": [
+        {
+          "name": "CoreToolsX-2026.1.1.jar",
+          "state": "uploaded",
+          "size": 130025,
+          "digest": "sha256:e06c105f46d9e13eb2e39b252753d45dc84946123eb1bec5fe1ca39a324d22e8",
+          "browser_download_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/download/v2026.1.1/CoreToolsX-2026.1.1.jar",
+          "download_count": 0
+        }
+      ]
+    },
+    {
+      "tag_name": "v2026.1.0",
+      "name": "CoreToolsX 2026.1.0",
+      "body": "# CoreToolsX 2026.1.0\n\n## Added\n- Added configurable vanilla crafting progression for swords, pickaxes, axes, shovels, hoes and spears.\n- Added netherite tool skins with configurable appearances, lore, durability and permission locks.\n- Added skin removal, inspection and configuration reload commands.\n\n## Compatibility\n- An optional [resource pack](https://github.com/IceWolf23X/CoreToolsX-website/releases/download/v2026.1.0/CoreToolsX-resource-pack-2026.1.0.zip) is included for `REAL_TIER` inventory models. The default `VISUAL_SKIN` mode does not require it.\n",
+      "html_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/tag/v2026.1.0",
+      "draft": false,
+      "prerelease": false,
+      "published_at": "2026-10-08T00:39:03Z",
+      "assets": [
+        {
+          "name": "CoreToolsX-2026.1.0.jar",
+          "state": "uploaded",
+          "size": 129005,
+          "digest": "sha256:1d7f5412f3b234c1e80e1c0c65e9300090a2da9194c6ade4a45b5b9fdda17d60",
+          "browser_download_url": "https://github.com/IceWolf23X/CoreToolsX-website/releases/download/v2026.1.0/CoreToolsX-2026.1.0.jar",
+          "download_count": 0
+        }
+      ]
+    }
+  ]
 };
